@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DESBORDE® — Agencia de Diseño Multimedial</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap" rel="stylesheet">
+  <style>
+    /* Tipografía Acumin Pro con fallbacks neo-grotescos de alta precisión */
+    :root {
+      --font-acumin: "Acumin Pro", "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-display: "Acumin Pro", "Syne", "Plus Jakarta Sans", sans-serif;
+      --bg-void: #08080A;
+      --surface-card: #111115;
+      --accent-lime: #D4FF00;
+      --accent-indigo: #4E47FF;
+      --text-main: #F4F4F6;
+      --text-muted: #8E8E98;
+    }
+
+    body {
+      font-family: var(--font-acumin);
+      background-color: var(--bg-void);
+      color: var(--text-main);
+      overflow-x: hidden;
+      selection-background-color: var(--accent-lime);
+      selection-color: #000;
+    }
+
+    ::selection {
+      background: var(--accent-lime);
+      color: #000000;
+    }
+
+    .font-display {
+      font-family: var(--font-display);
+    }
+
+    /* Grano de textura cinematográfica sutil */
+    .bg-noise {
+      background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 0);
+      background-size: 24px 24px;
+    }
+
+    /* Bordes con gradiente ultrafino de 1px */
+    .border-subtle {
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .border-subtle-hover:hover {
+      border-color: rgba(212, 255, 0, 0.35);
+    }
+
+    /* Animación pulso de disponibilidad */
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.15); }
+    }
+    .pulse-dot {
+      animation: pulse-glow 2s infinite ease-in-out;
+    }
+
+    /* Mesh animado de fondo */
+    .ambient-glow-1 {
+      position: absolute;
+      width: 550px;
+      height: 550px;
+      background: radial-gradient(circle, rgba(78, 71, 255, 0.18) 0%, rgba(8, 8, 10, 0) 70%);
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .ambient-glow-2 {
+      position: absolute;
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, rgba(212, 255, 0, 0.12) 0%, rgba(8, 8, 10, 0) 70%);
+      filter: blur(90px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Card glassmorphism */
+    .glass-panel {
+      background: rgba(17, 17, 21, 0.75);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+  </style>
+</head>
+<body class="bg-[#08080A] text-[#F4F4F6] antialiased relative selection:bg-[#D4FF00] selection:text-black">
+
+  <!-- Ambient Lighting Effects -->
+  <div class="ambient-glow-1 top-10 right-10"></div>
+  <div class="ambient-glow-2 top-[1200px] -left-20"></div>
+  <div class="ambient-glow-1 bottom-40 right-20"></div>
+
+  <!-- HEADER / NAVEGACIÓN PRINCIPAL -->
+  <header class="fixed top-0 left-0 w-full z-50 px-6 py-5 md:px-12 flex items-center justify-between transition-all duration-300 backdrop-blur-md bg-[#08080A]/80 border-b border-white/[0.06]">
+    <div class="flex items-center space-x-3">
+      <a href="#hero" class="text-2xl md:text-3xl font-extrabold tracking-tighter uppercase font-display flex items-center group">
+        <span>DESBORDE</span>
+        <span class="inline-block w-2.5 h-2.5 rounded-full bg-[#D4FF00] ml-1.5 transition-transform group-hover:scale-150 duration-300"></span>
+      </a>
+      <span class="hidden sm:inline-block text-[10px] tracking-[0.2em] uppercase text-[#8E8E98] px-2 py-0.5 rounded-full border border-white/10 font-mono">
+        EST. 2026 // AWWWARDS NOMINEE
+      </span>
+    </div>
+
+    <!-- Nav Links -->
+    <nav class="hidden md:flex items-center space-x-8 text-xs font-semibold tracking-wider uppercase">
+      <a href="#manifiesto" class="text-[#8E8E98] hover:text-[#D4FF00] transition-colors duration-200">
+        <span class="text-white/30 mr-1 font-mono">01/</span> Manifiesto
+      </a>
+      <a href="#capacidades" class="text-[#8E8E98] hover:text-[#D4FF00] transition-colors duration-200">
+        <span class="text-white/30 mr-1 font-mono">02/</span> Capacidades
+      </a>
+      <a href="#archivo" class="text-[#8E8E98] hover:text-[#D4FF00] transition-colors duration-200">
+        <span class="text-white/30 mr-1 font-mono">03/</span> Archivo
+      </a>
+      <a href="#contacto" class="text-[#8E8E98] hover:text-[#D4FF00] transition-colors duration-200">
+        <span class="text-white/30 mr-1 font-mono">04/</span> Contacto
+      </a>
+    </nav>
+
+    <!-- Header Actions -->
+    <div class="flex items-center space-x-4">
+      <div class="hidden lg:flex items-center space-x-2 text-xs font-mono text-[#8E8E98] bg-white/[0.03] px-3 py-1.5 rounded-full border border-white/10">
+        <span class="w-2 h-2 rounded-full bg-[#D4FF00] pulse-dot"></span>
+        <span>DISPONIBILIDAD: Q3/Q4</span>
+      </div>
+
+      <a href="#contacto" class="relative group overflow-hidden px-5 py-2.5 rounded-full bg-[#D4FF00] text-black text-xs font-bold uppercase tracking-wider transition-all duration-300 hover:bg-white hover:shadow-[0_0_25px_rgba(212,255,0,0.4)]">
+        <span class="relative z-10 flex items-center space-x-1.5">
+          <span>INICIAR PROYECTO</span>
+          <svg class="w-3.5 h-3.5 transform transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M7 17L17 7M17 7H7M17 7V17"/>
+          </svg>
+        </span>
+      </a>
+    </div>
+  </header>
+
+  <!-- SECCIÓN 1: HERO SECTION -->
+  <section id="hero" class="relative min-h-screen pt-32 pb-20 px-6 md:px-12 flex flex-col justify-between overflow-hidden bg-noise border-b border-white/[0.06]">
+    <!-- Background Interactive Video / 3D Canvas Canvas Simulation -->
+    <div class="absolute inset-0 z-0 pointer-events-none opacity-40 overflow-hidden flex items-center justify-center">
+      <div class="relative w-[120%] h-[120%] max-w-none">
+        <svg viewBox="0 0 1000 1000" class="w-full h-full animate-[spin_60s_linear_infinite] opacity-30">
+          <defs>
+            <linearGradient id="heroGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#D4FF00" stop-opacity="0.6"/>
+              <stop offset="50%" stop-color="#4E47FF" stop-opacity="0.4"/>
+              <stop offset="100%" stop-color="#08080A" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <circle cx="500" cy="500" r="420" fill="none" stroke="url(#heroGrad)" stroke-width="1.5" stroke-dasharray="8 16"/>
+          <circle cx="500" cy="500" r="320" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+          <circle cx="500" cy="500" r="210" fill="none" stroke="url(#heroGrad)" stroke-width="2" stroke-dasharray="14 30"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Kicker Tag -->
+    <div class="relative z-10 pt-8 flex items-center space-x-3">
+      <span class="text-[#D4FF00] font-mono text-xs tracking-[0.25em] uppercase font-bold">
+        // AGENCIA DE DISEÑO MULTIMEDIAL
+      </span>
+      <span class="h-px w-16 bg-white/20"></span>
+      <span class="text-white/40 font-mono text-xs tracking-widest hidden sm:inline">AWWWARDS SITE OF THE DAY CANDIDATE</span>
+    </div>
+
+    <!-- Giant Main Title (Acumin Pro Monumental Aesthetic) -->
+    <div class="relative z-10 my-auto py-8">
+      <div class="overflow-hidden">
+        <h1 class="text-[clamp(3.8rem,13vw,13.5rem)] font-extrabold uppercase leading-[0.85] tracking-[-0.04em] font-display text-transparent bg-clip-text bg-gradient-to-b from-[#FFFFFF] via-[#F4F4F6] to-[#71717A]">
+          DESBORDE
+        </h1>
+      </div>
+      <div class="flex flex-col md:flex-row md:items-end justify-between mt-6 gap-8">
+        <p class="max-w-xl text-lg md:text-2xl text-[#8E8E98] font-light leading-relaxed">
+          Diseñamos experiencias digitales disruptivas, arte 3D y ecosistemas visuales para marcas que rehúsan encajar en moldes convencionales.
+        </p>
+
+        <!-- CTA Cluster -->
+        <div class="flex flex-wrap items-center gap-4">
+          <a href="#archivo" class="px-8 py-4 rounded-full bg-[#D4FF00] text-black font-bold text-sm tracking-wider uppercase transition-all duration-300 hover:scale-105 hover:shadow-[0_0_35px_rgba(212,255,0,0.5)] flex items-center space-x-2">
+            <span>EXPLORAR SHOWREEL</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </a>
+          <a href="#manifiesto" class="px-7 py-4 rounded-full border border-white/20 text-white font-medium text-sm tracking-wider uppercase hover:border-[#D4FF00] hover:text-[#D4FF00] transition-colors duration-200">
+            CONOCE NUESTRO ENFOQUE
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Footer Status Indicators -->
+    <div class="relative z-10 pt-6 border-t border-white/[0.08] flex flex-wrap items-center justify-between text-xs font-mono text-[#8E8E98] gap-4">
+      <div class="flex items-center space-x-6">
+        <div><span class="text-white">COORD:</span> 34°36'S 58°22'W</div>
+        <div><span class="text-white">FPS:</span> 60.0 STABLE</div>
+        <div class="hidden sm:block"><span class="text-white">ENGINE:</span> THREE.JS / WEBGL 2.0</div>
+      </div>
+      <div class="flex items-center space-x-2 text-white/50">
+        <span>SCROLL TO UNRAVEL</span>
+        <svg class="w-4 h-4 animate-bounce text-[#D4FF00]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 2: SOBRE NOSOTROS (MANIFIESTO EDITORIAL) -->
+  <section id="manifiesto" class="py-28 px-6 md:px-12 border-b border-white/[0.06] relative">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+        
+        <!-- Columna Izquierda: Sticky Indicator -->
+        <div class="lg:col-span-4 flex flex-col justify-between">
+          <div>
+            <div class="font-mono text-xs tracking-[0.25em] text-[#D4FF00] uppercase mb-4">
+              [ 01 // MANIFIESTO ]
+            </div>
+            <h2 class="text-2xl md:text-3xl font-extrabold uppercase tracking-tight text-white font-display leading-tight">
+              NO HACEMOS PÁGINAS WEB.<br>
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#D4FF00] to-white">
+                CONSTRUIMOS CATALIZADORES SENSORIALES.
+              </span>
+            </h2>
+          </div>
+
+          <!-- Métricas Disruptivas -->
+          <div class="mt-12 pt-8 border-t border-white/10 space-y-6">
+            <div>
+              <div class="text-3xl md:text-4xl font-black font-display text-white">100%</div>
+              <div class="text-xs font-mono uppercase text-[#8E8E98] tracking-widest mt-1">Soluciones sin plantillas</div>
+            </div>
+            <div>
+              <div class="text-3xl md:text-4xl font-black font-display text-[#D4FF00]">18+</div>
+              <div class="text-xs font-mono uppercase text-[#8E8E98] tracking-widest mt-1">Premios Internacionales de Diseño</div>
+            </div>
+            <div>
+              <div class="text-3xl md:text-4xl font-black font-display text-white">&lt;0.05s</div>
+              <div class="text-xs font-mono uppercase text-[#8E8E98] tracking-widest mt-1">Latencia de Render & Microinteracciones</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Columna Derecha: Texto Editorial con carácter -->
+        <div class="lg:col-span-8 flex flex-col justify-center space-y-8">
+          <p class="text-2xl md:text-4xl lg:text-5xl font-normal leading-[1.25] tracking-tight text-white/90">
+            El entorno digital está saturado de uniformidad. Nosotros nacimos para provocar la ruptura: <span class="text-white font-semibold underline decoration-[#D4FF00] decoration-2 underline-offset-8">Desborde</span> es la intersección salvaje entre ingeniería de software de precisión, dirección de arte editorial y render 3D hiperrealista.
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-6 text-base text-[#8E8E98] leading-relaxed font-light">
+            <p>
+              Operamos con una visión radical del espacio negativo: eliminamos lo superfluo hasta que cada milisegundo de interacción, cada transición cinemática y cada microinteracción comunique autoridad y magnetismo instantáneo.
+            </p>
+            <p>
+              Trabajamos con creadores, startups de vanguardia y marcas de escala global que entienden que el diseño digital de nivel premium no es un gasto accesorio, sino el activo competitivo más decisivo de su industria.
+            </p>
+          </div>
+
+          <!-- Interactive Philosophy Pill -->
+          <div class="pt-6">
+            <div class="p-6 rounded-2xl glass-panel border border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div class="flex items-center space-x-3">
+                <span class="w-3 h-3 rounded-full bg-[#D4FF00]"></span>
+                <span class="text-sm font-semibold uppercase tracking-wider text-white">NUESTRA REGLA FUNDAMENTAL</span>
+              </div>
+              <div class="text-xs font-mono text-[#D4FF00]">
+                "SI YA EXISTE EN UNA PLANTILLA, NOS NIEGA A EXISTIR AQUÍ."
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 3: QUÉ OFRECEMOS (CAPACIDADES & SERVICIOS ASIMÉTRICOS) -->
+  <section id="capacidades" class="py-28 px-6 md:px-12 border-b border-white/[0.06] relative bg-noise">
+    <div class="max-w-7xl mx-auto">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-white/[0.08]">
+        <div>
+          <div class="font-mono text-xs tracking-[0.25em] text-[#D4FF00] uppercase mb-2">
+            [ 02 // CAPACIDADES ]
+          </div>
+          <h2 class="text-4xl md:text-6xl font-extrabold uppercase tracking-tight font-display text-white">
+            QUÉ OFRECEMOS
+          </h2>
+        </div>
+        <p class="max-w-md text-sm text-[#8E8E98] font-mono mt-4 md:mt-0">
+          ARQUITECTURA DE EXPERIENCIAS END-TO-END SIN FRICCIÓN ENTRE CONCEPTO Y PRODUCCIÓN.
+        </p>
+      </div>
+
+      <!-- Asymmetric Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+        
+        <!-- Card 1: UX/UI Design (Span 7 cols) -->
+        <div class="md:col-span-7 p-8 md:p-10 rounded-3xl bg-[#111115] border border-white/[0.08] hover:border-[#D4FF00]/40 transition-all duration-300 flex flex-col justify-between group relative overflow-hidden">
+          <div class="absolute -right-16 -top-16 w-56 h-56 rounded-full bg-[#D4FF00]/5 filter blur-3xl group-hover:bg-[#D4FF00]/15 transition-all duration-500"></div>
+          <div>
+            <div class="flex items-center justify-between mb-8">
+              <span class="font-mono text-xs text-[#D4FF00] font-bold tracking-widest">[ 01 ]</span>
+              <span class="text-xs font-mono px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/70">DIGITAL PRODUCT</span>
+            </div>
+            <h3 class="text-2xl md:text-4xl font-extrabold tracking-tight uppercase font-display text-white mb-4 group-hover:text-[#D4FF00] transition-colors">
+              DISEÑO UX/UI & SISTEMAS DE DISEÑO
+            </h3>
+            <p class="text-base text-[#8E8E98] font-light leading-relaxed max-w-xl">
+              Arquitecturas de información complejas simplificadas en interfaces líquidas, ultra intuitivas y con microinteracciones de precisión que maximizan la conversión y deleitan al usuario.
+            </p>
+          </div>
+          <div class="mt-8 pt-6 border-t border-white/10 flex flex-wrap gap-2">
+            <span class="text-xs font-mono px-3 py-1 rounded-md bg-white/[0.04] text-white/80">Prototipado Figma Avanzado</span>
+            <span class="text-xs font-mono px-3 py-1 rounded-md bg-white/[0.04] text-white/80">Tokens & Design Systems</span>
+            <span class="text-xs font-mono px-3 py-1 rounded-md bg-white/[0.04] text-white/80">Auditoría Heurística</span>
+          </div>
+        </div>
+
+        <!-- Card 2: 3D Modeling (Span 5 cols) -->
+        <div class="md:col-span-5 p-8 md:p-10 rounded-3xl bg-[#111115] border border-white/[0.08] hover:border-[#4E47FF]/40 transition-all duration-300 flex flex-col justify-between group relative overflow-hidden">
+          <div class="absolute -right-10 -bottom-10 w-44 h-44 rounded-full bg-[#4E47FF]/10 filter blur-3xl group-hover:bg-[#4E47FF]/25 transition-all duration-500"></div>
+          <div>
+            <div class="flex items-center justify-between mb-8">
+              <span class="font-mono text-xs text-[#4E47FF] font-bold tracking-widest">[ 02 ]</span>
+              <span class="text-xs font-mono px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/70">SPATIAL COMPUTING</span>
+            </div>
+            <h3 class="text-2xl md:text-3xl font-extrabold tracking-tight uppercase font-display text-white mb-4 group-hover:text-white transition-colors">
+              MODELADO 3D & RENDERS INTERACTIVOS
+            </h3>
+            <p class="text-sm md:text-base text-[#8E8E98] font-light leading-relaxed">
+              Creación de escenarios hiperrealistas, visualización de productos en WebGL / Three.js y shaders matemáticos ejecutables en tiempo real en el navegador.
+            </p>
+          </div>
+          <div class="mt-8 pt-6 border-t border-white/10 flex flex-wrap gap-2">
+            <span class="text-xs font-mono px-3 py-1 rounded-md bg-white/[0.04] text-white/80">Three.js / WebGL</span>
+            <span class="text-xs font-mono px-3 py-1 rounded-md bg-white/[0.04] text-white/80">Blender / Cinema4D</span>
+          </div>
+        </div>
+
+        <!-- Card 3: Motion & Animation (Span 5 cols) -->
+        <div class="md:col-span-5 p-8 md:p-10 rounded-3xl bg-[#111115] border border-white/[0.08] hover:border-white/30 transition-all duration-300 flex flex-col justify-between group">
+          <div>
+            <div class="flex items-center justify-between mb-8">
+              <span class="font-mono text-xs text-white/60 font-bold tracking-widest">[ 03 ]</span>
+              <span class="text-xs font-mono px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/70">KINETIC CRAFT</span>
+            </div>
+            <h3 class="text-2xl md:text-3xl font-extrabold tracking-tight uppercase font-display text-white mb-4">
+              ANIMACIÓN & MOTION GRAPHICS
+            </h3>
+            <p class="text-sm md:text-base text-[#8E8E98] font-light leading-relaxed">
+              Showreels cinemáticos, tipografía cinética y secuencias audiovisuales que detienen el scroll y convierten historias de marca en piezas de culto.
+            </p>
+          </div>
+          <div class="mt-8 pt-6 border-t border-white/10 flex flex-wrap gap-2">
+            <span class="text-xs font-mono px-3 py-1 rounded-md bg-white/[0.04] text-white/80">After Effects</span>
+            <span class="text-xs font-mono px-3 py-1 rounded-md bg-white/[0.04] text-white/80">Lottie & Rive</span>
+          </div>
+        </div>
+
+        <!-- Card 4: Brand Identity (Span 7 cols) -->
+        <div class="md:col-span-7 p-8 md:p-10 rounded-3xl bg-[#111115] border border-white/[0.08] hover:border-[#D4FF00]/40 transition-all duration-300 flex flex-col justify-between group relative overflow-hidden">
+          <div class="absolute -left-10 -bottom-10 w-44 h-44 rounded-full bg-[#D4FF00]/5 filter blur-3xl group-hover:bg-[#D4FF00]/15 transition-all duration-500"></div>
+          <div>
+            <div class="flex items-center justify-between mb-8">
+              <span class="font-mono text-xs text-[#D4FF00] font-bold tracking-widest">[ 04 ]</span>
+              <span class="text-xs font-mono px-3 py-1 rounded-full bg-white/5 border border-white/10 text-white/70">BRAND SYSTEM</span>
+            </div>
+            <h3 class="text-2xl md:text-4xl font-extrabold tracking-tight uppercase font-display text-white mb-4 group-hover:text-[#D4FF00] transition-colors">
+              IDENTIDAD VISUAL & BRANDING EVOLUTIVO
+            </h3>
+            <p class="text-base text-[#8E8E98] font-light leading-relaxed max-w-xl">
+              Construcción de identidades disruptivas preparadas para el ecosistema omnicanal: tipografía personalizada, paletas cromáticas cinemáticas y manuales de marca vivos.
+            </p>
+          </div>
+          <div class="mt-8 pt-6 border-t border-white/10 flex flex-wrap gap-2">
+            <span class="text-xs font-mono px-3 py-1 rounded-md bg-white/[0.04] text-white/80">Sistemas Generativos</span>
+            <span class="text-xs font-mono px-3 py-1 rounded-md bg-white/[0.04] text-white/80">Dirección de Arte</span>
+            <span class="text-xs font-mono px-3 py-1 rounded-md bg-white/[0.04] text-white/80">Tipografía Bespoke</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 4: PORTFOLIO / PROYECTOS (MASONRY ASIMÉTRICO) -->
+  <section id="archivo" class="py-28 px-6 md:px-12 border-b border-white/[0.06] relative">
+    <div class="max-w-7xl mx-auto">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 pb-6 border-b border-white/[0.08]">
+        <div>
+          <div class="font-mono text-xs tracking-[0.25em] text-[#D4FF00] uppercase mb-2">
+            [ 03 // ARCHIVO SELECCIONADO ]
+          </div>
+          <h2 class="text-4xl md:text-6xl font-extrabold uppercase tracking-tight font-display text-white">
+            PROYECTOS DESTACADOS
+          </h2>
+        </div>
+        <div class="text-xs font-mono text-[#8E8E98] flex items-center space-x-2 mt-4 md:mt-0">
+          <span class="w-2 h-2 rounded-full bg-[#D4FF00]"></span>
+          <span>CASOS DE ESTUDIO 2024—2026</span>
+        </div>
+      </div>
+
+      <!-- Masonry Grid Asimétrica -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+        
+        <!-- Proyecto 1: Hero Featured Case (Span 7 cols - Landscape) -->
+        <div class="md:col-span-7 group cursor-pointer">
+          <div class="relative w-full aspect-[16/10] rounded-3xl overflow-hidden bg-[#16161C] border border-white/10 group-hover:border-[#D4FF00] transition-all duration-500">
+            <!-- Simulated Video / Graphic Viewport -->
+            <div class="absolute inset-0 bg-gradient-to-tr from-[#0D0D11] via-[#1E1B4B] to-[#0A0A0E] flex items-center justify-center p-8 group-hover:scale-105 transition-transform duration-700 ease-out">
+              <div class="text-center space-y-3">
+                <div class="w-20 h-20 mx-auto rounded-2xl bg-gradient-to-br from-[#D4FF00] to-[#4E47FF] p-0.5 shadow-2xl">
+                  <div class="w-full h-full bg-black/80 rounded-2xl flex items-center justify-center font-display font-black text-2xl text-[#D4FF00]">
+                    01
+                  </div>
+                </div>
+                <div class="font-mono text-xs text-white/50 tracking-widest uppercase">WEBGL 3D EXPERIENCE</div>
+              </div>
+            </div>
+
+            <!-- Hover Magnetic Badge -->
+            <div class="absolute top-5 right-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <span class="px-4 py-2 rounded-full bg-[#D4FF00] text-black font-bold text-xs uppercase tracking-wider flex items-center space-x-1 shadow-lg">
+                <span>VER CASO</span>
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+              </span>
+            </div>
+          </div>
+
+          <!-- Metadata -->
+          <div class="mt-5 flex items-baseline justify-between">
+            <div>
+              <h4 class="text-2xl font-bold uppercase font-display text-white group-hover:text-[#D4FF00] transition-colors">
+                AURA SOUNDSCAPES
+              </h4>
+              <p class="text-xs font-mono text-[#8E8E98] uppercase tracking-wider mt-1">
+                Plataforma de audio inmersivo con visualizadores generativos en tiempo real
+              </p>
+            </div>
+            <span class="font-mono text-xs text-white/40">2026 // UX-UI + WEBGL</span>
+          </div>
+        </div>
+
+        <!-- Proyecto 2: Portrait Vertical (Span 5 cols) -->
+        <div class="md:col-span-5 group cursor-pointer md:mt-12">
+          <div class="relative w-full aspect-[4/5] rounded-3xl overflow-hidden bg-[#16161C] border border-white/10 group-hover:border-[#D4FF00] transition-all duration-500">
+            <div class="absolute inset-0 bg-gradient-to-b from-[#181822] to-[#0A0A0D] flex items-center justify-center p-8 group-hover:scale-105 transition-transform duration-700 ease-out">
+              <div class="text-center space-y-4">
+                <div class="w-28 h-28 mx-auto rounded-full border-2 border-dashed border-[#D4FF00]/40 flex items-center justify-center animate-[spin_20s_linear_infinite]">
+                  <span class="font-display font-black text-xl text-white">NEXUS</span>
+                </div>
+                <div class="font-mono text-xs text-[#D4FF00] tracking-widest uppercase">BRAND REVOLUTION</div>
+              </div>
+            </div>
+
+            <div class="absolute top-5 right-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <span class="px-4 py-2 rounded-full bg-[#D4FF00] text-black font-bold text-xs uppercase tracking-wider flex items-center space-x-1 shadow-lg">
+                <span>VER CASO</span>
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+              </span>
+            </div>
+          </div>
+
+          <div class="mt-5 flex items-baseline justify-between">
+            <div>
+              <h4 class="text-2xl font-bold uppercase font-display text-white group-hover:text-[#D4FF00] transition-colors">
+                NEXUS KINETIC MOBILITY
+              </h4>
+              <p class="text-xs font-mono text-[#8E8E98] uppercase tracking-wider mt-1">
+                Ecosistema de identidad visual y app nativa para vehículos autónomos
+              </p>
+            </div>
+            <span class="font-mono text-xs text-white/40">2025 // IDENTIDAD</span>
+          </div>
+        </div>
+
+        <!-- Proyecto 3: Portrait Offset (Span 5 cols) -->
+        <div class="md:col-span-5 group cursor-pointer">
+          <div class="relative w-full aspect-[4/5] rounded-3xl overflow-hidden bg-[#16161C] border border-white/10 group-hover:border-[#D4FF00] transition-all duration-500">
+            <div class="absolute inset-0 bg-gradient-to-tl from-[#1F1235] via-[#0D0D15] to-[#111116] flex items-center justify-center p-8 group-hover:scale-105 transition-transform duration-700 ease-out">
+              <div class="text-center space-y-3">
+                <div class="text-5xl font-black font-display text-transparent bg-clip-text bg-gradient-to-r from-white to-[#D4FF00]">
+                  SYNAPSE
+                </div>
+                <div class="font-mono text-xs text-[#8E8E98] tracking-widest uppercase">CGI CAMPAIGN & MOTION</div>
+              </div>
+            </div>
+
+            <div class="absolute top-5 right-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <span class="px-4 py-2 rounded-full bg-[#D4FF00] text-black font-bold text-xs uppercase tracking-wider flex items-center space-x-1 shadow-lg">
+                <span>VER CASO</span>
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+              </span>
+            </div>
+          </div>
+
+          <div class="mt-5 flex items-baseline justify-between">
+            <div>
+              <h4 class="text-2xl font-bold uppercase font-display text-white group-hover:text-[#D4FF00] transition-colors">
+                SYNAPSE BIO-NEURAL
+              </h4>
+              <p class="text-xs font-mono text-[#8E8E98] uppercase tracking-wider mt-1">
+                Render 3D de precisión para biotecnología suiza
+              </p>
+            </div>
+            <span class="font-mono text-xs text-white/40">2026 // 3D RENDER</span>
+          </div>
+        </div>
+
+        <!-- Proyecto 4: Landscape Wide (Span 7 cols) -->
+        <div class="md:col-span-7 group cursor-pointer md:mt-8">
+          <div class="relative w-full aspect-[16/10] rounded-3xl overflow-hidden bg-[#16161C] border border-white/10 group-hover:border-[#D4FF00] transition-all duration-500">
+            <div class="absolute inset-0 bg-gradient-to-br from-[#0B132B] via-[#1C2541] to-[#08080A] flex items-center justify-center p-8 group-hover:scale-105 transition-transform duration-700 ease-out">
+              <div class="text-center space-y-3">
+                <div class="text-6xl font-black font-display tracking-tighter text-[#D4FF00]">
+                  VORTEX
+                </div>
+                <div class="font-mono text-xs text-white/60 tracking-widest uppercase">E-COMMERCE IMMERSIVE SYSTEM</div>
+              </div>
+            </div>
+
+            <div class="absolute top-5 right-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <span class="px-4 py-2 rounded-full bg-[#D4FF00] text-black font-bold text-xs uppercase tracking-wider flex items-center space-x-1 shadow-lg">
+                <span>VER CASO</span>
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+              </span>
+            </div>
+          </div>
+
+          <div class="mt-5 flex items-baseline justify-between">
+            <div>
+              <h4 class="text-2xl font-bold uppercase font-display text-white group-hover:text-[#D4FF00] transition-colors">
+                VORTEX LUXURY FASHION
+              </h4>
+              <p class="text-xs font-mono text-[#8E8E98] uppercase tracking-wider mt-1">
+                Showroom virtual 3D con checkout instantáneo y shaders de tela
+              </p>
+            </div>
+            <span class="font-mono text-xs text-white/40">2025 // E-COMMERCE</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 5: CONTACTO & FOOTER (CIERRE DISRUPTIVO) -->
+  <section id="contacto" class="py-28 px-6 md:px-12 relative overflow-hidden bg-noise">
+    <div class="max-w-7xl mx-auto">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+        
+        <!-- Call to Collab (Left) -->
+        <div class="lg:col-span-5 flex flex-col justify-between">
+          <div>
+            <div class="font-mono text-xs tracking-[0.25em] text-[#D4FF00] uppercase mb-3">
+              [ 04 // CONTACTO DIRECTO ]
+            </div>
+            <h2 class="text-4xl md:text-6xl font-extrabold uppercase tracking-tight font-display text-white leading-none">
+              HAGAMOS QUE TU MARCA SE DESBORDE.
+            </h2>
+            <p class="text-lg text-[#8E8E98] font-light mt-6 leading-relaxed">
+              ¿Listo para abandonar lo convencional? Cuéntanos sobre tu visión. Respondemos en menos de 24 horas hábiles.
+            </p>
+          </div>
+
+          <!-- Contact Coordinates -->
+          <div class="mt-12 space-y-3 font-mono text-xs text-[#8E8E98]">
+            <div><span class="text-white">EMAIL:</span> HELLO@DESBORDE.STUDIO</div>
+            <div><span class="text-white">WHATSAPP VIP:</span> +54 9 11 8765-4321</div>
+            <div><span class="text-white">UBICACIÓN:</span> BUENOS AIRES / REMOTO GLOBAL</div>
+          </div>
+        </div>
+
+        <!-- Formulario Conversacional Minimalista (Right) -->
+        <div class="lg:col-span-7 bg-[#111115] p-8 md:p-12 rounded-3xl border border-white/10">
+          <form onsubmit="event.preventDefault(); alert('¡Mensaje enviado con éxito! En Desborde revisaremos tu proyecto.');" class="space-y-8">
+            
+            <!-- Nombre -->
+            <div>
+              <label class="block font-mono text-xs uppercase tracking-widest text-[#8E8E98] mb-2">01. TU NOMBRE O ALIAS *</label>
+              <input type="text" required placeholder="Ej: Elena Rostova" class="w-full bg-transparent border-b border-white/20 pb-3 text-lg md:text-xl text-white placeholder-white/20 focus:outline-none focus:border-[#D4FF00] transition-colors">
+            </div>
+
+            <!-- Empresa / Email -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+              <div>
+                <label class="block font-mono text-xs uppercase tracking-widest text-[#8E8E98] mb-2">02. TU EMPRESA / MARCA</label>
+                <input type="text" placeholder="Ej: Kinetix Inc." class="w-full bg-transparent border-b border-white/20 pb-3 text-lg md:text-xl text-white placeholder-white/20 focus:outline-none focus:border-[#D4FF00] transition-colors">
+              </div>
+              <div>
+                <label class="block font-mono text-xs uppercase tracking-widest text-[#8E8E98] mb-2">03. TU CORREO ELECTRÓNICO *</label>
+                <input type="email" required placeholder="elena@kinetix.io" class="w-full bg-transparent border-b border-white/20 pb-3 text-lg md:text-xl text-white placeholder-white/20 focus:outline-none focus:border-[#D4FF00] transition-colors">
+              </div>
+            </div>
+
+            <!-- Interés / Disciplinas (Interactive Chips) -->
+            <div>
+              <label class="block font-mono text-xs uppercase tracking-widest text-[#8E8E98] mb-3">04. ¿QUÉ CAPACIDADES NECESITAS?</label>
+              <div class="flex flex-wrap gap-2.5">
+                <label class="cursor-pointer">
+                  <input type="checkbox" class="peer sr-only" checked>
+                  <span class="px-4 py-2 rounded-full border border-white/20 text-xs font-mono text-white/70 peer-checked:bg-[#D4FF00] peer-checked:text-black peer-checked:font-bold peer-checked:border-[#D4FF00] transition-all inline-block">
+                    DISEÑO UX/UI
+                  </span>
+                </label>
+                <label class="cursor-pointer">
+                  <input type="checkbox" class="peer sr-only">
+                  <span class="px-4 py-2 rounded-full border border-white/20 text-xs font-mono text-white/70 peer-checked:bg-[#D4FF00] peer-checked:text-black peer-checked:font-bold peer-checked:border-[#D4FF00] transition-all inline-block">
+                    MODELADO & RENDER 3D
+                  </span>
+                </label>
+                <label class="cursor-pointer">
+                  <input type="checkbox" class="peer sr-only">
+                  <span class="px-4 py-2 rounded-full border border-white/20 text-xs font-mono text-white/70 peer-checked:bg-[#D4FF00] peer-checked:text-black peer-checked:font-bold peer-checked:border-[#D4FF00] transition-all inline-block">
+                    MOTION & ANIMACIÓN
+                  </span>
+                </label>
+                <label class="cursor-pointer">
+                  <input type="checkbox" class="peer sr-only">
+                  <span class="px-4 py-2 rounded-full border border-white/20 text-xs font-mono text-white/70 peer-checked:bg-[#D4FF00] peer-checked:text-black peer-checked:font-bold peer-checked:border-[#D4FF00] transition-all inline-block">
+                    IDENTIDAD DE MARCA
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Mensaje -->
+            <div>
+              <label class="block font-mono text-xs uppercase tracking-widest text-[#8E8E98] mb-2">05. BREVE DESCRIPCIÓN DEL RETO</label>
+              <textarea rows="3" placeholder="Cuéntanos objetivos, plazos y presupuesto estimado..." class="w-full bg-transparent border-b border-white/20 pb-3 text-lg text-white placeholder-white/20 focus:outline-none focus:border-[#D4FF00] transition-colors resize-none"></textarea>
+            </div>
+
+            <!-- Submit CTA -->
+            <div class="pt-4">
+              <button type="submit" class="w-full py-5 rounded-2xl bg-[#D4FF00] hover:bg-white text-black font-extrabold text-sm uppercase tracking-widest transition-all duration-300 shadow-[0_0_30px_rgba(212,255,0,0.3)] flex items-center justify-center space-x-2">
+                <span>ENVIAR SOLICITUD DE PROYECTO</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+              </button>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+
+      <!-- REDES SOCIALES DE GRAN TAMAÑO (MARQUEE / LINKS EDITORIALES) -->
+      <div class="mt-24 pt-16 border-t border-white/10">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <a href="#" class="group py-6 border-b border-white/10 hover:border-[#D4FF00] transition-colors flex items-center justify-between">
+            <span class="text-xl md:text-3xl font-extrabold font-display uppercase tracking-tight text-white/80 group-hover:text-[#D4FF00] transition-colors">
+              INSTAGRAM
+            </span>
+            <span class="text-sm font-mono text-white/40 group-hover:text-[#D4FF00] transition-transform group-hover:translate-x-1">↗</span>
+          </a>
+          <a href="#" class="group py-6 border-b border-white/10 hover:border-[#D4FF00] transition-colors flex items-center justify-between">
+            <span class="text-xl md:text-3xl font-extrabold font-display uppercase tracking-tight text-white/80 group-hover:text-[#D4FF00] transition-colors">
+              BEHANCE
+            </span>
+            <span class="text-sm font-mono text-white/40 group-hover:text-[#D4FF00] transition-transform group-hover:translate-x-1">↗</span>
+          </a>
+          <a href="#" class="group py-6 border-b border-white/10 hover:border-[#D4FF00] transition-colors flex items-center justify-between">
+            <span class="text-xl md:text-3xl font-extrabold font-display uppercase tracking-tight text-white/80 group-hover:text-[#D4FF00] transition-colors">
+              TWITTER / X
+            </span>
+            <span class="text-sm font-mono text-white/40 group-hover:text-[#D4FF00] transition-transform group-hover:translate-x-1">↗</span>
+          </a>
+          <a href="#" class="group py-6 border-b border-white/10 hover:border-[#D4FF00] transition-colors flex items-center justify-between">
+            <span class="text-xl md:text-3xl font-extrabold font-display uppercase tracking-tight text-white/80 group-hover:text-[#D4FF00] transition-colors">
+              LINKEDIN
+            </span>
+            <span class="text-sm font-mono text-white/40 group-hover:text-[#D4FF00] transition-transform group-hover:translate-x-1">↗</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- FOOTER ULTRA-CLEAN -->
+      <footer class="mt-16 pt-8 border-t border-white/[0.08] flex flex-col sm:flex-row items-center justify-between text-xs font-mono text-[#8E8E98] gap-4">
+        <div>
+          © 2026 DESBORDE STUDIO. TODOS LOS DERECHOS RESERVADOS.
+        </div>
+        <div class="flex items-center space-x-6">
+          <a href="#" class="hover:text-white transition-colors">PRIVACIDAD</a>
+          <a href="#" class="hover:text-white transition-colors">COOKIES</a>
+          <a href="#hero" class="text-[#D4FF00] hover:underline flex items-center space-x-1">
+            <span>BACK TO TOP</span>
+            <span>↑</span>
+          </a>
+        </div>
+      </footer>
+
+    </div>
+  </section>
+
+</body>
+</html>
