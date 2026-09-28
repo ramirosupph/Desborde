@@ -148,54 +148,34 @@
   <div class="ambient-glow-green top-[900px] -left-16"></div>
   <div class="ambient-glow-magenta bottom-40 right-10"></div>
 
-  <!-- HEADER / NAVEGACIÓN PRINCIPAL RESPONSIVE -->
-  <header class="fixed top-0 left-0 w-full z-50 px-4 py-3.5 sm:px-6 md:px-12 flex items-center justify-between transition-all duration-300 backdrop-blur-md bg-[#002a41]/90 border-b border-[#e3e3e3]/10">
-    <div class="flex items-center space-x-3">
+  <!-- HEADER / NAVEGACIÓN PRINCIPAL: SOLO LOGO Y SECCIONES -->
+  <header class="fixed top-0 left-0 w-full z-50 px-4 py-4 sm:px-6 md:px-12 flex items-center justify-between transition-all duration-300 backdrop-blur-md bg-[#002a41]/90 border-b border-[#e3e3e3]/10">
+    <div class="flex items-center">
       <!-- LOGO OFICIAL EN HEADER -->
       <a href="#hero" class="flex items-center group py-0.5">
         <img src="./assets/logo-light.png" alt="Desborde" class="h-7 sm:h-9 md:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105">
       </a>
-      <span class="hidden lg:inline-block text-[10px] tracking-[0.2em] uppercase text-[#e3e3e3]/70 px-2.5 py-0.5 rounded-full border border-[#e3e3e3]/15 font-mono">
-        EST. 2026 // AWWWARDS NOMINEE
-      </span>
     </div>
 
-    <!-- Enlaces de Navegación Desktop Actualizados -->
-    <nav class="hidden md:flex items-center space-x-7 lg:space-x-8 text-xs font-bold tracking-wider uppercase">
+    <!-- Enlaces de Navegación Desktop: Exclusivamente Secciones -->
+    <nav class="hidden md:flex items-center space-x-8 lg:space-x-10 text-xs font-bold tracking-wider uppercase">
       <a href="#sobre-nosotros" class="text-[#e3e3e3]/75 hover:text-[#c9cf35] transition-colors duration-200">
-        <span class="text-[#c94597] mr-1 font-mono">01/</span> Sobre nosotros
+        Sobre nosotros
       </a>
       <a href="#portfolio" class="text-[#e3e3e3]/75 hover:text-[#c9cf35] transition-colors duration-200">
-        <span class="text-[#c94597] mr-1 font-mono">02/</span> Portfolio
+        Portfolio
       </a>
-      <a href="#juga" class="text-[#e3e3e3]/75 hover:text-[#c9cf35] transition-colors duration-200 flex items-center space-x-1.5">
-        <span class="text-[#c94597] font-mono">03/</span>
-        <span>Jugá</span>
-        <span class="w-1.5 h-1.5 rounded-full bg-[#c9cf35] animate-ping ml-0.5"></span>
+      <a href="#juga" class="text-[#e3e3e3]/75 hover:text-[#c9cf35] transition-colors duration-200">
+        Jugá con desborde
       </a>
       <a href="#contacto" class="text-[#e3e3e3]/75 hover:text-[#c9cf35] transition-colors duration-200">
-        <span class="text-[#c94597] mr-1 font-mono">04/</span> Contacto
+        Contacto
       </a>
     </nav>
 
-    <!-- Acciones Header & Mobile Toggle -->
-    <div class="flex items-center space-x-2.5 sm:space-x-4">
-      <div class="hidden xl:flex items-center space-x-2 text-xs font-mono text-[#e3e3e3]/80 bg-[#001e30]/80 px-3 py-1.5 rounded-full border border-[#e3e3e3]/10">
-        <span class="w-2 h-2 rounded-full bg-[#c9cf35] pulse-dot"></span>
-        <span>DISPONIBILIDAD: Q3/Q4</span>
-      </div>
-
-      <!-- CTA Header -->
-      <a href="#contacto" class="relative group overflow-hidden px-3.5 py-2 sm:px-5 sm:py-2.5 rounded-full bg-[#c9cf35] text-[#002a41] text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-all duration-300 hover:bg-[#c94597] hover:text-[#e3e3e3] hover:shadow-[0_0_25px_rgba(201,69,151,0.5)]">
-        <span class="relative z-10 flex items-center space-x-1 sm:space-x-1.5">
-          <span class="hidden xs:inline sm:inline">INICIAR PROYECTO</span>
-          <span class="inline xs:hidden sm:hidden">CONTACTO</span>
-          <img src="./icons/arrow-diagonal.svg" class="w-3 h-3 sm:w-3.5 sm:h-3.5 transform transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" alt="Arrow">
-        </span>
-      </a>
-
-      <!-- Hamburger Button (Mobile Only) -->
-      <button id="mobileMenuBtn" aria-label="Abrir menú" class="md:hidden p-2 rounded-xl bg-[#001e30] border border-[#e3e3e3]/15 text-[#e3e3e3] hover:text-[#c9cf35] transition-colors">
+    <!-- Botón Hamburguesa (Solo Mobile) -->
+    <div class="md:hidden flex items-center">
+      <button id="mobileMenuBtn" aria-label="Abrir menú" class="p-2 rounded-xl bg-[#001e30] border border-[#e3e3e3]/15 text-[#e3e3e3] hover:text-[#c9cf35] transition-colors">
         <svg id="hamburgerIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
         </svg>
@@ -206,44 +186,30 @@
     </div>
   </header>
 
-  <!-- MOBILE MENU OVERLAY FLUIDO -->
-  <div id="mobileMenu" class="fixed inset-x-0 top-[57px] sm:top-[65px] bottom-0 bg-[#002a41]/98 backdrop-blur-2xl z-40 p-6 flex-col justify-between hidden md:hidden border-b border-[#e3e3e3]/10 overflow-y-auto">
+  <!-- MOBILE MENU OVERLAY FLUIDO: SOLO SECCIONES -->
+  <div id="mobileMenu" class="fixed inset-x-0 top-[57px] sm:top-[65px] bottom-0 bg-[#002a41]/98 backdrop-blur-2xl z-40 p-6 flex flex-col justify-start hidden md:hidden border-b border-[#e3e3e3]/10 overflow-y-auto">
     <div class="space-y-6 pt-4">
       <div class="text-[11px] font-mono text-[#c9cf35] tracking-[0.25em] uppercase font-bold">
         // NAVEGACIÓN
       </div>
       <nav class="flex flex-col space-y-5 text-xl font-bold uppercase tracking-tight font-display">
         <a href="#sobre-nosotros" class="mobile-nav-link text-[#e3e3e3] hover:text-[#c9cf35] transition-colors flex items-center justify-between border-b border-[#e3e3e3]/10 pb-3">
-          <span><span class="text-[#c94597] font-mono text-xs mr-2 font-normal">01/</span> SOBRE NOSOTROS</span>
+          <span>SOBRE NOSOTROS</span>
           <span class="text-sm font-mono text-[#c9cf35]">↗</span>
         </a>
         <a href="#portfolio" class="mobile-nav-link text-[#e3e3e3] hover:text-[#c9cf35] transition-colors flex items-center justify-between border-b border-[#e3e3e3]/10 pb-3">
-          <span><span class="text-[#c94597] font-mono text-xs mr-2 font-normal">02/</span> PORTFOLIO</span>
+          <span>PORTFOLIO</span>
           <span class="text-sm font-mono text-[#c9cf35]">↗</span>
         </a>
         <a href="#juga" class="mobile-nav-link text-[#e3e3e3] hover:text-[#c9cf35] transition-colors flex items-center justify-between border-b border-[#e3e3e3]/10 pb-3">
-          <span class="flex items-center space-x-2">
-            <span><span class="text-[#c94597] font-mono text-xs mr-2 font-normal">03/</span> JUGÁ</span>
-            <span class="px-2 py-0.5 rounded-full text-[10px] font-mono bg-[#c9cf35]/20 text-[#c9cf35] border border-[#c9cf35]/40">PLAYGROUND</span>
-          </span>
+          <span>JUGÁ CON DESBORDE</span>
           <span class="text-sm font-mono text-[#c9cf35]">↗</span>
         </a>
         <a href="#contacto" class="mobile-nav-link text-[#e3e3e3] hover:text-[#c9cf35] transition-colors flex items-center justify-between border-b border-[#e3e3e3]/10 pb-3">
-          <span><span class="text-[#c94597] font-mono text-xs mr-2 font-normal">04/</span> CONTACTO</span>
+          <span>CONTACTO</span>
           <span class="text-sm font-mono text-[#c9cf35]">↗</span>
         </a>
       </nav>
-    </div>
-
-    <div class="pt-8 pb-4 space-y-4 border-t border-[#e3e3e3]/10">
-      <div class="flex items-center space-x-2 text-xs font-mono text-[#e3e3e3]/80">
-        <span class="w-2 h-2 rounded-full bg-[#c9cf35] pulse-dot"></span>
-        <span>DISPONIBILIDAD: Q3/Q4</span>
-      </div>
-      <a href="#contacto" class="mobile-nav-link w-full py-4 rounded-2xl bg-[#c9cf35] text-[#002a41] font-bold text-xs uppercase tracking-widest flex items-center justify-center space-x-2 shadow-lg">
-        <span>INICIAR PROYECTO</span>
-        <img src="./icons/arrow-diagonal.svg" class="w-3.5 h-3.5" alt="Arrow">
-      </a>
     </div>
   </div>
 
@@ -676,11 +642,11 @@
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 pb-4 sm:pb-6 border-b border-[#e3e3e3]/10">
         <div>
           <div class="font-mono text-xs tracking-[0.25em] text-[#c9cf35] uppercase mb-2 font-bold flex items-center space-x-2">
-            <span>[ 03 // JUGÁ — LABORATORIO EXPERIMENTAL ]</span>
+            <span>[ 03 // JUGÁ CON DESBORDE — LABORATORIO EXPERIMENTAL ]</span>
             <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-mono bg-[#c9cf35]/20 text-[#c9cf35] border border-[#c9cf35]/40 animate-pulse">INTERACTIVO</span>
           </div>
           <h2 class="text-3xl sm:text-4xl md:text-6xl font-black uppercase tracking-tight font-display text-[#e3e3e3]">
-            DESBORDE PLAYGROUND
+            JUGÁ CON DESBORDE
           </h2>
         </div>
         <p class="max-w-md text-xs sm:text-sm text-[#e3e3e3]/75 font-mono mt-3 md:mt-0">
