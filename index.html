@@ -139,6 +139,45 @@
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
     }
+
+    /* HEADER FLOTANTE: TRANSPARENCIA EN SCROLL Y RESTAURACIÓN EN HOVER */
+    #mainHeader {
+      transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s ease;
+    }
+
+    #headerCapsule {
+      transition: background-color 0.35s ease, backdrop-filter 0.35s ease, -webkit-backdrop-filter 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+    }
+
+    /* Estado transparente al scrollear */
+    .header-scrolled {
+      opacity: 0.55;
+    }
+
+    .header-scrolled #headerCapsule {
+      background-color: rgba(227, 227, 227, 0.65);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-color: rgba(255, 255, 255, 0.4);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Al pasar el mouse por encima (hover): vuelve al estado original de visibilidad */
+    .header-scrolled:hover,
+    .header-scrolled:focus-within,
+    .header-scrolled.menu-open {
+      opacity: 1;
+    }
+
+    .header-scrolled:hover #headerCapsule,
+    .header-scrolled:focus-within #headerCapsule,
+    .header-scrolled.menu-open #headerCapsule {
+      background-color: #e3e3e3;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      border-color: rgba(255, 255, 255, 0.6);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.38);
+    }
   </style>
 </head>
 <body class="bg-[#002a41] text-[#e3e3e3] antialiased relative selection:bg-[#c9cf35] selection:text-[#002a41] overflow-x-hidden">
@@ -149,8 +188,8 @@
   <div class="ambient-glow-magenta bottom-40 right-10"></div>
 
   <!-- HEADER FLOTANTE REDONDEADO: ESTILO CÁPSULA / PILL BLANCO SOBRE FONDO AZUL -->
-  <header class="fixed top-3 sm:top-5 left-1/2 -translate-x-1/2 w-[calc(100%-1.25rem)] sm:w-[calc(100%-2.5rem)] max-w-6xl z-50 transition-all duration-300">
-    <div class="w-full bg-[#e3e3e3] rounded-full px-4 sm:px-6 md:px-8 py-2 sm:py-2.5 flex items-center justify-between shadow-[0_12px_40px_rgba(0,0,0,0.38)] border border-white/60">
+  <header id="mainHeader" class="fixed top-3 sm:top-5 left-1/2 -translate-x-1/2 w-[calc(100%-1.25rem)] sm:w-[calc(100%-2.5rem)] max-w-6xl z-50">
+    <div id="headerCapsule" class="w-full bg-[#e3e3e3] rounded-full px-4 sm:px-6 md:px-8 py-2 sm:py-2.5 flex items-center justify-between shadow-[0_12px_40px_rgba(0,0,0,0.38)] border border-white/60">
       
       <!-- Logo Oficial en Header (Con contraste en fondo blanco) -->
       <a href="#hero" class="flex items-center group py-0.5 shrink-0">
@@ -907,6 +946,19 @@
 
   <!-- SCRIPTS: MENÚ MOBILE Y DESBORDE PLAYGROUND CANVAS -->
   <script>
+    // 0. CONTROL DE TRANSPARENCIA DEL HEADER EN SCROLL Y HOVER
+    const mainHeader = document.getElementById('mainHeader');
+    function updateHeaderOnScroll() {
+      if (!mainHeader) return;
+      if (window.scrollY > 40) {
+        mainHeader.classList.add('header-scrolled');
+      } else {
+        mainHeader.classList.remove('header-scrolled');
+      }
+    }
+    window.addEventListener('scroll', updateHeaderOnScroll, { passive: true });
+    updateHeaderOnScroll();
+
     // 1. MANEJO DEL MENÚ MOBILE
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
@@ -923,12 +975,14 @@
           hamburgerIcon.classList.add('hidden');
           closeIcon.classList.remove('hidden');
           document.body.style.overflow = 'hidden';
+          if (mainHeader) mainHeader.classList.add('menu-open');
         } else {
           mobileMenu.classList.add('hidden');
           mobileMenu.classList.remove('flex');
           hamburgerIcon.classList.remove('hidden');
           closeIcon.classList.add('hidden');
           document.body.style.overflow = '';
+          if (mainHeader) mainHeader.classList.remove('menu-open');
         }
       });
 
@@ -939,6 +993,7 @@
           hamburgerIcon.classList.remove('hidden');
           closeIcon.classList.add('hidden');
           document.body.style.overflow = '';
+          if (mainHeader) mainHeader.classList.remove('menu-open');
         });
       });
     }
