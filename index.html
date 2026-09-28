@@ -148,19 +148,17 @@
   <div class="ambient-glow-green top-[900px] -left-16"></div>
   <div class="ambient-glow-magenta bottom-40 right-10"></div>
 
-  <!-- HEADER / NAVEGACIÓN PRINCIPAL: HEADER BLANCO, LOGO CON CONTRASTE, SECCIONES AZULES & BOTÓN AZUL CON LETRAS VERDES -->
-  <header class="fixed top-0 left-0 w-full z-50 px-4 py-3 sm:px-6 md:px-12 flex items-center justify-between transition-all duration-300 backdrop-blur-md bg-[#e3e3e3]/95 border-b border-[#002a41]/15 shadow-sm">
-    <div class="flex items-center">
-      <!-- LOGO OFICIAL EN HEADER (Con contraste sobre fondo blanco) -->
-      <a href="#hero" class="flex items-center group py-0.5">
-        <img src="./assets/logo-header.png" alt="Desborde" class="h-8 sm:h-9 md:h-11 w-auto object-contain transition-transform duration-300 group-hover:scale-105">
+  <!-- HEADER FLOTANTE REDONDEADO: ESTILO CÁPSULA / PILL BLANCO SOBRE FONDO AZUL -->
+  <header class="fixed top-3 sm:top-5 left-1/2 -translate-x-1/2 w-[calc(100%-1.25rem)] sm:w-[calc(100%-2.5rem)] max-w-6xl z-50 transition-all duration-300">
+    <div class="w-full bg-[#e3e3e3] rounded-full px-4 sm:px-6 md:px-8 py-2 sm:py-2.5 flex items-center justify-between shadow-[0_12px_40px_rgba(0,0,0,0.38)] border border-white/60">
+      
+      <!-- Logo Oficial en Header (Con contraste en fondo blanco) -->
+      <a href="#hero" class="flex items-center group py-0.5 shrink-0">
+        <img src="./assets/logo-header.png" alt="Desborde" class="h-7 sm:h-8 md:h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-105">
       </a>
-    </div>
 
-    <!-- Navegación Desktop: Secciones en Azul Oscuro & Botón Hablemos -->
-    <div class="hidden md:flex items-center space-x-7 lg:space-x-10">
-      <!-- Enlaces de Navegación Desktop: Letras en Azul Oscuro -->
-      <nav class="flex items-center space-x-6 lg:space-x-8 text-xs font-black tracking-wider uppercase">
+      <!-- Navegación Desktop: Secciones en Azul Oscuro -->
+      <nav class="hidden md:flex items-center space-x-6 lg:space-x-8 text-xs font-black tracking-wider uppercase">
         <a href="#sobre-nosotros" class="text-[#002a41] hover:text-[#c94597] transition-colors duration-200">
           Sobre nosotros
         </a>
@@ -175,56 +173,59 @@
         </a>
       </nav>
 
-      <!-- Botón Hablemos (Fondo Azul con letras Verdes) -->
-      <a href="https://wa.me/5491187654321?text=Hola%20Desborde%2C%20quiero%20hacer%20una%20consulta" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-full bg-[#002a41] hover:bg-[#003857] text-[#c9cf35] font-extrabold text-xs tracking-wider uppercase transition-all duration-300 shadow-md hover:shadow-[0_0_20px_rgba(0,42,65,0.35)] hover:scale-105 flex items-center space-x-2 cursor-pointer border border-[#002a41]">
-        <span>HABLEMOS</span>
-        <svg class="w-3.5 h-3.5 text-[#c9cf35]" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
-        </svg>
-      </a>
-    </div>
+      <!-- Botón Hablemos Desktop (Fondo Azul Oscuro con letras Verdes) -->
+      <div class="hidden md:flex items-center shrink-0">
+        <a href="https://wa.me/5491187654321?text=Hola%20Desborde%2C%20quiero%20hacer%20una%20consulta" target="_blank" rel="noopener noreferrer" class="px-5 py-2 sm:py-2.5 rounded-full bg-[#002a41] hover:bg-[#003857] text-[#c9cf35] font-extrabold text-xs tracking-wider uppercase transition-all duration-300 shadow-md hover:shadow-[0_0_20px_rgba(0,42,65,0.35)] hover:scale-105 flex items-center space-x-2 cursor-pointer border border-[#002a41]">
+          <span>HABLEMOS</span>
+          <svg class="w-3.5 h-3.5 text-[#c9cf35]" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+          </svg>
+        </a>
+      </div>
 
-    <!-- Acciones Mobile (Botón Hablemos compacto + Hamburguesa) -->
-    <div class="md:hidden flex items-center space-x-2.5">
-      <a href="https://wa.me/5491187654321?text=Hola%20Desborde%2C%20quiero%20hacer%20una%20consulta" target="_blank" rel="noopener noreferrer" class="px-3.5 py-1.5 rounded-full bg-[#002a41] text-[#c9cf35] font-extrabold text-[11px] tracking-wider uppercase flex items-center space-x-1.5 shadow-md">
-        <span>HABLEMOS</span>
-        <svg class="w-3 h-3 text-[#c9cf35]" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
-        </svg>
-      </a>
+      <!-- Acciones Mobile (Botón Hablemos compacto + Hamburguesa) -->
+      <div class="md:hidden flex items-center space-x-2">
+        <a href="https://wa.me/5491187654321?text=Hola%20Desborde%2C%20quiero%20hacer%20una%20consulta" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-full bg-[#002a41] text-[#c9cf35] font-extrabold text-[11px] tracking-wider uppercase flex items-center space-x-1.5 shadow-md">
+          <span>HABLEMOS</span>
+          <svg class="w-3 h-3 text-[#c9cf35]" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+          </svg>
+        </a>
 
-      <!-- Botón Hamburguesa en tono Azul Oscuro -->
-      <button id="mobileMenuBtn" aria-label="Abrir menú" class="p-2 rounded-xl bg-[#e3e3e3] border border-[#002a41]/25 text-[#002a41] hover:text-[#c94597] transition-colors">
-        <svg id="hamburgerIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-        </svg>
-        <svg id="closeIcon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-        </svg>
-      </button>
+        <!-- Botón Hamburguesa -->
+        <button id="mobileMenuBtn" aria-label="Abrir menú" class="p-1.5 sm:p-2 rounded-full bg-[#002a41] text-[#e3e3e3] hover:text-[#c9cf35] transition-colors">
+          <svg id="hamburgerIcon" class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+          <svg id="closeIcon" class="w-4 h-4 sm:w-5 sm:h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
     </div>
   </header>
 
-  <!-- MOBILE MENU OVERLAY FLUIDO: SECCIONES Y HABLEMOS -->
-  <div id="mobileMenu" class="fixed inset-x-0 top-[57px] sm:top-[65px] bottom-0 bg-[#e3e3e3]/98 backdrop-blur-2xl z-40 p-6 flex flex-col justify-between hidden md:hidden border-b border-[#002a41]/10 overflow-y-auto">
-    <div class="space-y-6 pt-4">
+  <!-- MOBILE MENU OVERLAY FLUIDO: CARD FLOTANTE REDONDEADA -->
+  <div id="mobileMenu" class="fixed top-[62px] sm:top-[74px] inset-x-3 sm:inset-x-5 max-w-xl mx-auto bg-[#e3e3e3]/98 backdrop-blur-2xl z-40 p-6 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/60 flex-col justify-between hidden md:hidden">
+    <div class="space-y-5">
       <div class="text-[11px] font-mono text-[#002a41]/60 tracking-[0.25em] uppercase font-bold">
         // NAVEGACIÓN
       </div>
-      <nav class="flex flex-col space-y-5 text-xl font-bold uppercase tracking-tight font-display">
-        <a href="#sobre-nosotros" class="mobile-nav-link text-[#002a41] hover:text-[#c94597] transition-colors flex items-center justify-between border-b border-[#002a41]/10 pb-3">
+      <nav class="flex flex-col space-y-4 text-lg font-black uppercase tracking-tight font-display">
+        <a href="#sobre-nosotros" class="mobile-nav-link text-[#002a41] hover:text-[#c94597] transition-colors flex items-center justify-between border-b border-[#002a41]/10 pb-2.5">
           <span>SOBRE NOSOTROS</span>
           <span class="text-sm font-mono text-[#002a41]">↗</span>
         </a>
-        <a href="#portfolio" class="mobile-nav-link text-[#002a41] hover:text-[#c94597] transition-colors flex items-center justify-between border-b border-[#002a41]/10 pb-3">
+        <a href="#portfolio" class="mobile-nav-link text-[#002a41] hover:text-[#c94597] transition-colors flex items-center justify-between border-b border-[#002a41]/10 pb-2.5">
           <span>PORTFOLIO</span>
           <span class="text-sm font-mono text-[#002a41]">↗</span>
         </a>
-        <a href="#juga" class="mobile-nav-link text-[#002a41] hover:text-[#c94597] transition-colors flex items-center justify-between border-b border-[#002a41]/10 pb-3">
+        <a href="#juga" class="mobile-nav-link text-[#002a41] hover:text-[#c94597] transition-colors flex items-center justify-between border-b border-[#002a41]/10 pb-2.5">
           <span>JUGÁ CON DESBORDE</span>
           <span class="text-sm font-mono text-[#002a41]">↗</span>
         </a>
-        <a href="#contacto" class="mobile-nav-link text-[#002a41] hover:text-[#c94597] transition-colors flex items-center justify-between border-b border-[#002a41]/10 pb-3">
+        <a href="#contacto" class="mobile-nav-link text-[#002a41] hover:text-[#c94597] transition-colors flex items-center justify-between border-b border-[#002a41]/10 pb-2.5">
           <span>CONTACTO</span>
           <span class="text-sm font-mono text-[#002a41]">↗</span>
         </a>
@@ -232,8 +233,8 @@
     </div>
 
     <!-- Botón Hablemos en Drawer Mobile -->
-    <div class="pt-8 pb-4">
-      <a href="https://wa.me/5491187654321?text=Hola%20Desborde%2C%20quiero%20hacer%20una%20consulta" target="_blank" rel="noopener noreferrer" class="w-full py-4 rounded-2xl bg-[#002a41] text-[#c9cf35] font-extrabold text-xs uppercase tracking-widest flex items-center justify-center space-x-2 shadow-lg hover:bg-[#003857] transition-colors border border-[#002a41]">
+    <div class="pt-6">
+      <a href="https://wa.me/5491187654321?text=Hola%20Desborde%2C%20quiero%20hacer%20una%20consulta" target="_blank" rel="noopener noreferrer" class="w-full py-3.5 rounded-full bg-[#002a41] text-[#c9cf35] font-extrabold text-xs uppercase tracking-widest flex items-center justify-center space-x-2 shadow-lg hover:bg-[#003857] transition-colors border border-[#002a41]">
         <span>HABLEMOS POR WHATSAPP</span>
         <svg class="w-4 h-4 text-[#c9cf35]" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
           <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
