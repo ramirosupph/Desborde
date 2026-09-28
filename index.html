@@ -148,37 +148,37 @@
   <div class="ambient-glow-green top-[900px] -left-16"></div>
   <div class="ambient-glow-magenta bottom-40 right-10"></div>
 
-  <!-- HEADER / NAVEGACIÓN PRINCIPAL: LOGO, SECCIONES & BOTÓN HABLEMOS -->
-  <header class="fixed top-0 left-0 w-full z-50 px-4 py-3.5 sm:px-6 md:px-12 flex items-center justify-between transition-all duration-300 backdrop-blur-md bg-[#002a41]/90 border-b border-[#e3e3e3]/10">
+  <!-- HEADER / NAVEGACIÓN PRINCIPAL: HEADER BLANCO, LOGO CON CONTRASTE, SECCIONES AZULES & BOTÓN AZUL CON LETRAS VERDES -->
+  <header class="fixed top-0 left-0 w-full z-50 px-4 py-3 sm:px-6 md:px-12 flex items-center justify-between transition-all duration-300 backdrop-blur-md bg-[#e3e3e3]/95 border-b border-[#002a41]/15 shadow-sm">
     <div class="flex items-center">
-      <!-- LOGO OFICIAL EN HEADER -->
+      <!-- LOGO OFICIAL EN HEADER (Con contraste sobre fondo blanco) -->
       <a href="#hero" class="flex items-center group py-0.5">
-        <img src="./assets/logo-light.png" alt="Desborde" class="h-7 sm:h-9 md:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105">
+        <img src="./assets/logo-header.png" alt="Desborde" class="h-8 sm:h-9 md:h-11 w-auto object-contain transition-transform duration-300 group-hover:scale-105">
       </a>
     </div>
 
-    <!-- Navegación Desktop & Botón Hablemos a la derecha -->
-    <div class="hidden md:flex items-center space-x-8 lg:space-x-10">
-      <!-- Enlaces de Navegación Desktop: Secciones -->
-      <nav class="flex items-center space-x-7 lg:space-x-9 text-xs font-bold tracking-wider uppercase">
-        <a href="#sobre-nosotros" class="text-[#e3e3e3]/80 hover:text-[#c9cf35] transition-colors duration-200">
+    <!-- Navegación Desktop: Secciones en Azul Oscuro & Botón Hablemos -->
+    <div class="hidden md:flex items-center space-x-7 lg:space-x-10">
+      <!-- Enlaces de Navegación Desktop: Letras en Azul Oscuro -->
+      <nav class="flex items-center space-x-6 lg:space-x-8 text-xs font-black tracking-wider uppercase">
+        <a href="#sobre-nosotros" class="text-[#002a41] hover:text-[#c94597] transition-colors duration-200">
           Sobre nosotros
         </a>
-        <a href="#portfolio" class="text-[#e3e3e3]/80 hover:text-[#c9cf35] transition-colors duration-200">
+        <a href="#portfolio" class="text-[#002a41] hover:text-[#c94597] transition-colors duration-200">
           Portfolio
         </a>
-        <a href="#juga" class="text-[#e3e3e3]/80 hover:text-[#c9cf35] transition-colors duration-200">
+        <a href="#juga" class="text-[#002a41] hover:text-[#c94597] transition-colors duration-200">
           Jugá con desborde
         </a>
-        <a href="#contacto" class="text-[#e3e3e3]/80 hover:text-[#c9cf35] transition-colors duration-200">
+        <a href="#contacto" class="text-[#002a41] hover:text-[#c94597] transition-colors duration-200">
           Contacto
         </a>
       </nav>
 
-      <!-- Botón Hablemos (Verde de la marca, texto blanco, enlace a WhatsApp) -->
-      <a href="https://wa.me/5491187654321?text=Hola%20Desborde%2C%20quiero%20hacer%20una%20consulta" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-full bg-[#c9cf35] hover:bg-[#b5bb2c] text-white font-extrabold text-xs tracking-wider uppercase transition-all duration-300 shadow-[0_0_20px_rgba(201,207,53,0.35)] hover:shadow-[0_0_25px_rgba(201,207,53,0.6)] hover:scale-105 flex items-center space-x-2 cursor-pointer">
+      <!-- Botón Hablemos (Fondo Azul con letras Verdes) -->
+      <a href="https://wa.me/5491187654321?text=Hola%20Desborde%2C%20quiero%20hacer%20una%20consulta" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-full bg-[#002a41] hover:bg-[#003857] text-[#c9cf35] font-extrabold text-xs tracking-wider uppercase transition-all duration-300 shadow-md hover:shadow-[0_0_20px_rgba(0,42,65,0.35)] hover:scale-105 flex items-center space-x-2 cursor-pointer border border-[#002a41]">
         <span>HABLEMOS</span>
-        <svg class="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+        <svg class="w-3.5 h-3.5 text-[#c9cf35]" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
           <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
         </svg>
       </a>
@@ -186,15 +186,15 @@
 
     <!-- Acciones Mobile (Botón Hablemos compacto + Hamburguesa) -->
     <div class="md:hidden flex items-center space-x-2.5">
-      <a href="https://wa.me/5491187654321?text=Hola%20Desborde%2C%20quiero%20hacer%20una%20consulta" target="_blank" rel="noopener noreferrer" class="px-3.5 py-1.5 rounded-full bg-[#c9cf35] text-white font-extrabold text-[11px] tracking-wider uppercase flex items-center space-x-1.5 shadow-md">
+      <a href="https://wa.me/5491187654321?text=Hola%20Desborde%2C%20quiero%20hacer%20una%20consulta" target="_blank" rel="noopener noreferrer" class="px-3.5 py-1.5 rounded-full bg-[#002a41] text-[#c9cf35] font-extrabold text-[11px] tracking-wider uppercase flex items-center space-x-1.5 shadow-md">
         <span>HABLEMOS</span>
-        <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+        <svg class="w-3 h-3 text-[#c9cf35]" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
           <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
         </svg>
       </a>
 
-      <!-- Botón Hamburguesa -->
-      <button id="mobileMenuBtn" aria-label="Abrir menú" class="p-2 rounded-xl bg-[#001e30] border border-[#e3e3e3]/15 text-[#e3e3e3] hover:text-[#c9cf35] transition-colors">
+      <!-- Botón Hamburguesa en tono Azul Oscuro -->
+      <button id="mobileMenuBtn" aria-label="Abrir menú" class="p-2 rounded-xl bg-[#e3e3e3] border border-[#002a41]/25 text-[#002a41] hover:text-[#c94597] transition-colors">
         <svg id="hamburgerIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
         </svg>
@@ -206,36 +206,36 @@
   </header>
 
   <!-- MOBILE MENU OVERLAY FLUIDO: SECCIONES Y HABLEMOS -->
-  <div id="mobileMenu" class="fixed inset-x-0 top-[57px] sm:top-[65px] bottom-0 bg-[#002a41]/98 backdrop-blur-2xl z-40 p-6 flex flex-col justify-between hidden md:hidden border-b border-[#e3e3e3]/10 overflow-y-auto">
+  <div id="mobileMenu" class="fixed inset-x-0 top-[57px] sm:top-[65px] bottom-0 bg-[#e3e3e3]/98 backdrop-blur-2xl z-40 p-6 flex flex-col justify-between hidden md:hidden border-b border-[#002a41]/10 overflow-y-auto">
     <div class="space-y-6 pt-4">
-      <div class="text-[11px] font-mono text-[#c9cf35] tracking-[0.25em] uppercase font-bold">
+      <div class="text-[11px] font-mono text-[#002a41]/60 tracking-[0.25em] uppercase font-bold">
         // NAVEGACIÓN
       </div>
       <nav class="flex flex-col space-y-5 text-xl font-bold uppercase tracking-tight font-display">
-        <a href="#sobre-nosotros" class="mobile-nav-link text-[#e3e3e3] hover:text-[#c9cf35] transition-colors flex items-center justify-between border-b border-[#e3e3e3]/10 pb-3">
+        <a href="#sobre-nosotros" class="mobile-nav-link text-[#002a41] hover:text-[#c94597] transition-colors flex items-center justify-between border-b border-[#002a41]/10 pb-3">
           <span>SOBRE NOSOTROS</span>
-          <span class="text-sm font-mono text-[#c9cf35]">↗</span>
+          <span class="text-sm font-mono text-[#002a41]">↗</span>
         </a>
-        <a href="#portfolio" class="mobile-nav-link text-[#e3e3e3] hover:text-[#c9cf35] transition-colors flex items-center justify-between border-b border-[#e3e3e3]/10 pb-3">
+        <a href="#portfolio" class="mobile-nav-link text-[#002a41] hover:text-[#c94597] transition-colors flex items-center justify-between border-b border-[#002a41]/10 pb-3">
           <span>PORTFOLIO</span>
-          <span class="text-sm font-mono text-[#c9cf35]">↗</span>
+          <span class="text-sm font-mono text-[#002a41]">↗</span>
         </a>
-        <a href="#juga" class="mobile-nav-link text-[#e3e3e3] hover:text-[#c9cf35] transition-colors flex items-center justify-between border-b border-[#e3e3e3]/10 pb-3">
+        <a href="#juga" class="mobile-nav-link text-[#002a41] hover:text-[#c94597] transition-colors flex items-center justify-between border-b border-[#002a41]/10 pb-3">
           <span>JUGÁ CON DESBORDE</span>
-          <span class="text-sm font-mono text-[#c9cf35]">↗</span>
+          <span class="text-sm font-mono text-[#002a41]">↗</span>
         </a>
-        <a href="#contacto" class="mobile-nav-link text-[#e3e3e3] hover:text-[#c9cf35] transition-colors flex items-center justify-between border-b border-[#e3e3e3]/10 pb-3">
+        <a href="#contacto" class="mobile-nav-link text-[#002a41] hover:text-[#c94597] transition-colors flex items-center justify-between border-b border-[#002a41]/10 pb-3">
           <span>CONTACTO</span>
-          <span class="text-sm font-mono text-[#c9cf35]">↗</span>
+          <span class="text-sm font-mono text-[#002a41]">↗</span>
         </a>
       </nav>
     </div>
 
     <!-- Botón Hablemos en Drawer Mobile -->
     <div class="pt-8 pb-4">
-      <a href="https://wa.me/5491187654321?text=Hola%20Desborde%2C%20quiero%20hacer%20una%20consulta" target="_blank" rel="noopener noreferrer" class="w-full py-4 rounded-2xl bg-[#c9cf35] text-white font-extrabold text-xs uppercase tracking-widest flex items-center justify-center space-x-2 shadow-lg">
+      <a href="https://wa.me/5491187654321?text=Hola%20Desborde%2C%20quiero%20hacer%20una%20consulta" target="_blank" rel="noopener noreferrer" class="w-full py-4 rounded-2xl bg-[#002a41] text-[#c9cf35] font-extrabold text-xs uppercase tracking-widest flex items-center justify-center space-x-2 shadow-lg hover:bg-[#003857] transition-colors border border-[#002a41]">
         <span>HABLEMOS POR WHATSAPP</span>
-        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+        <svg class="w-4 h-4 text-[#c9cf35]" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
           <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
         </svg>
       </a>
