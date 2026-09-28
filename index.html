@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>DESBORDE® — Agencia de Diseño Multimedial</title>
+  <title>DESBORDE® — Agencia Creativa Multimedial</title>
   
   <!-- Favicon Oficial -->
   <link rel="icon" type="image/png" href="./assets/favicon.png">
@@ -139,6 +139,48 @@
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
     }
+
+    /* ANIMACIONES ESCALONADAS DEL HERO */
+    @keyframes heroFadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(28px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .animate-hero-1 { animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards; opacity: 0; }
+    .animate-hero-2 { animation: heroFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards; opacity: 0; }
+    .animate-hero-3 { animation: heroFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards; opacity: 0; }
+    .animate-hero-4 { animation: heroFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.55s forwards; opacity: 0; }
+    .animate-hero-5 { animation: heroFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.7s forwards; opacity: 0; }
+    .animate-hero-6 { animation: heroFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.85s forwards; opacity: 0; }
+
+    /* TICKER CONTINUO EN LOOP */
+    @keyframes marquee {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+    .animate-marquee {
+      display: flex;
+      width: max-content;
+      animation: marquee 24s linear infinite;
+    }
+    .animate-marquee:hover {
+      animation-play-state: paused;
+    }
+
+    /* ESCULTURA VISUAL CINÉTICA */
+    @keyframes floatSculpture {
+      0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+      33% { transform: translateY(-14px) rotate(2deg) scale(1.02); }
+      66% { transform: translateY(10px) rotate(-1.5deg) scale(0.98); }
+    }
+    .animate-sculpture {
+      animation: floatSculpture 12s ease-in-out infinite;
+    }
   </style>
 </head>
 <body class="bg-[#002a41] text-[#e3e3e3] antialiased relative selection:bg-[#c9cf35] selection:text-[#002a41] overflow-x-hidden">
@@ -148,375 +190,242 @@
   <div class="ambient-glow-green top-[900px] -left-16"></div>
   <div class="ambient-glow-magenta bottom-40 right-10"></div>
 
-  <!-- HEADER FLOTANTE REDONDEADO: ESTILO CÁPSULA / PILL BLANCO SOBRE FONDO AZUL -->
-  <header class="fixed top-3 sm:top-5 left-1/2 -translate-x-1/2 w-[calc(100%-1.25rem)] sm:w-[calc(100%-2.5rem)] max-w-6xl z-50 transition-all duration-300">
-    <div class="w-full bg-[#e3e3e3] rounded-full px-4 sm:px-6 md:px-8 py-2 sm:py-2.5 flex items-center justify-between shadow-[0_12px_40px_rgba(0,0,0,0.38)] border border-white/60">
-      
-      <!-- Logo Oficial en Header (Con contraste en fondo blanco) -->
-      <a href="#hero" class="flex items-center group py-0.5 shrink-0">
-        <img src="./assets/logo-header.png" alt="Desborde" class="h-7 sm:h-8 md:h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-105">
+  <!-- HEADER EDITORIAL LIMPIO -->
+  <header class="fixed top-0 left-0 w-full z-50 px-6 sm:px-10 md:px-16 py-5 sm:py-6 flex items-center justify-between transition-all duration-300 backdrop-blur-md bg-[#002a41]/85 border-b border-[#e3e3e3]/10">
+    <div class="flex items-center">
+      <!-- LOGO / NOMBRE DESBORDE -->
+      <a href="#hero" class="flex items-center group py-0.5">
+        <img src="./assets/logo-light.png" alt="DESBORDE" class="h-7 sm:h-8 md:h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-105">
       </a>
+    </div>
 
-      <!-- Navegación Desktop: Secciones en Azul Oscuro -->
-      <nav class="hidden md:flex items-center space-x-6 lg:space-x-8 text-xs font-black tracking-wider uppercase">
-        <a href="#sobre-nosotros" class="text-[#002a41] hover:text-[#c94597] transition-colors duration-200">
-          Sobre nosotros
-        </a>
-        <a href="#portfolio" class="text-[#002a41] hover:text-[#c94597] transition-colors duration-200">
-          Portfolio
-        </a>
-        <a href="#juga" class="text-[#002a41] hover:text-[#c94597] transition-colors duration-200">
-          Jugá con desborde
-        </a>
-        <a href="#contacto" class="text-[#002a41] hover:text-[#c94597] transition-colors duration-200">
-          Contacto
-        </a>
-      </nav>
+    <!-- Menú Simple a la Derecha -->
+    <nav class="hidden md:flex items-center space-x-8 lg:space-x-12 text-xs font-bold tracking-widest uppercase font-mono">
+      <a href="#portfolio" class="text-[#e3e3e3]/80 hover:text-[#c9cf35] transition-colors duration-200">
+        PROYECTOS
+      </a>
+      <a href="#sobre-nosotros" class="text-[#e3e3e3]/80 hover:text-[#c9cf35] transition-colors duration-200">
+        SERVICIOS
+      </a>
+      <a href="#sobre-nosotros" class="text-[#e3e3e3]/80 hover:text-[#c9cf35] transition-colors duration-200">
+        NOSOTROS
+      </a>
+      <a href="#contacto" class="text-[#e3e3e3]/80 hover:text-[#c9cf35] transition-colors duration-200">
+        CONTACTO
+      </a>
+    </nav>
 
-      <!-- Botón Hablemos Desktop (Fondo Azul Oscuro con letras Verdes) -->
-      <div class="hidden md:flex items-center shrink-0">
-        <a href="https://wa.me/5491187654321?text=Hola%20Desborde%2C%20quiero%20hacer%20una%20consulta" target="_blank" rel="noopener noreferrer" class="px-5 py-2 sm:py-2.5 rounded-full bg-[#002a41] hover:bg-[#003857] text-[#c9cf35] font-extrabold text-xs tracking-wider uppercase transition-all duration-300 shadow-md hover:shadow-[0_0_20px_rgba(0,42,65,0.35)] hover:scale-105 flex items-center space-x-2 cursor-pointer border border-[#002a41]">
-          <span>HABLEMOS</span>
-          <svg class="w-3.5 h-3.5 text-[#c9cf35]" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
-          </svg>
-        </a>
-      </div>
-
-      <!-- Acciones Mobile (Botón Hablemos compacto + Hamburguesa) -->
-      <div class="md:hidden flex items-center space-x-2">
-        <a href="https://wa.me/5491187654321?text=Hola%20Desborde%2C%20quiero%20hacer%20una%20consulta" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-full bg-[#002a41] text-[#c9cf35] font-extrabold text-[11px] tracking-wider uppercase flex items-center space-x-1.5 shadow-md">
-          <span>HABLEMOS</span>
-          <svg class="w-3 h-3 text-[#c9cf35]" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
-          </svg>
-        </a>
-
-        <!-- Botón Hamburguesa -->
-        <button id="mobileMenuBtn" aria-label="Abrir menú" class="p-1.5 sm:p-2 rounded-full bg-[#002a41] text-[#e3e3e3] hover:text-[#c9cf35] transition-colors">
-          <svg id="hamburgerIcon" class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-          </svg>
-          <svg id="closeIcon" class="w-4 h-4 sm:w-5 sm:h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-          </svg>
-        </button>
-      </div>
-
+    <!-- Botón Hamburguesa (Solo Mobile) -->
+    <div class="md:hidden flex items-center">
+      <button id="mobileMenuBtn" aria-label="Abrir menú" class="p-2 rounded-xl bg-[#001e30] border border-[#e3e3e3]/15 text-[#e3e3e3] hover:text-[#c9cf35] transition-colors">
+        <svg id="hamburgerIcon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+        <svg id="closeIcon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
     </div>
   </header>
 
-  <!-- MOBILE MENU OVERLAY FLUIDO: CARD FLOTANTE REDONDEADA -->
-  <div id="mobileMenu" class="fixed top-[62px] sm:top-[74px] inset-x-3 sm:inset-x-5 max-w-xl mx-auto bg-[#e3e3e3]/98 backdrop-blur-2xl z-40 p-6 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/60 flex-col justify-between hidden md:hidden">
-    <div class="space-y-5">
-      <div class="text-[11px] font-mono text-[#002a41]/60 tracking-[0.25em] uppercase font-bold">
-        // NAVEGACIÓN
+  <!-- MOBILE MENU OVERLAY FLUIDO -->
+  <div id="mobileMenu" class="fixed inset-x-0 top-[65px] sm:top-[75px] bottom-0 bg-[#002a41]/98 backdrop-blur-2xl z-40 p-6 flex flex-col justify-start hidden md:hidden border-b border-[#e3e3e3]/10 overflow-y-auto">
+    <div class="space-y-6 pt-6">
+      <div class="text-[11px] font-mono text-[#c9cf35] tracking-[0.25em] uppercase font-bold">
+        // MENÚ
       </div>
-      <nav class="flex flex-col space-y-4 text-lg font-black uppercase tracking-tight font-display">
-        <a href="#sobre-nosotros" class="mobile-nav-link text-[#002a41] hover:text-[#c94597] transition-colors flex items-center justify-between border-b border-[#002a41]/10 pb-2.5">
-          <span>SOBRE NOSOTROS</span>
-          <span class="text-sm font-mono text-[#002a41]">↗</span>
+      <nav class="flex flex-col space-y-6 text-2xl font-black uppercase tracking-tight font-display">
+        <a href="#portfolio" class="mobile-nav-link text-[#e3e3e3] hover:text-[#c9cf35] transition-colors flex items-center justify-between border-b border-[#e3e3e3]/10 pb-4">
+          <span>PROYECTOS</span>
+          <span class="text-sm font-mono text-[#c9cf35]">↗</span>
         </a>
-        <a href="#portfolio" class="mobile-nav-link text-[#002a41] hover:text-[#c94597] transition-colors flex items-center justify-between border-b border-[#002a41]/10 pb-2.5">
-          <span>PORTFOLIO</span>
-          <span class="text-sm font-mono text-[#002a41]">↗</span>
+        <a href="#sobre-nosotros" class="mobile-nav-link text-[#e3e3e3] hover:text-[#c9cf35] transition-colors flex items-center justify-between border-b border-[#e3e3e3]/10 pb-4">
+          <span>SERVICIOS</span>
+          <span class="text-sm font-mono text-[#c9cf35]">↗</span>
         </a>
-        <a href="#juga" class="mobile-nav-link text-[#002a41] hover:text-[#c94597] transition-colors flex items-center justify-between border-b border-[#002a41]/10 pb-2.5">
-          <span>JUGÁ CON DESBORDE</span>
-          <span class="text-sm font-mono text-[#002a41]">↗</span>
+        <a href="#sobre-nosotros" class="mobile-nav-link text-[#e3e3e3] hover:text-[#c9cf35] transition-colors flex items-center justify-between border-b border-[#e3e3e3]/10 pb-4">
+          <span>NOSOTROS</span>
+          <span class="text-sm font-mono text-[#c9cf35]">↗</span>
         </a>
-        <a href="#contacto" class="mobile-nav-link text-[#002a41] hover:text-[#c94597] transition-colors flex items-center justify-between border-b border-[#002a41]/10 pb-2.5">
+        <a href="#contacto" class="mobile-nav-link text-[#e3e3e3] hover:text-[#c9cf35] transition-colors flex items-center justify-between border-b border-[#e3e3e3]/10 pb-4">
           <span>CONTACTO</span>
-          <span class="text-sm font-mono text-[#002a41]">↗</span>
+          <span class="text-sm font-mono text-[#c9cf35]">↗</span>
         </a>
       </nav>
     </div>
-
-    <!-- Botón Hablemos en Drawer Mobile -->
-    <div class="pt-6">
-      <a href="https://wa.me/5491187654321?text=Hola%20Desborde%2C%20quiero%20hacer%20una%20consulta" target="_blank" rel="noopener noreferrer" class="w-full py-3.5 rounded-full bg-[#002a41] text-[#c9cf35] font-extrabold text-xs uppercase tracking-widest flex items-center justify-center space-x-2 shadow-lg hover:bg-[#003857] transition-colors border border-[#002a41]">
-        <span>HABLEMOS POR WHATSAPP</span>
-        <svg class="w-4 h-4 text-[#c9cf35]" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
-        </svg>
-      </a>
-    </div>
   </div>
 
-  <!-- HERO SECTION RESPONSIVE -->
-  <section id="hero" class="relative min-h-[92vh] sm:min-h-screen pt-24 sm:pt-32 pb-12 sm:pb-20 px-4 sm:px-6 md:px-12 flex flex-col justify-between overflow-hidden bg-noise border-b border-[#e3e3e3]/10">
+  <!-- SECCIÓN HERO: EXPERIMENTAL, EDITORIAL & CONTEMPORÁNEA -->
+  <section id="hero" class="relative min-h-[92vh] sm:min-h-screen pt-28 sm:pt-36 pb-0 flex flex-col justify-between overflow-hidden bg-[#002a41]">
     
-    <!-- Animación WebGL simulada de fondo -->
-    <div class="absolute inset-0 z-0 pointer-events-none opacity-30 sm:opacity-40 overflow-hidden flex items-center justify-center">
-      <div class="relative w-[130%] h-[130%] max-w-none">
-        <svg viewBox="0 0 1000 1000" class="w-full h-full animate-[spin_60s_linear_infinite] opacity-30">
-          <defs>
-            <linearGradient id="heroGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#c9cf35" stop-opacity="0.7"/>
-              <stop offset="50%" stop-color="#c94597" stop-opacity="0.5"/>
-              <stop offset="100%" stop-color="#002a41" stop-opacity="0"/>
-            </linearGradient>
-          </defs>
-          <circle cx="500" cy="500" r="420" fill="none" stroke="url(#heroGrad)" stroke-width="1.5" stroke-dasharray="8 16"/>
-          <circle cx="500" cy="500" r="320" fill="none" stroke="rgba(227,227,227,0.1)" stroke-width="1"/>
-          <circle cx="500" cy="500" r="210" fill="none" stroke="url(#heroGrad)" stroke-width="2" stroke-dasharray="14 30"/>
-        </svg>
+    <!-- Luces sutiles de fondo (sin decoraciones falsas) -->
+    <div class="ambient-glow-magenta top-20 right-[-10%] opacity-40"></div>
+    <div class="ambient-glow-green top-1/2 left-[-10%] opacity-35"></div>
+
+    <!-- Contenedor Principal de Composición Editorial -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 w-full my-auto py-6 sm:py-10 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        
+        <!-- Columna Izquierda: Tipografía Protagonista y Jerarquía (8 cols) -->
+        <div class="lg:col-span-8 space-y-6 sm:space-y-8">
+          
+          <!-- Eyebrow -->
+          <div class="animate-hero-1">
+            <span class="inline-block text-[11px] sm:text-xs font-mono font-bold tracking-[0.3em] uppercase text-[#c9cf35]">
+              // AGENCIA CREATIVA MULTIMEDIAL
+            </span>
+          </div>
+
+          <!-- Headline Monumental: IDEAS QUE DESBORDAN FORMATOS. -->
+          <h1 class="space-y-1 sm:space-y-2 select-none">
+            <div class="animate-hero-2">
+              <span class="block text-[clamp(2.75rem,8.2vw,7.8rem)] font-black uppercase leading-[0.88] tracking-tight font-display text-[#e3e3e3]">
+                IDEAS QUE
+              </span>
+            </div>
+            
+            <!-- Línea 2: DESBORDAN (Desplazamiento asimétrico con gradiente cromático) -->
+            <div class="animate-hero-3 pl-2 sm:pl-6 md:pl-10 -my-1 sm:-my-2">
+              <span class="inline-block text-[clamp(3.1rem,9.4vw,8.9rem)] font-black uppercase leading-[0.86] tracking-tighter font-display text-transparent bg-clip-text bg-gradient-to-r from-[#c9cf35] via-[#e3e3e3] to-[#c94597] italic transform -rotate-1 hover:rotate-0 transition-transform duration-500 cursor-default">
+                DESBORDAN
+              </span>
+            </div>
+
+            <div class="animate-hero-4">
+              <span class="block text-[clamp(2.75rem,8.2vw,7.8rem)] font-black uppercase leading-[0.88] tracking-tight font-display text-[#e3e3e3]">
+                FORMATOS.
+              </span>
+            </div>
+          </h1>
+
+          <!-- Bajada Editorial -->
+          <p class="animate-hero-5 text-base sm:text-lg md:text-xl text-[#e3e3e3]/80 font-light leading-relaxed max-w-xl">
+            Diseño, motion, 3D y experiencias digitales para marcas que buscan salirse de lo esperado.
+          </p>
+
+          <!-- Acciones: CTA Principal Protagonista + Link Secundario Discreto -->
+          <div class="animate-hero-6 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8 pt-2 sm:pt-4">
+            <!-- CTA Principal: Amarillo Lima con Texto Azul Oscuro -->
+            <a href="#portfolio" class="px-8 sm:px-9 py-4 sm:py-4.5 rounded-full bg-[#c9cf35] hover:bg-white text-[#002a41] font-extrabold text-xs sm:text-sm tracking-widest uppercase transition-all duration-300 shadow-[0_0_30px_rgba(201,207,53,0.35)] hover:shadow-[0_0_40px_rgba(255,255,255,0.6)] hover:scale-105 flex items-center space-x-3 group">
+              <span>VER PROYECTOS</span>
+              <span class="transition-transform duration-300 group-hover:translate-x-1.5 font-bold">→</span>
+            </a>
+
+            <!-- Link Secundario Discreto -->
+            <a href="#sobre-nosotros" class="inline-flex items-center space-x-1.5 text-xs sm:text-sm font-mono tracking-widest uppercase text-[#e3e3e3]/70 hover:text-[#c9cf35] transition-colors py-2 border-b border-transparent hover:border-[#c9cf35] group">
+              <span>Conocé Desborde</span>
+              <span class="text-[#c94597] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:translate-y-0.5">↘</span>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Columna Derecha: Recurso Visual Único (Escultura cinética orgánica de Desborde) (4 cols) -->
+        <div class="lg:col-span-4 relative flex items-center justify-center mt-6 lg:mt-0 select-none">
+          <div class="relative w-[280px] h-[280px] sm:w-[380px] sm:h-[380px] lg:w-[460px] lg:h-[460px] animate-sculpture">
+            
+            <!-- Resplandor volumétrico de soporte -->
+            <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-[#c9cf35]/25 via-[#c94597]/25 to-transparent filter blur-3xl pointer-events-none transform -rotate-12 scale-110"></div>
+            
+            <!-- Escultura Orgánica SVG Líquida -->
+            <svg viewBox="0 0 500 500" class="w-full h-full drop-shadow-[0_25px_50px_rgba(0,0,0,0.65)] overflow-visible">
+              <defs>
+                <linearGradient id="desbordeLiquidGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#c9cf35"/>
+                  <stop offset="40%" stop-color="#e3e3e3"/>
+                  <stop offset="75%" stop-color="#c94597"/>
+                  <stop offset="100%" stop-color="#002a41"/>
+                </linearGradient>
+                <filter id="liquidGlow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="6" result="blur"/>
+                  <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+                </filter>
+              </defs>
+              
+              <!-- Anillo orbital exterior que excede el marco -->
+              <circle cx="250" cy="250" r="230" fill="none" stroke="rgba(227,227,227,0.12)" stroke-width="1.5" stroke-dasharray="6 12" class="animate-[spin_90s_linear_infinite]"/>
+              
+              <!-- Mancha orgánica fluida de marca (El Desborde) -->
+              <path d="M410,290 C435,370 365,440 280,430 C195,420 120,445 75,380 C30,315 65,220 95,150 C125,80 200,45 285,60 C370,75 385,210 410,290 Z" 
+                    fill="url(#desbordeLiquidGrad)" 
+                    opacity="0.94"
+                    class="animate-[pulse-glow_6s_ease-in-out_infinite]"
+                    filter="url(#liquidGlow)"/>
+
+              <!-- Núcleo interior con gradiente profundo -->
+              <path d="M350,260 C370,320 320,380 260,370 C200,360 150,370 120,320 C90,270 120,200 150,150 C180,100 240,80 300,100 C360,120 330,200 350,260 Z" 
+                    fill="#002a41" 
+                    stroke="#c9cf35" 
+                    stroke-width="2" 
+                    opacity="0.9"/>
+
+              <!-- Isotipo orgánico central de Desborde -->
+              <g transform="translate(195, 195) scale(2.2)">
+                <path d="M25,8 C33,8 38,14 36,22 C34,30 28,38 22,38 C16,38 12,32 14,24 C16,16 17,8 25,8 Z" fill="#c9cf35" opacity="0.95"/>
+                <circle cx="25" cy="23" r="5" fill="#002a41"/>
+              </g>
+            </svg>
+
+            <!-- Badge flotante sutil de arte conceptual -->
+            <div class="absolute -bottom-3 -left-3 sm:bottom-2 sm:-left-4 px-3.5 py-1.5 rounded-full glass-panel border border-[#c9cf35]/35 text-[10px] font-mono tracking-wider text-[#e3e3e3]/90 shadow-xl flex items-center space-x-2">
+              <span class="w-2 h-2 rounded-full bg-[#c9cf35] animate-ping"></span>
+              <span>EXPERIMENTAL CRAFT</span>
+            </div>
+
+          </div>
+        </div>
+
       </div>
     </div>
 
-    <!-- Kicker Tag con el isotipo de la mancha verde -->
-    <div class="relative z-10 pt-4 sm:pt-8 flex flex-wrap items-center gap-2 sm:gap-3">
-      <div class="flex items-center space-x-2">
-        <img src="./assets/favicon.png" alt="Desborde Icon" class="w-5 h-5 sm:w-6 sm:h-6 object-contain">
-        <span class="text-[#c9cf35] font-mono text-[11px] sm:text-xs tracking-[0.2em] sm:tracking-[0.25em] uppercase font-bold">
-          // AGENCIA DE DISEÑO MULTIMEDIAL
+    <!-- Ticker Horizontal Animado en Loop Continuo en la Parte Inferior -->
+    <div class="w-full border-y border-[#e3e3e3]/12 py-3.5 sm:py-4 bg-[#001726]/80 backdrop-blur-md overflow-hidden relative z-20">
+      <div class="animate-marquee whitespace-nowrap flex items-center text-xs sm:text-sm font-black font-display tracking-[0.28em] uppercase text-[#e3e3e3]/85 select-none">
+        <span class="inline-flex items-center space-x-6 sm:space-x-8 px-4">
+          <span>BRANDING</span> <span class="text-[#c9cf35]">✦</span>
+          <span>MOTION</span> <span class="text-[#c94597]">✦</span>
+          <span>3D</span> <span class="text-[#c9cf35]">✦</span>
+          <span>WEB</span> <span class="text-[#c94597]">✦</span>
+          <span>CONTENIDO</span> <span class="text-[#c9cf35]">✦</span>
+          <span>DIRECCIÓN DE ARTE</span> <span class="text-[#c94597]">✦</span>
+        </span>
+        <span class="inline-flex items-center space-x-6 sm:space-x-8 px-4">
+          <span>BRANDING</span> <span class="text-[#c9cf35]">✦</span>
+          <span>MOTION</span> <span class="text-[#c94597]">✦</span>
+          <span>3D</span> <span class="text-[#c9cf35]">✦</span>
+          <span>WEB</span> <span class="text-[#c94597]">✦</span>
+          <span>CONTENIDO</span> <span class="text-[#c9cf35]">✦</span>
+          <span>DIRECCIÓN DE ARTE</span> <span class="text-[#c94597]">✦</span>
+        </span>
+        <span class="inline-flex items-center space-x-6 sm:space-x-8 px-4">
+          <span>BRANDING</span> <span class="text-[#c9cf35]">✦</span>
+          <span>MOTION</span> <span class="text-[#c94597]">✦</span>
+          <span>3D</span> <span class="text-[#c9cf35]">✦</span>
+          <span>WEB</span> <span class="text-[#c94597]">✦</span>
+          <span>CONTENIDO</span> <span class="text-[#c9cf35]">✦</span>
+          <span>DIRECCIÓN DE ARTE</span> <span class="text-[#c94597]">✦</span>
+        </span>
+        <span class="inline-flex items-center space-x-6 sm:space-x-8 px-4">
+          <span>BRANDING</span> <span class="text-[#c9cf35]">✦</span>
+          <span>MOTION</span> <span class="text-[#c94597]">✦</span>
+          <span>3D</span> <span class="text-[#c9cf35]">✦</span>
+          <span>WEB</span> <span class="text-[#c94597]">✦</span>
+          <span>CONTENIDO</span> <span class="text-[#c9cf35]">✦</span>
+          <span>DIRECCIÓN DE ARTE</span> <span class="text-[#c94597]">✦</span>
         </span>
       </div>
-      <span class="hidden sm:inline-block h-px w-12 sm:w-16 bg-[#e3e3e3]/25"></span>
-      <span class="text-[#c94597] font-mono text-[11px] sm:text-xs tracking-widest hidden md:inline font-bold">AWWWARDS CANDIDATE</span>
     </div>
 
-    <!-- Título Principal Monumental Responsive -->
-    <div class="relative z-10 my-auto py-6 sm:py-8">
-      <div class="overflow-hidden">
-        <h1 class="text-[clamp(2.75rem,11.5vw,13.5rem)] font-black uppercase leading-[0.88] sm:leading-[0.85] tracking-tight font-display text-transparent bg-clip-text bg-gradient-to-b from-[#e3e3e3] via-[#e3e3e3] to-[#c94597]/70 break-words">
-          DESBORDE
-        </h1>
-      </div>
-      
-      <div class="flex flex-col lg:flex-row lg:items-end justify-between mt-5 sm:mt-6 gap-6 sm:gap-8">
-        <p class="max-w-xl text-base sm:text-lg md:text-2xl text-[#e3e3e3]/85 font-normal leading-relaxed">
-          Diseñamos experiencias digitales disruptivas, arte 3D y ecosistemas visuales para marcas que rehúsan encajar en moldes convencionales.
-        </p>
-
-        <!-- Botones de Acción -->
-        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
-          <a href="#portfolio" class="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-full bg-[#c9cf35] text-[#002a41] font-bold text-xs sm:text-sm tracking-wider uppercase transition-all duration-300 hover:scale-105 hover:bg-[#c94597] hover:text-[#e3e3e3] hover:shadow-[0_0_35px_rgba(201,69,151,0.6)] flex items-center justify-center space-x-2.5">
-            <span>VER PORTFOLIO</span>
-            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current" viewBox="0 0 24 24">
-              <polygon points="5 3 19 12 5 21 5 3"/>
-            </svg>
-          </a>
-          <a href="#sobre-nosotros" class="w-full sm:w-auto text-center px-6 sm:px-7 py-3.5 sm:py-4 rounded-full border border-[#c94597] text-[#e3e3e3] font-bold text-xs sm:text-sm tracking-wider uppercase hover:border-[#c9cf35] hover:text-[#c9cf35] transition-colors duration-200">
-            SOBRE NOSOTROS
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Indicadores de Telemetría Inferior Responsive -->
-    <div class="relative z-10 pt-4 sm:pt-6 border-t border-[#e3e3e3]/10 flex flex-wrap items-center justify-between text-[10px] sm:text-xs font-mono text-[#e3e3e3]/70 gap-3">
-      <div class="flex flex-wrap items-center gap-x-4 sm:gap-x-6 gap-y-1">
-        <div><span class="text-[#c9cf35]">COORD:</span> 34°36'S 58°22'W</div>
-        <div><span class="text-[#c9cf35]">FPS:</span> 60.0 STABLE</div>
-        <div class="hidden sm:block"><span class="text-[#c94597]">ENGINE:</span> THREE.JS / WEBGL 2.0</div>
-      </div>
-      <div class="flex items-center space-x-1.5 text-[#e3e3e3]/60 ml-auto sm:ml-0">
-        <span>SCROLL</span>
-        <svg class="w-3.5 h-3.5 animate-bounce text-[#c9cf35]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
-        </svg>
-      </div>
-    </div>
   </section>
 
-  <!-- SECCIÓN 1: SOBRE NOSOTROS (MANIFIESTO + CAPACIDADES INTEGRADAS) -->
-  <section id="sobre-nosotros" class="py-16 sm:py-28 px-4 sm:px-6 md:px-12 border-b border-[#e3e3e3]/10 relative bg-[#001e30]/40">
-    <div class="max-w-7xl mx-auto space-y-16 sm:space-y-24">
-      
-      <!-- Bloque Manifiesto & Métricas -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16">
-        
-        <!-- Columna Izquierda: Métricas con Grilla Adaptativa en Mobile -->
-        <div class="lg:col-span-4 flex flex-col justify-between">
-          <div>
-            <div class="font-mono text-xs tracking-[0.25em] text-[#c9cf35] uppercase mb-3 font-bold">
-              [ 01 // SOBRE NOSOTROS ]
-            </div>
-            <h2 class="text-xl sm:text-2xl md:text-3xl font-black uppercase tracking-tight text-[#e3e3e3] font-display leading-tight">
-              NO HACEMOS PÁGINAS WEB.<br>
-              <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#c9cf35] via-[#c94597] to-[#e3e3e3]">
-                CONSTRUIMOS CATALIZADORES SENSORIALES.
-              </span>
-            </h2>
-          </div>
-
-          <!-- Métricas en Grilla 2-Cols en Mobile -->
-          <div class="mt-8 lg:mt-12 pt-6 sm:pt-8 border-t border-[#e3e3e3]/10 grid grid-cols-2 lg:grid-cols-1 gap-6">
-            <div>
-              <div class="text-2xl sm:text-3xl md:text-4xl font-black font-display text-[#e3e3e3]">100%</div>
-              <div class="flex items-center space-x-2 text-[11px] sm:text-xs font-mono uppercase text-[#e3e3e3]/70 tracking-wider mt-1">
-                <img src="./icons/no-template.svg" class="w-3.5 h-3.5 object-contain opacity-80" alt="Exclusivo">
-                <span>Sin plantillas</span>
-              </div>
-            </div>
-            <div>
-              <div class="text-2xl sm:text-3xl md:text-4xl font-black font-display text-[#c9cf35]">18+</div>
-              <div class="flex items-center space-x-2 text-[11px] sm:text-xs font-mono uppercase text-[#e3e3e3]/70 tracking-wider mt-1">
-                <img src="./icons/trophy.svg" class="w-3.5 h-3.5 object-contain opacity-90" alt="Premios">
-                <span>Premios Diseño</span>
-              </div>
-            </div>
-            <div class="col-span-2 lg:col-span-1">
-              <div class="text-2xl sm:text-3xl md:text-4xl font-black font-display text-[#c94597]">&lt;0.05s</div>
-              <div class="flex items-center space-x-2 text-[11px] sm:text-xs font-mono uppercase text-[#e3e3e3]/70 tracking-wider mt-1">
-                <img src="./icons/speed.svg" class="w-3.5 h-3.5 object-contain opacity-90" alt="Velocidad">
-                <span>Latencia de Render & Microinteracciones</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Columna Derecha: Relato Editorial & Regla -->
-        <div class="lg:col-span-8 flex flex-col justify-center space-y-6 sm:space-y-8">
-          <p class="text-lg sm:text-2xl md:text-4xl lg:text-5xl font-normal leading-snug sm:leading-[1.25] tracking-tight text-[#e3e3e3]">
-            El entorno digital está saturado de uniformidad. Nosotros nacimos para provocar la ruptura: <span class="text-[#e3e3e3] font-bold underline decoration-[#c9cf35] decoration-2 underline-offset-4 sm:underline-offset-8">Desborde</span> es la intersección salvaje entre ingeniería de software de precisión, dirección de arte editorial y render 3D hiperrealista.
-          </p>
-          
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8 pt-2 sm:pt-6 text-sm sm:text-base text-[#e3e3e3]/80 leading-relaxed font-light">
-            <p>
-              Operamos con una visión radical del espacio negativo: eliminamos lo superfluo hasta que cada milisegundo de interacción, cada transición cinemática y cada microinteracción comunique autoridad y magnetismo instantáneo.
-            </p>
-            <p>
-              Trabajamos con creadores, startups de vanguardia y marcas de escala global que entienden que el diseño digital de nivel premium no es un gasto accesorio, sino el activo competitivo más decisivo de su industria.
-            </p>
-          </div>
-
-          <div class="pt-2 sm:pt-4">
-            <div class="p-4 sm:p-6 rounded-2xl glass-panel border border-[#c94597]/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
-              <div class="flex items-center space-x-2.5">
-                <img src="./assets/favicon.png" class="w-4 h-4 sm:w-5 sm:h-5 object-contain" alt="Icon">
-                <span class="text-xs sm:text-sm font-bold uppercase tracking-wider text-[#e3e3e3]">NUESTRA REGLA FUNDAMENTAL</span>
-              </div>
-              <div class="text-[11px] sm:text-xs font-mono text-[#c9cf35] font-bold">
-                "SI YA EXISTE EN UNA PLANTILLA, NOS NEGAMOS A REPETIRLO AQUÍ."
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Pilares de Especialización (Capacidades condensadas con elegancia editorial) -->
-      <div class="pt-8 sm:pt-12 border-t border-[#e3e3e3]/10">
-        <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 sm:mb-12">
-          <div>
-            <div class="font-mono text-xs tracking-[0.25em] text-[#c94597] uppercase mb-1 font-bold">
-              // DISCIPLINAS
-            </div>
-            <h3 class="text-2xl sm:text-3xl md:text-4xl font-black uppercase font-display text-[#e3e3e3]">
-              NUESTROS PILARES DE ACCIÓN
-            </h3>
-          </div>
-          <span class="text-xs font-mono text-[#e3e3e3]/70 uppercase tracking-widest mt-2 sm:mt-0">
-            PRODUCCIÓN INTEGRAL HIGH-END
-          </span>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-          
-          <!-- Pilar 1: UX/UI -->
-          <div class="p-6 rounded-2xl bg-[#001e30] border border-[#e3e3e3]/10 hover:border-[#c9cf35] transition-all duration-300 group flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between mb-5">
-                <div class="w-10 h-10 rounded-xl bg-[#002a41] border border-[#c9cf35]/30 flex items-center justify-center p-2.5 group-hover:scale-105 transition-transform">
-                  <img src="./icons/layout-ui.svg" class="w-full h-full object-contain" alt="UX/UI">
-                </div>
-                <span class="font-mono text-xs text-[#c9cf35] font-bold">[ 01 ]</span>
-              </div>
-              <h4 class="text-lg font-bold uppercase font-display text-[#e3e3e3] mb-2 group-hover:text-[#c9cf35] transition-colors">
-                UX/UI & SISTEMAS
-              </h4>
-              <p class="text-xs sm:text-sm text-[#e3e3e3]/75 leading-relaxed">
-                Interfaces líquidas, design systems escalables y microinteracciones de alta conversión.
-              </p>
-            </div>
-            <div class="mt-6 pt-4 border-t border-[#e3e3e3]/10 flex flex-wrap gap-1.5 font-mono text-[10px] text-[#e3e3e3]/60">
-              <span class="px-2 py-0.5 rounded bg-[#002a41]">Figma</span>
-              <span class="px-2 py-0.5 rounded bg-[#002a41]">Design Systems</span>
-            </div>
-          </div>
-
-          <!-- Pilar 2: 3D & Shaders -->
-          <div class="p-6 rounded-2xl bg-[#001e30] border border-[#e3e3e3]/10 hover:border-[#c94597] transition-all duration-300 group flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between mb-5">
-                <div class="w-10 h-10 rounded-xl bg-[#002a41] border border-[#c94597]/30 flex items-center justify-center p-2.5 group-hover:scale-105 transition-transform">
-                  <img src="./icons/cube-3d.svg" class="w-full h-full object-contain" alt="3D">
-                </div>
-                <span class="font-mono text-xs text-[#c94597] font-bold">[ 02 ]</span>
-              </div>
-              <h4 class="text-lg font-bold uppercase font-display text-[#e3e3e3] mb-2 group-hover:text-[#c94597] transition-colors">
-                MODELADO 3D & WEBGL
-              </h4>
-              <p class="text-xs sm:text-sm text-[#e3e3e3]/75 leading-relaxed">
-                Escenarios hiperrealistas, visualizadores Three.js y shaders en tiempo real.
-              </p>
-            </div>
-            <div class="mt-6 pt-4 border-t border-[#e3e3e3]/10 flex flex-wrap gap-1.5 font-mono text-[10px] text-[#e3e3e3]/60">
-              <span class="px-2 py-0.5 rounded bg-[#002a41]">Three.js</span>
-              <span class="px-2 py-0.5 rounded bg-[#002a41]">Blender</span>
-            </div>
-          </div>
-
-          <!-- Pilar 3: Motion -->
-          <div class="p-6 rounded-2xl bg-[#001e30] border border-[#e3e3e3]/10 hover:border-[#c9cf35] transition-all duration-300 group flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between mb-5">
-                <div class="w-10 h-10 rounded-xl bg-[#002a41] border border-[#c9cf35]/30 flex items-center justify-center p-2.5 group-hover:scale-105 transition-transform">
-                  <img src="./icons/motion-film.svg" class="w-full h-full object-contain" alt="Motion">
-                </div>
-                <span class="font-mono text-xs text-[#c9cf35] font-bold">[ 03 ]</span>
-              </div>
-              <h4 class="text-lg font-bold uppercase font-display text-[#e3e3e3] mb-2 group-hover:text-[#c9cf35] transition-colors">
-                MOTION GRAPHICS
-              </h4>
-              <p class="text-xs sm:text-sm text-[#e3e3e3]/75 leading-relaxed">
-                Showreels cinemáticos, tipografía cinética y secuencias de alto impacto visual.
-              </p>
-            </div>
-            <div class="mt-6 pt-4 border-t border-[#e3e3e3]/10 flex flex-wrap gap-1.5 font-mono text-[10px] text-[#e3e3e3]/60">
-              <span class="px-2 py-0.5 rounded bg-[#002a41]">After Effects</span>
-              <span class="px-2 py-0.5 rounded bg-[#002a41]">Rive</span>
-            </div>
-          </div>
-
-          <!-- Pilar 4: Branding -->
-          <div class="p-6 rounded-2xl bg-[#001e30] border border-[#e3e3e3]/10 hover:border-[#c94597] transition-all duration-300 group flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between mb-5">
-                <div class="w-10 h-10 rounded-xl bg-[#002a41] border border-[#c94597]/30 flex items-center justify-center p-2.5 group-hover:scale-105 transition-transform">
-                  <img src="./icons/brand-dna.svg" class="w-full h-full object-contain" alt="Branding">
-                </div>
-                <span class="font-mono text-xs text-[#c94597] font-bold">[ 04 ]</span>
-              </div>
-              <h4 class="text-lg font-bold uppercase font-display text-[#e3e3e3] mb-2 group-hover:text-[#c94597] transition-colors">
-                BRANDING EVOLUTIVO
-              </h4>
-              <p class="text-xs sm:text-sm text-[#e3e3e3]/75 leading-relaxed">
-                Identidades vivas adaptadas a entornos omnicanal con tipografía bespoke.
-              </p>
-            </div>
-            <div class="mt-6 pt-4 border-t border-[#e3e3e3]/10 flex flex-wrap gap-1.5 font-mono text-[10px] text-[#e3e3e3]/60">
-              <span class="px-2 py-0.5 rounded bg-[#002a41]">Brand Systems</span>
-              <span class="px-2 py-0.5 rounded bg-[#002a41]">Art Direction</span>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- SECCIÓN 2: PORTFOLIO (CASOS DE ESTUDIO DESTACADOS) -->
+  <!-- SECCIÓN 2: PORTFOLIO (CASOS DE ESTUDIO DESTACADOS - INMEDIATAMENTE DESPUÉS DEL HERO) -->
   <section id="portfolio" class="py-16 sm:py-28 px-4 sm:px-6 md:px-12 border-b border-[#e3e3e3]/10 relative">
     <div class="max-w-7xl mx-auto">
       
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-16 pb-4 sm:pb-6 border-b border-[#e3e3e3]/10">
         <div>
           <div class="font-mono text-xs tracking-[0.25em] text-[#c9cf35] uppercase mb-2 font-bold">
-            [ 02 // PORTFOLIO SELECCIONADO ]
+            [ 01 // PORTFOLIO SELECCIONADO ]
           </div>
           <h2 class="text-3xl sm:text-4xl md:text-6xl font-black uppercase tracking-tight font-display text-[#e3e3e3]">
             PROYECTOS DESTACADOS
@@ -660,7 +569,196 @@
     </div>
   </section>
 
-  <!-- SECCIÓN 3: JUGÁ (NUEVA SECCIÓN: DESBORDE PLAYGROUND INTERACTIVO) -->
+  <!-- SECCIÓN 3: SOBRE NOSOTROS (MANIFIESTO + CAPACIDADES INTEGRADAS) -->
+  <section id="sobre-nosotros" class="py-16 sm:py-28 px-4 sm:px-6 md:px-12 border-b border-[#e3e3e3]/10 relative bg-[#001e30]/40">
+    <div class="max-w-7xl mx-auto space-y-16 sm:space-y-24">
+      
+      <!-- Bloque Manifiesto & Métricas -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-12 lg:gap-16">
+        
+        <!-- Columna Izquierda: Métricas con Grilla Adaptativa en Mobile -->
+        <div class="lg:col-span-4 flex flex-col justify-between">
+          <div>
+            <div class="font-mono text-xs tracking-[0.25em] text-[#c9cf35] uppercase mb-3 font-bold">
+              [ 02 // SOBRE NOSOTROS ]
+            </div>
+            <h2 class="text-xl sm:text-2xl md:text-3xl font-black uppercase tracking-tight text-[#e3e3e3] font-display leading-tight">
+              NO HACEMOS PÁGINAS WEB.<br>
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#c9cf35] via-[#c94597] to-[#e3e3e3]">
+                CONSTRUIMOS CATALIZADORES SENSORIALES.
+              </span>
+            </h2>
+          </div>
+
+          <!-- Métricas en Grilla 2-Cols en Mobile -->
+          <div class="mt-8 lg:mt-12 pt-6 sm:pt-8 border-t border-[#e3e3e3]/10 grid grid-cols-2 lg:grid-cols-1 gap-6">
+            <div>
+              <div class="text-2xl sm:text-3xl md:text-4xl font-black font-display text-[#e3e3e3]">100%</div>
+              <div class="flex items-center space-x-2 text-[11px] sm:text-xs font-mono uppercase text-[#e3e3e3]/70 tracking-wider mt-1">
+                <img src="./icons/no-template.svg" class="w-3.5 h-3.5 object-contain opacity-80" alt="Exclusivo">
+                <span>Sin plantillas</span>
+              </div>
+            </div>
+            <div>
+              <div class="text-2xl sm:text-3xl md:text-4xl font-black font-display text-[#c9cf35]">18+</div>
+              <div class="flex items-center space-x-2 text-[11px] sm:text-xs font-mono uppercase text-[#e3e3e3]/70 tracking-wider mt-1">
+                <img src="./icons/trophy.svg" class="w-3.5 h-3.5 object-contain opacity-90" alt="Premios">
+                <span>Premios Diseño</span>
+              </div>
+            </div>
+            <div class="col-span-2 lg:col-span-1">
+              <div class="text-2xl sm:text-3xl md:text-4xl font-black font-display text-[#c94597]">&lt;0.05s</div>
+              <div class="flex items-center space-x-2 text-[11px] sm:text-xs font-mono uppercase text-[#e3e3e3]/70 tracking-wider mt-1">
+                <img src="./icons/speed.svg" class="w-3.5 h-3.5 object-contain opacity-90" alt="Velocidad">
+                <span>Latencia de Render & Microinteracciones</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Columna Derecha: Relato Editorial & Regla -->
+        <div class="lg:col-span-8 flex flex-col justify-center space-y-6 sm:space-y-8">
+          <p class="text-lg sm:text-2xl md:text-4xl lg:text-5xl font-normal leading-snug sm:leading-[1.25] tracking-tight text-[#e3e3e3]">
+            El entorno digital está saturado de uniformidad. Nosotros nacimos para provocar la ruptura: <span class="text-[#e3e3e3] font-bold underline decoration-[#c9cf35] decoration-2 underline-offset-4 sm:underline-offset-8">Desborde</span> es la intersección salvaje entre ingeniería de software de precisión, dirección de arte editorial y render 3D hiperrealista.
+          </p>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-8 pt-2 sm:pt-6 text-sm sm:text-base text-[#e3e3e3]/80 leading-relaxed font-light">
+            <p>
+              Operamos con una visión radical del espacio negativo: eliminamos lo superfluo hasta que cada milisegundo de interacción, cada transición cinemática y cada microinteracción comunique autoridad y magnetismo instantáneo.
+            </p>
+            <p>
+              Trabajamos con creadores, startups de vanguardia y marcas de escala global que entienden que el diseño digital de nivel premium no es un gasto accesorio, sino el activo competitivo más decisivo de su industria.
+            </p>
+          </div>
+
+          <div class="pt-2 sm:pt-4">
+            <div class="p-4 sm:p-6 rounded-2xl glass-panel border border-[#c94597]/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
+              <div class="flex items-center space-x-2.5">
+                <img src="./assets/favicon.png" class="w-4 h-4 sm:w-5 sm:h-5 object-contain" alt="Icon">
+                <span class="text-xs sm:text-sm font-bold uppercase tracking-wider text-[#e3e3e3]">NUESTRA REGLA FUNDAMENTAL</span>
+              </div>
+              <div class="text-[11px] sm:text-xs font-mono text-[#c9cf35] font-bold">
+                "SI YA EXISTE EN UNA PLANTILLA, NOS NEGAMOS A REPETIRLO AQUÍ."
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Pilares de Especialización -->
+      <div class="pt-8 sm:pt-12 border-t border-[#e3e3e3]/10">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 sm:mb-12">
+          <div>
+            <div class="font-mono text-xs tracking-[0.25em] text-[#c94597] uppercase mb-1 font-bold">
+              // DISCIPLINAS
+            </div>
+            <h3 class="text-2xl sm:text-3xl md:text-4xl font-black uppercase font-display text-[#e3e3e3]">
+              NUESTROS PILARES DE ACCIÓN
+            </h3>
+          </div>
+          <span class="text-xs font-mono text-[#e3e3e3]/70 uppercase tracking-widest mt-2 sm:mt-0">
+            PRODUCCIÓN INTEGRAL HIGH-END
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          
+          <!-- Pilar 1: UX/UI -->
+          <div class="p-6 rounded-2xl bg-[#001e30] border border-[#e3e3e3]/10 hover:border-[#c9cf35] transition-all duration-300 group flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <div class="w-10 h-10 rounded-xl bg-[#002a41] border border-[#c9cf35]/30 flex items-center justify-center p-2.5 group-hover:scale-105 transition-transform">
+                  <img src="./icons/layout-ui.svg" class="w-full h-full object-contain" alt="UX/UI">
+                </div>
+                <span class="font-mono text-xs text-[#c9cf35] font-bold">[ 01 ]</span>
+              </div>
+              <h4 class="text-lg font-bold uppercase font-display text-[#e3e3e3] mb-2 group-hover:text-[#c9cf35] transition-colors">
+                UX/UI & SISTEMAS
+              </h4>
+              <p class="text-xs sm:text-sm text-[#e3e3e3]/75 leading-relaxed">
+                Interfaces líquidas, design systems escalables y microinteracciones de alta conversión.
+              </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-[#e3e3e3]/10 flex flex-wrap gap-1.5 font-mono text-[10px] text-[#e3e3e3]/60">
+              <span class="px-2 py-0.5 rounded bg-[#002a41]">Figma</span>
+              <span class="px-2 py-0.5 rounded bg-[#002a41]">Design Systems</span>
+            </div>
+          </div>
+
+          <!-- Pilar 2: 3D & Shaders -->
+          <div class="p-6 rounded-2xl bg-[#001e30] border border-[#e3e3e3]/10 hover:border-[#c94597] transition-all duration-300 group flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <div class="w-10 h-10 rounded-xl bg-[#002a41] border border-[#c94597]/30 flex items-center justify-center p-2.5 group-hover:scale-105 transition-transform">
+                  <img src="./icons/cube-3d.svg" class="w-full h-full object-contain" alt="3D">
+                </div>
+                <span class="font-mono text-xs text-[#c94597] font-bold">[ 02 ]</span>
+              </div>
+              <h4 class="text-lg font-bold uppercase font-display text-[#e3e3e3] mb-2 group-hover:text-[#c94597] transition-colors">
+                MODELADO 3D & WEBGL
+              </h4>
+              <p class="text-xs sm:text-sm text-[#e3e3e3]/75 leading-relaxed">
+                Escenarios hiperrealistas, visualizadores Three.js y shaders en tiempo real.
+              </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-[#e3e3e3]/10 flex flex-wrap gap-1.5 font-mono text-[10px] text-[#e3e3e3]/60">
+              <span class="px-2 py-0.5 rounded bg-[#002a41]">Three.js</span>
+              <span class="px-2 py-0.5 rounded bg-[#002a41]">Blender</span>
+            </div>
+          </div>
+
+          <!-- Pilar 3: Motion -->
+          <div class="p-6 rounded-2xl bg-[#001e30] border border-[#e3e3e3]/10 hover:border-[#c9cf35] transition-all duration-300 group flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <div class="w-10 h-10 rounded-xl bg-[#002a41] border border-[#c9cf35]/30 flex items-center justify-center p-2.5 group-hover:scale-105 transition-transform">
+                  <img src="./icons/motion-film.svg" class="w-full h-full object-contain" alt="Motion">
+                </div>
+                <span class="font-mono text-xs text-[#c9cf35] font-bold">[ 03 ]</span>
+              </div>
+              <h4 class="text-lg font-bold uppercase font-display text-[#e3e3e3] mb-2 group-hover:text-[#c9cf35] transition-colors">
+                MOTION GRAPHICS
+              </h4>
+              <p class="text-xs sm:text-sm text-[#e3e3e3]/75 leading-relaxed">
+                Showreels cinemáticos, tipografía cinética y secuencias de alto impacto visual.
+              </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-[#e3e3e3]/10 flex flex-wrap gap-1.5 font-mono text-[10px] text-[#e3e3e3]/60">
+              <span class="px-2 py-0.5 rounded bg-[#002a41]">After Effects</span>
+              <span class="px-2 py-0.5 rounded bg-[#002a41]">Rive</span>
+            </div>
+          </div>
+
+          <!-- Pilar 4: Branding -->
+          <div class="p-6 rounded-2xl bg-[#001e30] border border-[#e3e3e3]/10 hover:border-[#c94597] transition-all duration-300 group flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <div class="w-10 h-10 rounded-xl bg-[#002a41] border border-[#c94597]/30 flex items-center justify-center p-2.5 group-hover:scale-105 transition-transform">
+                  <img src="./icons/brand-dna.svg" class="w-full h-full object-contain" alt="Branding">
+                </div>
+                <span class="font-mono text-xs text-[#c94597] font-bold">[ 04 ]</span>
+              </div>
+              <h4 class="text-lg font-bold uppercase font-display text-[#e3e3e3] mb-2 group-hover:text-[#c94597] transition-colors">
+                BRANDING EVOLUTIVO
+              </h4>
+              <p class="text-xs sm:text-sm text-[#e3e3e3]/75 leading-relaxed">
+                Identidades vivas adaptadas a entornos omnicanal con tipografía bespoke.
+              </p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-[#e3e3e3]/10 flex flex-wrap gap-1.5 font-mono text-[10px] text-[#e3e3e3]/60">
+              <span class="px-2 py-0.5 rounded bg-[#002a41]">Brand Systems</span>
+              <span class="px-2 py-0.5 rounded bg-[#002a41]">Art Direction</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECCIÓN 4: JUGÁ CON DESBORDE (PLAYGROUND INTERACTIVO) -->
   <section id="juga" class="py-16 sm:py-28 px-4 sm:px-6 md:px-12 border-b border-[#e3e3e3]/10 relative bg-[#001726]/60 overflow-hidden">
     <!-- Luces sutiles de fondo para el canvas -->
     <div class="ambient-glow-magenta top-1/3 -left-20"></div>
@@ -717,7 +815,7 @@
         <div class="relative w-full h-[360px] sm:h-[480px] md:h-[540px] cursor-crosshair overflow-hidden touch-none select-none">
           <canvas id="playgroundCanvas" class="w-full h-full block"></canvas>
           
-          <!-- Píldora de instrucción flotante (desaparece con la primera interacción) -->
+          <!-- Píldora de instrucción flotante -->
           <div id="canvasInstruction" class="absolute inset-0 flex items-center justify-center pointer-events-none transition-opacity duration-500">
             <div class="px-4 py-2.5 rounded-full glass-panel border border-[#c9cf35]/40 text-center shadow-2xl flex items-center space-x-2.5 animate-pulse">
               <svg class="w-4 h-4 text-[#c9cf35]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -746,7 +844,7 @@
     </div>
   </section>
 
-  <!-- SECCIÓN 4: CONTACTO & FOOTER RESPONSIVE -->
+  <!-- SECCIÓN 5: CONTACTO & FOOTER RESPONSIVE -->
   <section id="contacto" class="py-16 sm:py-28 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-noise bg-[#001e30]/50">
     <div class="max-w-7xl mx-auto">
       
@@ -1206,7 +1304,7 @@
                 ctx.strokeStyle = `rgba(201, 207, 53, ${0.18 * (1 - dist / 65) * particles[i].alpha})`;
                 ctx.beginPath();
                 ctx.moveTo(particles[i].x, particles[i].y);
-                ctx.lineTo(particles[j].x, particles[j].y);
+                ctx.lineTo(particles[j].y, particles[j].y);
                 ctx.stroke();
               }
             }
