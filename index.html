@@ -304,7 +304,7 @@
     </div>
 
     <!-- Kicker Tag con el isotipo de la mancha verde -->
-    <div class="relative z-10 pt-4 sm:pt-8 flex flex-wrap items-center gap-2 sm:gap-3">
+    <div class="max-w-7xl mx-auto w-full relative z-10 pt-2 sm:pt-4 flex flex-wrap items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
       <div class="flex items-center space-x-2">
         <img src="./assets/favicon.png" alt="Desborde Icon" class="w-5 h-5 sm:w-6 sm:h-6 object-contain">
         <span class="text-[#c9cf35] font-mono text-[11px] sm:text-xs tracking-[0.2em] sm:tracking-[0.25em] uppercase font-bold">
@@ -312,34 +312,63 @@
         </span>
       </div>
       <span class="hidden sm:inline-block h-px w-12 sm:w-16 bg-[#e3e3e3]/25"></span>
-      <span class="text-[#c94597] font-mono text-[11px] sm:text-xs tracking-widest hidden md:inline font-bold">AWWWARDS CANDIDATE</span>
+      <span class="text-[#c94597] font-mono text-[11px] sm:text-xs tracking-widest hidden md:inline font-bold">BUENOS AIRES // GLOBAL REACH</span>
     </div>
 
-    <!-- Título Principal Monumental Responsive -->
-    <div class="relative z-10 my-auto py-6 sm:py-8">
-      <div class="overflow-hidden">
-        <h1 class="text-[clamp(2.75rem,11.5vw,13.5rem)] font-black uppercase leading-[0.88] sm:leading-[0.85] tracking-tight font-display text-transparent bg-clip-text bg-gradient-to-b from-[#e3e3e3] via-[#e3e3e3] to-[#c94597]/70 break-words">
-          DESBORDE
-        </h1>
-      </div>
-      
-      <div class="flex flex-col lg:flex-row lg:items-end justify-between mt-5 sm:mt-6 gap-6 sm:gap-8">
-        <p class="max-w-xl text-base sm:text-lg md:text-2xl text-[#e3e3e3]/85 font-normal leading-relaxed">
-          Diseñamos experiencias digitales disruptivas, arte 3D y ecosistemas visuales para marcas que rehúsan encajar en moldes convencionales.
-        </p>
+    <!-- BANNER HERO CINEMÁTICO A LO ANCHO -->
+    <div class="max-w-7xl mx-auto w-full relative z-10 my-auto pb-4">
+      <div class="relative w-full rounded-2xl sm:rounded-3xl lg:rounded-[2.5rem] overflow-hidden border border-[#e3e3e3]/15 shadow-[0_25px_70px_rgba(0,0,0,0.65)] min-h-[500px] sm:min-h-[580px] lg:min-h-[640px] flex flex-col justify-end group">
+        
+        <!-- Imagen de Fondo del Banner (16:9) con sutil efecto zoom en hover -->
+        <img src="./assets/hero-banner.jpg" alt="Experiencia Desborde" class="absolute inset-0 w-full h-full object-cover object-[55%_22%] sm:object-center transform scale-100 group-hover:scale-105 transition-transform duration-1000 ease-out select-none">
 
-        <!-- Botones de Acción -->
-        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 w-full sm:w-auto">
-          <a href="#portfolio" class="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 rounded-full bg-[#c9cf35] text-[#002a41] font-bold text-xs sm:text-sm tracking-wider uppercase transition-all duration-300 hover:scale-105 hover:bg-[#c94597] hover:text-[#e3e3e3] hover:shadow-[0_0_35px_rgba(201,69,151,0.6)] flex items-center justify-center space-x-2.5">
-            <span>VER PORTFOLIO</span>
-            <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current" viewBox="0 0 24 24">
-              <polygon points="5 3 19 12 5 21 5 3"/>
-            </svg>
-          </a>
-          <a href="#sobre-nosotros" class="w-full sm:w-auto text-center px-6 sm:px-7 py-3.5 sm:py-4 rounded-full border border-[#c94597] text-[#e3e3e3] font-bold text-xs sm:text-sm tracking-wider uppercase hover:border-[#c9cf35] hover:text-[#c9cf35] transition-colors duration-200">
-            SOBRE NOSOTROS
-          </a>
+        <!-- Capas de Transparencia Lógica & Gradientes para Contraste Impecable -->
+        <!-- 1. Viñeta superior e iluminación ambiental -->
+        <div class="absolute inset-0 bg-gradient-to-b from-[#001726]/60 via-transparent to-transparent pointer-events-none"></div>
+
+        <!-- 2. Gradiente inferior profundo y difuso para máxima legibilidad -->
+        <div class="absolute inset-0 bg-gradient-to-t from-[#001422] via-[#001e30]/80 sm:via-[#001e30]/60 to-transparent pointer-events-none"></div>
+
+        <!-- 3. Resplandor cromático acorde a la iluminación de la fotografía -->
+        <div class="absolute bottom-0 left-0 w-96 h-96 rounded-full bg-[#c94597]/20 filter blur-3xl pointer-events-none"></div>
+        <div class="absolute top-0 right-0 w-96 h-96 rounded-full bg-[#c9cf35]/15 filter blur-3xl pointer-events-none"></div>
+
+        <!-- Contenido Superpuesto con Transparencia Estética y Alto Contraste -->
+        <div class="relative z-10 p-6 sm:p-10 md:p-12 lg:p-14 flex flex-col justify-end space-y-4 sm:space-y-6">
+          
+          <!-- Badge de Experiencia Sensorial -->
+          <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-[#001726]/80 backdrop-blur-md border border-white/20 text-[10px] sm:text-xs font-mono tracking-widest text-[#c9cf35] uppercase w-fit shadow-lg">
+            <span class="w-2 h-2 rounded-full bg-[#c9cf35] animate-ping"></span>
+            <span>// EXPERIENCIA SENSORIAL</span>
+          </div>
+
+          <!-- Título Monumental DESBORDE -->
+          <h1 class="text-[clamp(2.75rem,8.2vw,7.5rem)] font-black uppercase leading-[0.88] tracking-tight font-display text-transparent bg-clip-text bg-gradient-to-r from-white via-[#e3e3e3] to-[#c9cf35] drop-shadow-[0_4px_20px_rgba(0,0,0,0.9)] select-none">
+            DESBORDE
+          </h1>
+
+          <!-- Texto Explicativo Solicitado -->
+          <div class="max-w-2xl">
+            <p class="text-base sm:text-xl md:text-2xl lg:text-3xl text-[#e3e3e3] font-light leading-snug drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]">
+              El caos que te hace falta: descubrí la experiencia <span class="font-black text-[#c9cf35] tracking-wide">DESBORDE</span>.
+            </p>
+          </div>
+
+          <!-- Botones de Acción -->
+          <div class="pt-2 sm:pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-5 w-full sm:w-auto">
+            <a href="#portfolio" class="px-7 sm:px-9 py-3.5 sm:py-4 rounded-full bg-[#c9cf35] text-[#002a41] font-black text-xs sm:text-sm tracking-wider uppercase transition-all duration-300 hover:scale-105 hover:bg-white hover:shadow-[0_0_35px_rgba(201,207,53,0.5)] flex items-center justify-center space-x-2.5 shadow-xl">
+              <span>VER PORTFOLIO</span>
+              <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current" viewBox="0 0 24 24">
+                <polygon points="5 3 19 12 5 21 5 3"/>
+              </svg>
+            </a>
+            <a href="#sobre-nosotros" class="px-7 sm:px-9 py-3.5 sm:py-4 rounded-full bg-[#001726]/80 backdrop-blur-md border border-[#c94597] text-[#e3e3e3] font-bold text-xs sm:text-sm tracking-wider uppercase hover:border-[#c9cf35] hover:text-[#c9cf35] transition-all duration-300 text-center shadow-lg">
+              SOBRE NOSOTROS
+            </a>
+          </div>
+
         </div>
+
       </div>
     </div>
   </section>
