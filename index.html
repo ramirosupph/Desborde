@@ -1044,41 +1044,44 @@
         }
 
         init(randomize = false) {
-          // Alternar entre isotipo verde lima y blanco
-          this.img = Math.random() > 0.48 ? imgGreen : imgWhite;
+          // Alternar equitativamente entre isotipo verde lima y blanco
+          this.img = Math.random() > 0.5 ? imgGreen : imgWhite;
 
           // Posición distribuida por todo el fondo de la sección
-          this.x = randomize ? Math.random() * width : (Math.random() > 0.5 ? -80 : width + 80);
+          this.x = randomize ? Math.random() * width : (Math.random() > 0.5 ? -90 : width + 90);
           this.y = Math.random() * height;
 
-          // Velocidad lenta para mantener fluidez elegante y no agresiva
+          // Capa de profundidad (0 = fondo distante, 1 = primer plano)
+          this.depth = Math.random();
+
+          // Velocidad proporcional a la profundidad (efecto parallax sutil)
           const angle = Math.random() * Math.PI * 2;
-          const speed = 0.18 + Math.random() * 0.28;
+          const speed = 0.15 + this.depth * 0.25; // Entre 0.15 y 0.40 px/frame (lento y controlado)
           this.vx = Math.cos(angle) * speed;
           this.vy = Math.sin(angle) * speed;
 
           // Tamaño adaptativo equilibrado: ni muy grandes ni muy chicos
           const isMobile = width < 768;
-          const minBase = isMobile ? 36 : 52;
-          const maxBase = isMobile ? 76 : 118;
+          const minBase = isMobile ? (26 + this.depth * 18) : (40 + this.depth * 45); // ~40px a ~85px desktop
+          const maxBase = minBase * 1.3;
           this.baseSize = minBase + Math.random() * (maxBase - minBase);
 
           // Ciclo de cambio continuo de tamaño (de más chicos a más grandes)
           this.pulsePhase = Math.random() * Math.PI * 2;
-          this.pulseSpeed = 0.007 + Math.random() * 0.012; // Respiración lenta
-          this.scaleAmp = 0.35 + Math.random() * 0.15;     // Variación armónica suave (~0.65x a ~1.4x)
+          this.pulseSpeed = 0.006 + Math.random() * 0.012; // Respiración lenta desfasada
+          this.scaleAmp = 0.30 + Math.random() * 0.16;     // Variación armónica suave (~0.7x a ~1.38x)
           this.currentScale = 1;
 
           // Rotación sutil y fluida
           this.rotation = Math.random() * Math.PI * 2;
-          this.rotSpeed = (Math.random() - 0.5) * 0.006;
+          this.rotSpeed = (Math.random() - 0.5) * 0.005;
 
-          // Opacidad calibrada profesional: visible y estética sin invadir
-          this.baseOpacity = 0.08 + Math.random() * 0.11; // 0.08 a 0.19
+          // Opacidad según profundidad: capas profundas sutiles, cercanas más perceptibles
+          this.baseOpacity = 0.07 + this.depth * 0.12; // 0.07 a 0.19
 
           // Frecuencias para movimiento caótico orgánico
-          this.freqX = 0.0008 + Math.random() * 0.0016;
-          this.freqY = 0.0008 + Math.random() * 0.0016;
+          this.freqX = 0.0006 + Math.random() * 0.0014;
+          this.freqY = 0.0006 + Math.random() * 0.0014;
           this.seed = Math.random() * 1000;
         }
 
@@ -1089,7 +1092,7 @@
 
           // Limitar velocidad para asegurar movimiento lento
           const currentSpeed = Math.hypot(this.vx, this.vy);
-          const maxSpeed = 0.6;
+          const maxSpeed = 0.55;
           if (currentSpeed > maxSpeed) {
             this.vx = (this.vx / currentSpeed) * maxSpeed;
             this.vy = (this.vy / currentSpeed) * maxSpeed;
@@ -1145,7 +1148,21 @@
 
       let icons = [];
       function createIcons() {
-        const count = width < 640 ? 10 : (width < 1024 ? 14 : 18);
+        // Garantizar estrictamente nunca menos de 18 iconos (mínimo absoluto) y hasta 46 en pantallas grandes
+        let count = 20; // Base móvil segura (supera el mínimo de 15)
+        if (width >= 1600) {
+          count = 48;
+        } else if (width >= 1200) {
+          count = 40;
+        } else if (width >= 768) {
+          count = 32;
+        } else if (width >= 480) {
+          count = 24;
+        } else {
+          count = 20;
+        }
+        count = Math.max(18, count); // Nunca menos de 15
+
         icons = [];
         for (let i = 0; i < count; i++) {
           icons.push(new ChaosIcon());
