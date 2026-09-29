@@ -297,12 +297,12 @@
   <!-- HERO SECTION RESPONSIVE -->
   <section id="hero" class="relative min-h-[92vh] sm:min-h-screen pt-24 sm:pt-32 pb-12 sm:pb-20 px-4 sm:px-6 md:px-12 flex flex-col justify-between overflow-hidden bg-noise border-b border-[#e3e3e3]/10">
     
-    <!-- TEXTURA DE FONDO DINÁMICA: CAOS ORGÁNICO DE ICONOS DESBORDE EN MOVIMIENTO CONTINUO -->
-    <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none">
+    <!-- TEXTURA DE FONDO DINÁMICA: CAOS ORGÁNICO DE ICONOS DESBORDE EN MOVIMIENTO CONTINUO POR TODO EL ANCHO -->
+    <div class="absolute inset-0 z-10 pointer-events-none overflow-hidden select-none">
       <canvas id="heroBgCanvas" class="absolute inset-0 w-full h-full pointer-events-none block"></canvas>
     </div>
     <!-- BANNER HERO CINEMÁTICO A LO ANCHO -->
-    <div class="max-w-7xl mx-auto w-full relative z-10 my-auto pb-4">
+    <div class="max-w-7xl mx-auto w-full relative z-0 my-auto pb-4">
       <div class="relative w-full rounded-2xl sm:rounded-3xl lg:rounded-[2.5rem] overflow-hidden border border-[#e3e3e3]/15 shadow-[0_25px_70px_rgba(0,0,0,0.65)] min-h-[500px] sm:min-h-[580px] lg:min-h-[640px] flex flex-col justify-end group">
         
         <!-- Imagen de Fondo del Banner (16:9) con sutil efecto zoom en hover -->
@@ -320,7 +320,7 @@
         <div class="absolute top-0 right-0 w-96 h-96 rounded-full bg-[#c9cf35]/15 filter blur-3xl pointer-events-none"></div>
 
         <!-- Contenido Superpuesto con Transparencia Estética y Alto Contraste -->
-        <div class="relative z-10 p-6 sm:p-10 md:p-12 lg:p-14 flex flex-col justify-end space-y-4 sm:space-y-6">
+        <div class="relative z-20 p-6 sm:p-10 md:p-12 lg:p-14 flex flex-col justify-end space-y-4 sm:space-y-6">
           <div>
             <!-- Isotipo Desborde Encima del Título (Tamaño con presencia armónica) -->
             <div class="mb-4 sm:mb-6 w-fit">
@@ -1047,95 +1047,90 @@
           // Alternar equitativamente entre isotipo verde lima y blanco
           this.img = Math.random() > 0.5 ? imgGreen : imgWhite;
 
-          // Posición distribuida por todo el fondo de la sección
-          this.x = randomize ? Math.random() * width : (Math.random() > 0.5 ? -90 : width + 90);
+          // Distribuir a lo largo de TODO el ancho de la pantalla (de borde a borde)
+          this.x = randomize ? (Math.random() * (width + 160) - 80) : (Math.random() > 0.5 ? -100 : width + 100);
           this.y = Math.random() * height;
 
-          // Capa de profundidad (0 = fondo distante, 1 = primer plano)
+          // Capa de profundidad (0 = fondo suave, 1 = primer plano dinámico)
           this.depth = Math.random();
 
-          // Velocidad proporcional a la profundidad (efecto parallax sutil)
-          const angle = Math.random() * Math.PI * 2;
-          const speed = 0.15 + this.depth * 0.25; // Entre 0.15 y 0.40 px/frame (lento y controlado)
-          this.vx = Math.cos(angle) * speed;
-          this.vy = Math.sin(angle) * speed;
+          // VELOCIDAD ACTIVA Y SOSTENIDA: Cruce continuo por todo el ancho de la pantalla
+          const dirX = Math.random() > 0.5 ? 1 : -1;
+          const speedX = 0.85 + Math.random() * 1.35; // 0.85 a 2.2 px/frame (movimiento visible y fluido)
+          this.vx = dirX * speedX;
+          this.vy = (Math.random() - 0.5) * 0.75; // Desplazamiento vertical suave
 
           // Tamaño adaptativo equilibrado: ni muy grandes ni muy chicos
           const isMobile = width < 768;
-          const minBase = isMobile ? (26 + this.depth * 18) : (40 + this.depth * 45); // ~40px a ~85px desktop
-          const maxBase = minBase * 1.3;
-          this.baseSize = minBase + Math.random() * (maxBase - minBase);
+          const minBase = isMobile ? (28 + this.depth * 18) : (44 + this.depth * 48); // ~44px a ~92px
+          this.baseSize = minBase;
 
-          // Ciclo de cambio continuo de tamaño (de más chicos a más grandes)
+          // Ciclo de cambio continuo y perceptible de tamaño (respiración activa de chicos a grandes)
           this.pulsePhase = Math.random() * Math.PI * 2;
-          this.pulseSpeed = 0.006 + Math.random() * 0.012; // Respiración lenta desfasada
-          this.scaleAmp = 0.30 + Math.random() * 0.16;     // Variación armónica suave (~0.7x a ~1.38x)
+          this.pulseSpeed = 0.012 + Math.random() * 0.018; // Respiración dinámica visible (~3 a 5 segundos por ciclo)
+          this.scaleAmp = 0.35 + Math.random() * 0.18;     // Crece hasta ~1.45x y baja hasta ~0.65x
           this.currentScale = 1;
 
-          // Rotación sutil y fluida
+          // Rotación sutil y continua
           this.rotation = Math.random() * Math.PI * 2;
-          this.rotSpeed = (Math.random() - 0.5) * 0.005;
+          this.rotSpeed = (Math.random() - 0.5) * 0.012;
 
-          // Opacidad según profundidad: capas profundas sutiles, cercanas más perceptibles
-          this.baseOpacity = 0.07 + this.depth * 0.12; // 0.07 a 0.19
+          // Opacidad según profundidad: visible y estética en todo el ancho
+          this.baseOpacity = 0.09 + this.depth * 0.12; // 0.09 a 0.21
 
-          // Frecuencias para movimiento caótico orgánico
-          this.freqX = 0.0006 + Math.random() * 0.0014;
-          this.freqY = 0.0006 + Math.random() * 0.0014;
+          // Ondulación armónica para trayectoria orgánica sin estancarse
+          this.waveFreq = 0.0012 + Math.random() * 0.002;
+          this.waveAmp = 0.45 + Math.random() * 0.65;
           this.seed = Math.random() * 1000;
         }
 
         update(time) {
-          // Ondas armónicas suaves para trayectoria caótica natural
-          this.vx += Math.sin(time * this.freqX + this.seed) * 0.008;
-          this.vy += Math.cos(time * this.freqY + this.seed) * 0.008;
-
-          // Limitar velocidad para asegurar movimiento lento
-          const currentSpeed = Math.hypot(this.vx, this.vy);
-          const maxSpeed = 0.55;
-          if (currentSpeed > maxSpeed) {
-            this.vx = (this.vx / currentSpeed) * maxSpeed;
-            this.vy = (this.vy / currentSpeed) * maxSpeed;
-          }
-
-          // Respuesta interactiva sutil ante el cursor
-          if (mouse.active) {
-            const dx = this.x - mouse.x;
-            const dy = this.y - mouse.y;
-            const dist = Math.hypot(dx, dy);
-            if (dist < 200 && dist > 0) {
-              const force = (1 - dist / 200) * 0.22;
-              this.vx += (dx / dist) * force;
-              this.vy += (dy / dist) * force;
-            }
-          }
-
-          // Traslación por la pantalla
+          // Desplazamiento activo constante por todo el ancho con ondas suaves
           this.x += this.vx;
-          this.y += this.vy;
+          this.y += this.vy + Math.sin(time * this.waveFreq + this.seed) * this.waveAmp;
 
-          // Cambio de tamaño continuo (de chicos a grandes de forma suave)
+          // Cambio de tamaño continuo (de chicos a grandes)
           this.pulsePhase += this.pulseSpeed;
           this.currentScale = 1 + Math.sin(this.pulsePhase) * this.scaleAmp;
 
           // Rotación continua
           this.rotation += this.rotSpeed;
 
-          // Envolvente de bordes continuo para mantener la sección siempre poblada
-          const margin = this.baseSize * 1.6;
-          if (this.x < -margin) this.x = width + margin;
-          else if (this.x > width + margin) this.x = -margin;
+          // Envolvente de bordes continuo por TODO EL ANCHO: al salir por un lado, entra por el otro
+          const margin = this.baseSize * 1.8;
+          if (this.vx > 0 && this.x > width + margin) {
+            this.x = -margin;
+            this.y = Math.random() * height;
+          } else if (this.vx < 0 && this.x < -margin) {
+            this.x = width + margin;
+            this.y = Math.random() * height;
+          }
 
-          if (this.y < -margin) this.y = height + margin;
-          else if (this.y > height + margin) this.y = -margin;
+          if (this.y < -margin) {
+            this.y = height + margin;
+          } else if (this.y > height + margin) {
+            this.y = -margin;
+          }
+
+          // Respuesta interactiva dinámica ante el cursor
+          if (mouse.active) {
+            const dx = this.x - mouse.x;
+            const dy = this.y - mouse.y;
+            const dist = Math.hypot(dx, dy);
+            if (dist < 220 && dist > 0) {
+              const force = (1 - dist / 220) * 0.4;
+              this.x += (dx / dist) * force * 3;
+              this.y += (dy / dist) * force * 3;
+            }
+          }
         }
 
         draw(ctx) {
           if (!this.img.complete || this.img.naturalWidth === 0) return;
 
           const size = this.baseSize * this.currentScale;
-          // Opacidad que modula sutilmente con el tamaño
-          const alpha = Math.min(0.24, Math.max(0.06, this.baseOpacity * (0.85 + (this.currentScale - 1) * 0.45)));
+          // Opacidad que modula sutilmente con el tamaño para mayor riqueza visual
+          const alpha = Math.min(0.25, Math.max(0.07, this.baseOpacity * (0.85 + (this.currentScale - 1) * 0.45)));
 
           ctx.save();
           ctx.translate(this.x * dpr, this.y * dpr);
@@ -1148,20 +1143,20 @@
 
       let icons = [];
       function createIcons() {
-        // Garantizar estrictamente nunca menos de 18 iconos (mínimo absoluto) y hasta 46 en pantallas grandes
-        let count = 20; // Base móvil segura (supera el mínimo de 15)
+        // Garantizar alta densidad activa en todo el ancho de la pantalla (nunca menos de 20)
+        let count = 22; // Base móvil segura
         if (width >= 1600) {
-          count = 48;
+          count = 50;
         } else if (width >= 1200) {
-          count = 40;
+          count = 42;
         } else if (width >= 768) {
           count = 32;
         } else if (width >= 480) {
-          count = 24;
+          count = 26;
         } else {
-          count = 20;
+          count = 22;
         }
-        count = Math.max(18, count); // Nunca menos de 15
+        count = Math.max(20, count);
 
         icons = [];
         for (let i = 0; i < count; i++) {
