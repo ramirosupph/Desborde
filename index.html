@@ -212,6 +212,13 @@
       animation-play-state: paused;
     }
 
+    /* SOMBRA DE ELEVACIÓN DEL BANNER COMPLETO RESPECTO AL FONDO AZUL */
+    .brands-banner-elevation {
+      box-shadow: 
+        0 24px 48px -6px rgba(0, 0, 0, 0.75), 
+        0 -24px 48px -6px rgba(0, 0, 0, 0.75);
+    }
+
     /* DEGRADADO OFICIAL DE REFERENCIA PARA LAS CAJAS DE INTEGRANTES */
     .team-card-gradient {
       background-color: #04060a;
@@ -402,14 +409,22 @@
     </div>
   </section>
 
-  <!-- SECCIÓN FULL-WIDTH: CONFIAN EN NOSOTROS (CARRUSEL AUTOMÁTICO DE 10 MARCAS EN FONDO VERDE CON LOGOS EN AZUL) -->
-  <section id="confian-en-nosotros" class="w-full bg-[#c9cf35] py-7 sm:py-9 relative overflow-hidden border-y border-[#b5bb2c] select-none z-20">
+  <!-- SECCIÓN FULL-WIDTH: CONFÍAN EN DESBORDE (CARRUSEL AUTOMÁTICO DE 10 MARCAS EN FONDO VERDE CON LOGOS EN AZUL) -->
+  <section id="confian-en-desborde" class="w-full bg-[#c9cf35] py-7 sm:py-9 relative select-none z-20 brands-banner-elevation border-y border-[#002a41]/20">
     
-    <!-- Tagline Central: CONFIAN EN NOSOTROS -->
-    <div class="w-full px-4 mb-4 sm:mb-5 text-center">
-      <span class="inline-block font-montserrat font-extrabold text-xs sm:text-sm tracking-[0.25em] text-[#002a41] uppercase">
-        CONFIAN EN NOSOTROS
-      </span>
+    <!-- Encabezado Central con Jerarquía: CONFÍAN EN DESBORDE -->
+    <div class="w-full px-4 mb-5 sm:mb-6 text-center flex flex-col items-center">
+      
+      <!-- Cápsula con Sombreado y Tipografía de Alta Jerarquía -->
+      <div class="inline-flex items-center px-5 sm:px-7 py-1.5 sm:py-2 rounded-full bg-[#002a41]/10 border border-[#002a41]/20 shadow-[0_3px_10px_rgba(0,42,65,0.18),inset_0_1px_1px_rgba(255,255,255,0.4)] backdrop-blur-sm transition-transform duration-300 hover:scale-105">
+        <h3 class="font-montserrat font-black text-xs sm:text-sm md:text-base tracking-[0.28em] text-[#002a41] uppercase">
+          CONFÍAN EN DESBORDE
+        </h3>
+      </div>
+
+      <!-- Raya divisoria horizontal que separa claramente el título de la pista de marcas -->
+      <div class="w-full max-w-4xl mx-auto h-[1.5px] bg-gradient-to-r from-transparent via-[#002a41]/30 to-transparent mt-3.5 sm:mt-4 rounded-full"></div>
+
     </div>
 
     <!-- Contenedor Marquee a Ancho Completo (100% Full Width) con Difuminado en Bordes -->
