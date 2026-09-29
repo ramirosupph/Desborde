@@ -297,12 +297,12 @@
   <!-- HERO SECTION RESPONSIVE -->
   <section id="hero" class="relative min-h-[92vh] sm:min-h-screen pt-24 sm:pt-32 pb-12 sm:pb-20 px-4 sm:px-6 md:px-12 flex flex-col justify-between overflow-hidden bg-noise border-b border-[#e3e3e3]/10">
     
-    <!-- TEXTURA DE FONDO DINÁMICA: CAOS ORGÁNICO DE ICONOS DESBORDE EN MOVIMIENTO CONTINUO POR TODO EL ANCHO -->
-    <div class="absolute inset-0 z-10 pointer-events-none overflow-hidden select-none">
+    <!-- TEXTURA DE FONDO DINÁMICA: CAOS ORGÁNICO DE ICONOS DESBORDE EN MOVIMIENTO CONTINUO (SOLO EN EL FONDO) -->
+    <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none">
       <canvas id="heroBgCanvas" class="absolute inset-0 w-full h-full pointer-events-none block"></canvas>
     </div>
     <!-- BANNER HERO CINEMÁTICO A LO ANCHO -->
-    <div class="max-w-7xl mx-auto w-full relative z-0 my-auto pb-4">
+    <div class="max-w-7xl mx-auto w-full relative z-10 my-auto pb-4">
       <div class="relative w-full rounded-2xl sm:rounded-3xl lg:rounded-[2.5rem] overflow-hidden border border-[#e3e3e3]/15 shadow-[0_25px_70px_rgba(0,0,0,0.65)] min-h-[500px] sm:min-h-[580px] lg:min-h-[640px] flex flex-col justify-end group">
         
         <!-- Imagen de Fondo del Banner (16:9) con sutil efecto zoom en hover -->
@@ -320,7 +320,7 @@
         <div class="absolute top-0 right-0 w-96 h-96 rounded-full bg-[#c9cf35]/15 filter blur-3xl pointer-events-none"></div>
 
         <!-- Contenido Superpuesto con Transparencia Estética y Alto Contraste -->
-        <div class="relative z-20 p-6 sm:p-10 md:p-12 lg:p-14 flex flex-col justify-end space-y-4 sm:space-y-6">
+        <div class="relative z-10 p-6 sm:p-10 md:p-12 lg:p-14 flex flex-col justify-end space-y-4 sm:space-y-6">
           <div>
             <!-- Isotipo Desborde Encima del Título (Tamaño con presencia armónica) -->
             <div class="mb-4 sm:mb-6 w-fit">
