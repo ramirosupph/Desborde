@@ -211,6 +211,28 @@
     .brands-marquee-container:hover .brands-marquee-track {
       animation-play-state: paused;
     }
+
+    /* DEGRADADO OFICIAL DE REFERENCIA PARA LAS CAJAS DE INTEGRANTES */
+    .team-card-gradient {
+      background-color: #04060a;
+      background-image: 
+        radial-gradient(circle at 10% 95%, rgba(203, 84, 159, 0.8) 0%, rgba(203, 84, 159, 0.25) 45%, transparent 72%),
+        radial-gradient(circle at 92% 8%, rgba(135, 55, 95, 0.5) 0%, rgba(93, 55, 73, 0.2) 35%, transparent 65%),
+        url('./assets/team/card-gradient-bg.png');
+      background-size: 100% 100%, 100% 100%, 100% 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .team-card-gradient:hover {
+      background-image: 
+        radial-gradient(circle at 10% 95%, rgba(203, 84, 159, 0.95) 0%, rgba(203, 84, 159, 0.35) 48%, transparent 75%),
+        radial-gradient(circle at 92% 8%, rgba(160, 65, 115, 0.65) 0%, rgba(93, 55, 73, 0.25) 38%, transparent 68%),
+        url('./assets/team/card-gradient-bg.png');
+      background-size: 100% 100%, 100% 100%, 100% 100%;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
   </style>
 </head>
 <body class="bg-[#002a41] text-[#e3e3e3] antialiased relative selection:bg-[#c9cf35] selection:text-[#002a41] overflow-x-hidden">
@@ -636,10 +658,10 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 lg:gap-6">
           
           <!-- Integrante 1: ELENA ACEVEDO -->
-          <div class="group relative rounded-2xl sm:rounded-3xl p-3 sm:p-3.5 bg-[#001726]/85 backdrop-blur-md border border-white/10 hover:border-[#c9cf35] transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_30px_rgba(201,207,53,0.3)] z-10 hover:z-30 cursor-pointer flex flex-col justify-between">
-            <div class="relative w-full aspect-[3/4] rounded-xl sm:rounded-2xl overflow-hidden bg-[#002a41]">
+          <div class="group relative rounded-2xl sm:rounded-3xl p-3 sm:p-3.5 team-card-gradient backdrop-blur-md border border-[#c94597]/30 hover:border-[#c94597] transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-2 shadow-[0_15px_35px_rgba(0,0,0,0.7)] hover:shadow-[0_25px_60px_rgba(0,0,0,0.9),0_0_35px_rgba(201,69,151,0.45)] z-10 hover:z-30 cursor-pointer flex flex-col justify-between">
+            <div class="relative w-full aspect-[3/4] rounded-xl sm:rounded-2xl overflow-hidden bg-[#04060a]">
               <img src="./assets/team/elena-acevedo.jpg" alt="ELENA ACEVEDO" class="w-full h-full object-cover object-top transform scale-100 group-hover:scale-110 filter contrast-105 transition-transform duration-700 ease-out select-none">
-              <div class="absolute inset-0 bg-gradient-to-t from-[#001422] via-[#001422]/20 to-transparent pointer-events-none"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-[#04060a]/90 via-[#04060a]/20 to-transparent pointer-events-none"></div>
             </div>
             <div class="pt-3.5 pb-1 px-1">
               <h3 class="text-base sm:text-lg font-black font-display uppercase tracking-tight text-[#e3e3e3] group-hover:text-[#c9cf35] transition-colors leading-tight">
@@ -649,23 +671,23 @@
           </div>
 
           <!-- Integrante 2: KARINA BARRETO -->
-          <div class="group relative rounded-2xl sm:rounded-3xl p-3 sm:p-3.5 bg-[#001726]/85 backdrop-blur-md border border-white/10 hover:border-[#c94597] transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_30px_rgba(201,69,151,0.3)] z-10 hover:z-30 cursor-pointer flex flex-col justify-between">
-            <div class="relative w-full aspect-[3/4] rounded-xl sm:rounded-2xl overflow-hidden bg-[#002a41]">
+          <div class="group relative rounded-2xl sm:rounded-3xl p-3 sm:p-3.5 team-card-gradient backdrop-blur-md border border-[#c94597]/30 hover:border-[#c94597] transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-2 shadow-[0_15px_35px_rgba(0,0,0,0.7)] hover:shadow-[0_25px_60px_rgba(0,0,0,0.9),0_0_35px_rgba(201,69,151,0.45)] z-10 hover:z-30 cursor-pointer flex flex-col justify-between">
+            <div class="relative w-full aspect-[3/4] rounded-xl sm:rounded-2xl overflow-hidden bg-[#04060a]">
               <img src="./assets/team/karina-barreto.jpg" alt="KARINA BARRETO" class="w-full h-full object-cover object-top transform scale-100 group-hover:scale-110 filter contrast-105 transition-transform duration-700 ease-out select-none">
-              <div class="absolute inset-0 bg-gradient-to-t from-[#001422] via-[#001422]/20 to-transparent pointer-events-none"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-[#04060a]/90 via-[#04060a]/20 to-transparent pointer-events-none"></div>
             </div>
             <div class="pt-3.5 pb-1 px-1">
-              <h3 class="text-base sm:text-lg font-black font-display uppercase tracking-tight text-[#e3e3e3] group-hover:text-[#c94597] transition-colors leading-tight">
+              <h3 class="text-base sm:text-lg font-black font-display uppercase tracking-tight text-[#e3e3e3] group-hover:text-[#c9cf35] transition-colors leading-tight">
                 KARINA BARRETO
               </h3>
             </div>
           </div>
 
           <!-- Integrante 3: KIARA PONCE -->
-          <div class="group relative rounded-2xl sm:rounded-3xl p-3 sm:p-3.5 bg-[#001726]/85 backdrop-blur-md border border-white/10 hover:border-[#c9cf35] transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_30px_rgba(201,207,53,0.3)] z-10 hover:z-30 cursor-pointer flex flex-col justify-between">
-            <div class="relative w-full aspect-[3/4] rounded-xl sm:rounded-2xl overflow-hidden bg-[#002a41]">
+          <div class="group relative rounded-2xl sm:rounded-3xl p-3 sm:p-3.5 team-card-gradient backdrop-blur-md border border-[#c94597]/30 hover:border-[#c94597] transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-2 shadow-[0_15px_35px_rgba(0,0,0,0.7)] hover:shadow-[0_25px_60px_rgba(0,0,0,0.9),0_0_35px_rgba(201,69,151,0.45)] z-10 hover:z-30 cursor-pointer flex flex-col justify-between">
+            <div class="relative w-full aspect-[3/4] rounded-xl sm:rounded-2xl overflow-hidden bg-[#04060a]">
               <img src="./assets/team/kiara-ponce.jpg" alt="KIARA PONCE" class="w-full h-full object-cover object-top transform scale-100 group-hover:scale-110 filter contrast-105 transition-transform duration-700 ease-out select-none">
-              <div class="absolute inset-0 bg-gradient-to-t from-[#001422] via-[#001422]/20 to-transparent pointer-events-none"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-[#04060a]/90 via-[#04060a]/20 to-transparent pointer-events-none"></div>
             </div>
             <div class="pt-3.5 pb-1 px-1">
               <h3 class="text-base sm:text-lg font-black font-display uppercase tracking-tight text-[#e3e3e3] group-hover:text-[#c9cf35] transition-colors leading-tight">
@@ -675,23 +697,23 @@
           </div>
 
           <!-- Integrante 4: RAMIRO SUPPH -->
-          <div class="group relative rounded-2xl sm:rounded-3xl p-3 sm:p-3.5 bg-[#001726]/85 backdrop-blur-md border border-white/10 hover:border-[#c94597] transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_30px_rgba(201,69,151,0.3)] z-10 hover:z-30 cursor-pointer flex flex-col justify-between">
-            <div class="relative w-full aspect-[3/4] rounded-xl sm:rounded-2xl overflow-hidden bg-[#002a41]">
+          <div class="group relative rounded-2xl sm:rounded-3xl p-3 sm:p-3.5 team-card-gradient backdrop-blur-md border border-[#c94597]/30 hover:border-[#c94597] transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-2 shadow-[0_15px_35px_rgba(0,0,0,0.7)] hover:shadow-[0_25px_60px_rgba(0,0,0,0.9),0_0_35px_rgba(201,69,151,0.45)] z-10 hover:z-30 cursor-pointer flex flex-col justify-between">
+            <div class="relative w-full aspect-[3/4] rounded-xl sm:rounded-2xl overflow-hidden bg-[#04060a]">
               <img src="./assets/team/ramiro-supph.jpg" alt="RAMIRO SUPPH" class="w-full h-full object-cover object-top transform scale-100 group-hover:scale-110 filter contrast-105 transition-transform duration-700 ease-out select-none">
-              <div class="absolute inset-0 bg-gradient-to-t from-[#001422] via-[#001422]/20 to-transparent pointer-events-none"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-[#04060a]/90 via-[#04060a]/20 to-transparent pointer-events-none"></div>
             </div>
             <div class="pt-3.5 pb-1 px-1">
-              <h3 class="text-base sm:text-lg font-black font-display uppercase tracking-tight text-[#e3e3e3] group-hover:text-[#c94597] transition-colors leading-tight">
+              <h3 class="text-base sm:text-lg font-black font-display uppercase tracking-tight text-[#e3e3e3] group-hover:text-[#c9cf35] transition-colors leading-tight">
                 RAMIRO SUPPH
               </h3>
             </div>
           </div>
 
           <!-- Integrante 5: SOL ZAJAC -->
-          <div class="group relative rounded-2xl sm:rounded-3xl p-3 sm:p-3.5 bg-[#001726]/85 backdrop-blur-md border border-white/10 hover:border-[#c9cf35] transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_30px_rgba(201,207,53,0.3)] z-10 hover:z-30 cursor-pointer flex flex-col justify-between">
-            <div class="relative w-full aspect-[3/4] rounded-xl sm:rounded-2xl overflow-hidden bg-[#002a41]">
+          <div class="group relative rounded-2xl sm:rounded-3xl p-3 sm:p-3.5 team-card-gradient backdrop-blur-md border border-[#c94597]/30 hover:border-[#c94597] transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-2 shadow-[0_15px_35px_rgba(0,0,0,0.7)] hover:shadow-[0_25px_60px_rgba(0,0,0,0.9),0_0_35px_rgba(201,69,151,0.45)] z-10 hover:z-30 cursor-pointer flex flex-col justify-between">
+            <div class="relative w-full aspect-[3/4] rounded-xl sm:rounded-2xl overflow-hidden bg-[#04060a]">
               <img src="./assets/team/sol-zajac.jpg" alt="SOL ZAJAC" class="w-full h-full object-cover object-top transform scale-100 group-hover:scale-110 filter contrast-105 transition-transform duration-700 ease-out select-none">
-              <div class="absolute inset-0 bg-gradient-to-t from-[#001422] via-[#001422]/20 to-transparent pointer-events-none"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-[#04060a]/90 via-[#04060a]/20 to-transparent pointer-events-none"></div>
             </div>
             <div class="pt-3.5 pb-1 px-1">
               <h3 class="text-base sm:text-lg font-black font-display uppercase tracking-tight text-[#e3e3e3] group-hover:text-[#c9cf35] transition-colors leading-tight">
