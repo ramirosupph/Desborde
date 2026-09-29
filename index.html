@@ -297,40 +297,9 @@
   <!-- HERO SECTION RESPONSIVE -->
   <section id="hero" class="relative min-h-[92vh] sm:min-h-screen pt-24 sm:pt-32 pb-12 sm:pb-20 px-4 sm:px-6 md:px-12 flex flex-col justify-between overflow-hidden bg-noise border-b border-[#e3e3e3]/10">
     
-    <!-- TEXTURA DE FONDO PROFESIONAL CON ICONOS DE MARCA DESBORDE (TRANSPARENCIA CALIBRADA) -->
+    <!-- TEXTURA DE FONDO DINÁMICA: CAOS ORGÁNICO DE ICONOS DESBORDE EN MOVIMIENTO CONTINUO -->
     <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden select-none">
-      
-      <!-- Capa 1: Patrón repetido estilo monograma sutil (textura fluida) -->
-      <svg class="absolute inset-0 w-full h-full opacity-[0.045]" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <pattern id="desbordePattern" width="220" height="220" patternUnits="userSpaceOnUse" patternTransform="rotate(18)">
-            <!-- Icono Blanco -->
-            <image href="./assets/icon-blob-white.png" x="20" y="20" width="62" height="62" opacity="0.85"/>
-            <!-- Icono Verde Lima -->
-            <image href="./assets/icon-blob-green.png" x="130" y="130" width="56" height="56" opacity="0.95" transform="rotate(35 158 158)"/>
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#desbordePattern)"/>
-      </svg>
-
-      <!-- Capa 2: Iconos de marca orgánicos distribuidos con transparencia profesional no invasiva -->
-      <!-- Superior Izquierda (Verde) -->
-      <img src="./assets/icon-blob-green.png" alt="" class="absolute -top-12 -left-12 w-48 h-48 sm:w-64 sm:h-64 opacity-[0.06] rotate-[-15deg] blur-[0.5px]">
-      
-      <!-- Superior Derecha (Blanco) -->
-      <img src="./assets/icon-blob-white.png" alt="" class="absolute top-10 -right-10 w-52 h-52 sm:w-72 sm:h-72 opacity-[0.045] rotate-[28deg] blur-[0.5px]">
-      
-      <!-- Lateral Izquierdo (Blanco) -->
-      <img src="./assets/icon-blob-white.png" alt="" class="absolute top-1/2 -left-20 sm:-left-24 w-44 h-44 sm:w-60 sm:h-60 opacity-[0.04] rotate-[45deg] -translate-y-1/2">
-      
-      <!-- Lateral Derecho (Verde) -->
-      <img src="./assets/icon-blob-green.png" alt="" class="absolute top-1/2 -right-16 sm:-right-20 w-44 h-44 sm:w-60 sm:h-60 opacity-[0.05] rotate-[-30deg] -translate-y-1/2">
-      
-      <!-- Inferior Izquierda (Verde) -->
-      <img src="./assets/icon-blob-green.png" alt="" class="absolute -bottom-14 left-8 sm:left-24 w-36 h-36 sm:w-52 sm:h-52 opacity-[0.05] rotate-[15deg]">
-      
-      <!-- Inferior Derecha (Blanco) -->
-      <img src="./assets/icon-blob-white.png" alt="" class="absolute -bottom-14 right-10 sm:right-28 w-40 h-40 sm:w-56 sm:h-56 opacity-[0.045] rotate-[-22deg]">
+      <canvas id="heroBgCanvas" class="absolute inset-0 w-full h-full pointer-events-none block"></canvas>
     </div>
     <!-- BANNER HERO CINEMÁTICO A LO ANCHO -->
     <div class="max-w-7xl mx-auto w-full relative z-10 my-auto pb-4">
@@ -1037,6 +1006,216 @@
     }
     window.addEventListener('scroll', updateHeaderOnScroll, { passive: true });
     updateHeaderOnScroll();
+
+    // 0.1 MOTOR DE CAOS FLUIDO: ICONOS ORGÁNICOS FLOTANTES EN EL FONDO DEL HERO
+    (function initHeroChaosBackground() {
+      const hero = document.getElementById('hero');
+      const canvas = document.getElementById('heroBgCanvas');
+      if (!hero || !canvas) return;
+      const ctx = canvas.getContext('2d');
+
+      const imgWhite = new Image();
+      imgWhite.src = './assets/icon-blob-white.png';
+      const imgGreen = new Image();
+      imgGreen.src = './assets/icon-blob-green.png';
+
+      let width = 0;
+      let height = 0;
+      let dpr = 1;
+      let animationFrameId = null;
+      let isVisible = true;
+      let lastTime = performance.now();
+
+      const mouse = { x: -1000, y: -1000, active: false };
+
+      function resize() {
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        width = hero.clientWidth || window.innerWidth;
+        height = hero.clientHeight || window.innerHeight;
+        canvas.width = Math.floor(width * dpr);
+        canvas.height = Math.floor(height * dpr);
+        canvas.style.width = width + 'px';
+        canvas.style.height = height + 'px';
+      }
+
+      class ChaosIcon {
+        constructor() {
+          this.init(true);
+        }
+
+        init(randomize = false) {
+          // Alternar entre isotipo verde lima y blanco
+          this.img = Math.random() > 0.48 ? imgGreen : imgWhite;
+
+          // Posición distribuida por todo el fondo de la sección
+          this.x = randomize ? Math.random() * width : (Math.random() > 0.5 ? -80 : width + 80);
+          this.y = Math.random() * height;
+
+          // Velocidad lenta para mantener fluidez elegante y no agresiva
+          const angle = Math.random() * Math.PI * 2;
+          const speed = 0.18 + Math.random() * 0.28;
+          this.vx = Math.cos(angle) * speed;
+          this.vy = Math.sin(angle) * speed;
+
+          // Tamaño adaptativo equilibrado: ni muy grandes ni muy chicos
+          const isMobile = width < 768;
+          const minBase = isMobile ? 36 : 52;
+          const maxBase = isMobile ? 76 : 118;
+          this.baseSize = minBase + Math.random() * (maxBase - minBase);
+
+          // Ciclo de cambio continuo de tamaño (de más chicos a más grandes)
+          this.pulsePhase = Math.random() * Math.PI * 2;
+          this.pulseSpeed = 0.007 + Math.random() * 0.012; // Respiración lenta
+          this.scaleAmp = 0.35 + Math.random() * 0.15;     // Variación armónica suave (~0.65x a ~1.4x)
+          this.currentScale = 1;
+
+          // Rotación sutil y fluida
+          this.rotation = Math.random() * Math.PI * 2;
+          this.rotSpeed = (Math.random() - 0.5) * 0.006;
+
+          // Opacidad calibrada profesional: visible y estética sin invadir
+          this.baseOpacity = 0.08 + Math.random() * 0.11; // 0.08 a 0.19
+
+          // Frecuencias para movimiento caótico orgánico
+          this.freqX = 0.0008 + Math.random() * 0.0016;
+          this.freqY = 0.0008 + Math.random() * 0.0016;
+          this.seed = Math.random() * 1000;
+        }
+
+        update(time) {
+          // Ondas armónicas suaves para trayectoria caótica natural
+          this.vx += Math.sin(time * this.freqX + this.seed) * 0.008;
+          this.vy += Math.cos(time * this.freqY + this.seed) * 0.008;
+
+          // Limitar velocidad para asegurar movimiento lento
+          const currentSpeed = Math.hypot(this.vx, this.vy);
+          const maxSpeed = 0.6;
+          if (currentSpeed > maxSpeed) {
+            this.vx = (this.vx / currentSpeed) * maxSpeed;
+            this.vy = (this.vy / currentSpeed) * maxSpeed;
+          }
+
+          // Respuesta interactiva sutil ante el cursor
+          if (mouse.active) {
+            const dx = this.x - mouse.x;
+            const dy = this.y - mouse.y;
+            const dist = Math.hypot(dx, dy);
+            if (dist < 200 && dist > 0) {
+              const force = (1 - dist / 200) * 0.22;
+              this.vx += (dx / dist) * force;
+              this.vy += (dy / dist) * force;
+            }
+          }
+
+          // Traslación por la pantalla
+          this.x += this.vx;
+          this.y += this.vy;
+
+          // Cambio de tamaño continuo (de chicos a grandes de forma suave)
+          this.pulsePhase += this.pulseSpeed;
+          this.currentScale = 1 + Math.sin(this.pulsePhase) * this.scaleAmp;
+
+          // Rotación continua
+          this.rotation += this.rotSpeed;
+
+          // Envolvente de bordes continuo para mantener la sección siempre poblada
+          const margin = this.baseSize * 1.6;
+          if (this.x < -margin) this.x = width + margin;
+          else if (this.x > width + margin) this.x = -margin;
+
+          if (this.y < -margin) this.y = height + margin;
+          else if (this.y > height + margin) this.y = -margin;
+        }
+
+        draw(ctx) {
+          if (!this.img.complete || this.img.naturalWidth === 0) return;
+
+          const size = this.baseSize * this.currentScale;
+          // Opacidad que modula sutilmente con el tamaño
+          const alpha = Math.min(0.24, Math.max(0.06, this.baseOpacity * (0.85 + (this.currentScale - 1) * 0.45)));
+
+          ctx.save();
+          ctx.translate(this.x * dpr, this.y * dpr);
+          ctx.rotate(this.rotation);
+          ctx.globalAlpha = alpha;
+          ctx.drawImage(this.img, (-size * dpr) / 2, (-size * dpr) / 2, size * dpr, size * dpr);
+          ctx.restore();
+        }
+      }
+
+      let icons = [];
+      function createIcons() {
+        const count = width < 640 ? 10 : (width < 1024 ? 14 : 18);
+        icons = [];
+        for (let i = 0; i < count; i++) {
+          icons.push(new ChaosIcon());
+        }
+      }
+
+      resize();
+      createIcons();
+
+      window.addEventListener('resize', () => {
+        resize();
+        createIcons();
+      }, { passive: true });
+
+      hero.addEventListener('mousemove', (e) => {
+        const rect = hero.getBoundingClientRect();
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+        mouse.active = true;
+      }, { passive: true });
+
+      hero.addEventListener('mouseleave', () => {
+        mouse.active = false;
+      });
+
+      // Optimización de rendimiento: pausar loop cuando la sección hero queda fuera de vista
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          isVisible = entry.isIntersecting;
+          if (isVisible && !animationFrameId) {
+            lastTime = performance.now();
+            loop(lastTime);
+          }
+        });
+      }, { threshold: 0.05 });
+      observer.observe(hero);
+
+      function loop(now) {
+        if (!isVisible) {
+          animationFrameId = null;
+          return;
+        }
+        animationFrameId = requestAnimationFrame(loop);
+
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        for (let i = 0; i < icons.length; i++) {
+          icons[i].update(now);
+          icons[i].draw(ctx);
+        }
+      }
+
+      let loaded = 0;
+      function checkStart() {
+        loaded++;
+        if (loaded >= 2 && !animationFrameId) {
+          animationFrameId = requestAnimationFrame(loop);
+        }
+      }
+      imgWhite.onload = checkStart;
+      imgGreen.onload = checkStart;
+      imgWhite.onerror = checkStart;
+      imgGreen.onerror = checkStart;
+
+      setTimeout(() => {
+        if (!animationFrameId) {
+          animationFrameId = requestAnimationFrame(loop);
+        }
+      }, 250);
+    })();
 
     // 1. MANEJO DEL MENÚ MOBILE
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
