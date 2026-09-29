@@ -219,26 +219,96 @@
         0 -24px 48px -6px rgba(0, 0, 0, 0.75);
     }
 
-    /* DEGRADADO OFICIAL DE REFERENCIA PARA LAS CAJAS DE INTEGRANTES */
-    .team-card-gradient {
-      background-color: #04060a;
-      background-image: 
-        radial-gradient(circle at 10% 95%, rgba(203, 84, 159, 0.8) 0%, rgba(203, 84, 159, 0.25) 45%, transparent 72%),
-        radial-gradient(circle at 92% 8%, rgba(135, 55, 95, 0.5) 0%, rgba(93, 55, 73, 0.2) 35%, transparent 65%),
-        url('./assets/team/card-gradient-bg.png');
-      background-size: 100% 100%, 100% 100%, 100% 100%;
-      background-position: center;
-      background-repeat: no-repeat;
+    /* TARJETAS DE INTEGRANTES: FOTO 100%, DEGRADADO AZUL/ROSA Y EXPANSIÓN EN HOVER */
+    .team-person-card {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 3 / 4.4;
+      border-radius: 1.5rem;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease, border-color 0.5s ease;
+      cursor: pointer;
+      z-index: 10;
     }
 
-    .team-card-gradient:hover {
-      background-image: 
-        radial-gradient(circle at 10% 95%, rgba(203, 84, 159, 0.95) 0%, rgba(203, 84, 159, 0.35) 48%, transparent 75%),
-        radial-gradient(circle at 92% 8%, rgba(160, 65, 115, 0.65) 0%, rgba(93, 55, 73, 0.25) 38%, transparent 68%),
-        url('./assets/team/card-gradient-bg.png');
-      background-size: 100% 100%, 100% 100%, 100% 100%;
-      background-position: center;
-      background-repeat: no-repeat;
+    .team-person-card:hover,
+    .team-person-card.card-expanded {
+      transform: translateY(-8px) scale(1.035);
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.95), 0 0 35px rgba(201, 69, 151, 0.45);
+      border-color: #c94597;
+      z-index: 30;
+    }
+
+    .team-person-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .team-person-card:hover .team-person-img,
+    .team-person-card.card-expanded .team-person-img {
+      transform: scale(1.08);
+    }
+
+    /* Degradado azul/rosa que contrasta el texto sobre la foto */
+    .team-person-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top, 
+        rgba(0, 18, 29, 0.96) 0%, 
+        rgba(0, 18, 29, 0.55) 28%, 
+        rgba(0, 26, 42, 0.15) 55%, 
+        transparent 100%
+      );
+      transition: background 0.5s ease, opacity 0.5s ease;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .team-person-card:hover .team-person-overlay,
+    .team-person-card.card-expanded .team-person-overlay {
+      background: linear-gradient(
+        to top, 
+        rgba(0, 18, 29, 0.98) 0%, 
+        rgba(0, 26, 42, 0.92) 36%, 
+        rgba(201, 69, 151, 0.6) 72%, 
+        transparent 100%
+      );
+    }
+
+    .team-person-info {
+      position: absolute;
+      bottom: 0;
+      inset-x: 0;
+      padding: 1.25rem 1.1rem;
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      pointer-events: none;
+    }
+
+    .team-person-drawer {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+      opacity: 0;
+    }
+
+    .team-person-card:hover .team-person-drawer,
+    .team-person-card.card-expanded .team-person-drawer {
+      grid-template-rows: 1fr;
+      opacity: 1;
+    }
+
+    .team-person-drawer-inner {
+      overflow: hidden;
     }
   </style>
 </head>
@@ -673,67 +743,127 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 lg:gap-6">
           
           <!-- Integrante 1: ELENA ACEVEDO -->
-          <div class="group relative rounded-2xl sm:rounded-3xl p-3 sm:p-3.5 team-card-gradient backdrop-blur-md border border-[#c94597]/30 hover:border-[#c94597] transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-2 shadow-[0_15px_35px_rgba(0,0,0,0.7)] hover:shadow-[0_25px_60px_rgba(0,0,0,0.9),0_0_35px_rgba(201,69,151,0.45)] z-10 hover:z-30 cursor-pointer flex flex-col justify-between">
-            <div class="relative w-full aspect-[3/4] rounded-xl sm:rounded-2xl overflow-hidden bg-[#04060a]">
-              <img src="./assets/team/elena-acevedo.jpg" alt="ELENA ACEVEDO" class="w-full h-full object-cover object-top transform scale-100 group-hover:scale-110 filter contrast-105 transition-transform duration-700 ease-out select-none">
-              <div class="absolute inset-0 bg-gradient-to-t from-[#04060a]/90 via-[#04060a]/20 to-transparent pointer-events-none"></div>
-            </div>
-            <div class="pt-3.5 pb-1 px-1">
-              <h3 class="text-base sm:text-lg font-black font-display uppercase tracking-tight text-[#e3e3e3] group-hover:text-[#c9cf35] transition-colors leading-tight">
+          <div class="team-person-card group">
+            <img src="./assets/team/elena-acevedo.jpg" alt="ELENA ACEVEDO" class="team-person-img filter contrast-105 select-none" loading="lazy">
+            <div class="team-person-overlay"></div>
+            
+            <div class="team-person-info">
+              <h3 class="text-base sm:text-lg font-black font-display uppercase tracking-tight text-white leading-tight drop-shadow-md">
                 ELENA ACEVEDO
               </h3>
+              
+              <div class="team-person-drawer">
+                <div class="team-person-drawer-inner">
+                  <div class="pt-2">
+                    <span class="inline-block font-montserrat font-extrabold text-[10px] sm:text-[11px] tracking-[0.2em] text-[#c9cf35] uppercase drop-shadow-sm">
+                      DIRECCIÓN CREATIVA
+                    </span>
+                  </div>
+                  <p class="text-xs text-white font-medium leading-relaxed pt-1.5 pb-0.5 drop-shadow-sm">
+                    Define la visión conceptual y discursiva de Desborde, traduciendo ideas complejas en narrativas de alto impacto y experiencias de marca.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
 
           <!-- Integrante 2: KARINA BARRETO -->
-          <div class="group relative rounded-2xl sm:rounded-3xl p-3 sm:p-3.5 team-card-gradient backdrop-blur-md border border-[#c94597]/30 hover:border-[#c94597] transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-2 shadow-[0_15px_35px_rgba(0,0,0,0.7)] hover:shadow-[0_25px_60px_rgba(0,0,0,0.9),0_0_35px_rgba(201,69,151,0.45)] z-10 hover:z-30 cursor-pointer flex flex-col justify-between">
-            <div class="relative w-full aspect-[3/4] rounded-xl sm:rounded-2xl overflow-hidden bg-[#04060a]">
-              <img src="./assets/team/karina-barreto.jpg" alt="KARINA BARRETO" class="w-full h-full object-cover object-top transform scale-100 group-hover:scale-110 filter contrast-105 transition-transform duration-700 ease-out select-none">
-              <div class="absolute inset-0 bg-gradient-to-t from-[#04060a]/90 via-[#04060a]/20 to-transparent pointer-events-none"></div>
-            </div>
-            <div class="pt-3.5 pb-1 px-1">
-              <h3 class="text-base sm:text-lg font-black font-display uppercase tracking-tight text-[#e3e3e3] group-hover:text-[#c9cf35] transition-colors leading-tight">
+          <div class="team-person-card group">
+            <img src="./assets/team/karina-barreto.jpg" alt="KARINA BARRETO" class="team-person-img filter contrast-105 select-none" loading="lazy">
+            <div class="team-person-overlay"></div>
+            
+            <div class="team-person-info">
+              <h3 class="text-base sm:text-lg font-black font-display uppercase tracking-tight text-white leading-tight drop-shadow-md">
                 KARINA BARRETO
               </h3>
+              
+              <div class="team-person-drawer">
+                <div class="team-person-drawer-inner">
+                  <div class="pt-2">
+                    <span class="inline-block font-montserrat font-extrabold text-[10px] sm:text-[11px] tracking-[0.2em] text-[#c9cf35] uppercase drop-shadow-sm">
+                      DIRECCIÓN DE ARTE
+                    </span>
+                  </div>
+                  <p class="text-xs text-white font-medium leading-relaxed pt-1.5 pb-0.5 drop-shadow-sm">
+                    Guía la estética visual y la coherencia gráfica, combinando diseño editorial contemporáneo con sistemas de identidad atrevidos y memorables.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
 
           <!-- Integrante 3: KIARA PONCE -->
-          <div class="group relative rounded-2xl sm:rounded-3xl p-3 sm:p-3.5 team-card-gradient backdrop-blur-md border border-[#c94597]/30 hover:border-[#c94597] transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-2 shadow-[0_15px_35px_rgba(0,0,0,0.7)] hover:shadow-[0_25px_60px_rgba(0,0,0,0.9),0_0_35px_rgba(201,69,151,0.45)] z-10 hover:z-30 cursor-pointer flex flex-col justify-between">
-            <div class="relative w-full aspect-[3/4] rounded-xl sm:rounded-2xl overflow-hidden bg-[#04060a]">
-              <img src="./assets/team/kiara-ponce.jpg" alt="KIARA PONCE" class="w-full h-full object-cover object-top transform scale-100 group-hover:scale-110 filter contrast-105 transition-transform duration-700 ease-out select-none">
-              <div class="absolute inset-0 bg-gradient-to-t from-[#04060a]/90 via-[#04060a]/20 to-transparent pointer-events-none"></div>
-            </div>
-            <div class="pt-3.5 pb-1 px-1">
-              <h3 class="text-base sm:text-lg font-black font-display uppercase tracking-tight text-[#e3e3e3] group-hover:text-[#c9cf35] transition-colors leading-tight">
+          <div class="team-person-card group">
+            <img src="./assets/team/kiara-ponce.jpg" alt="KIARA PONCE" class="team-person-img filter contrast-105 select-none" loading="lazy">
+            <div class="team-person-overlay"></div>
+            
+            <div class="team-person-info">
+              <h3 class="text-base sm:text-lg font-black font-display uppercase tracking-tight text-white leading-tight drop-shadow-md">
                 KIARA PONCE
               </h3>
+              
+              <div class="team-person-drawer">
+                <div class="team-person-drawer-inner">
+                  <div class="pt-2">
+                    <span class="inline-block font-montserrat font-extrabold text-[10px] sm:text-[11px] tracking-[0.2em] text-[#c9cf35] uppercase drop-shadow-sm">
+                      DISEÑO UX/UI & PRODUCTO
+                    </span>
+                  </div>
+                  <p class="text-xs text-white font-medium leading-relaxed pt-1.5 pb-0.5 drop-shadow-sm">
+                    Diseña interfaces digitales líquidas y flujos de usuario intuitivos, equilibrando innovación visual con arquitectura funcional de alta conversión.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
 
           <!-- Integrante 4: RAMIRO SUPPH -->
-          <div class="group relative rounded-2xl sm:rounded-3xl p-3 sm:p-3.5 team-card-gradient backdrop-blur-md border border-[#c94597]/30 hover:border-[#c94597] transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-2 shadow-[0_15px_35px_rgba(0,0,0,0.7)] hover:shadow-[0_25px_60px_rgba(0,0,0,0.9),0_0_35px_rgba(201,69,151,0.45)] z-10 hover:z-30 cursor-pointer flex flex-col justify-between">
-            <div class="relative w-full aspect-[3/4] rounded-xl sm:rounded-2xl overflow-hidden bg-[#04060a]">
-              <img src="./assets/team/ramiro-supph.jpg" alt="RAMIRO SUPPH" class="w-full h-full object-cover object-top transform scale-100 group-hover:scale-110 filter contrast-105 transition-transform duration-700 ease-out select-none">
-              <div class="absolute inset-0 bg-gradient-to-t from-[#04060a]/90 via-[#04060a]/20 to-transparent pointer-events-none"></div>
-            </div>
-            <div class="pt-3.5 pb-1 px-1">
-              <h3 class="text-base sm:text-lg font-black font-display uppercase tracking-tight text-[#e3e3e3] group-hover:text-[#c9cf35] transition-colors leading-tight">
+          <div class="team-person-card group">
+            <img src="./assets/team/ramiro-supph.jpg" alt="RAMIRO SUPPH" class="team-person-img filter contrast-105 select-none" loading="lazy">
+            <div class="team-person-overlay"></div>
+            
+            <div class="team-person-info">
+              <h3 class="text-base sm:text-lg font-black font-display uppercase tracking-tight text-white leading-tight drop-shadow-md">
                 RAMIRO SUPPH
               </h3>
+              
+              <div class="team-person-drawer">
+                <div class="team-person-drawer-inner">
+                  <div class="pt-2">
+                    <span class="inline-block font-montserrat font-extrabold text-[10px] sm:text-[11px] tracking-[0.2em] text-[#c9cf35] uppercase drop-shadow-sm">
+                      CREATIVE TECH & 3D
+                    </span>
+                  </div>
+                  <p class="text-xs text-white font-medium leading-relaxed pt-1.5 pb-0.5 drop-shadow-sm">
+                    Lidera el desarrollo frontend, la computación gráfica WebGL y escenarios 3D interactivos, llevando el código interactivo al límite del realismo.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
 
           <!-- Integrante 5: SOL ZAJAC -->
-          <div class="group relative rounded-2xl sm:rounded-3xl p-3 sm:p-3.5 team-card-gradient backdrop-blur-md border border-[#c94597]/30 hover:border-[#c94597] transition-all duration-500 ease-out hover:scale-105 hover:-translate-y-2 shadow-[0_15px_35px_rgba(0,0,0,0.7)] hover:shadow-[0_25px_60px_rgba(0,0,0,0.9),0_0_35px_rgba(201,69,151,0.45)] z-10 hover:z-30 cursor-pointer flex flex-col justify-between">
-            <div class="relative w-full aspect-[3/4] rounded-xl sm:rounded-2xl overflow-hidden bg-[#04060a]">
-              <img src="./assets/team/sol-zajac.jpg" alt="SOL ZAJAC" class="w-full h-full object-cover object-top transform scale-100 group-hover:scale-110 filter contrast-105 transition-transform duration-700 ease-out select-none">
-              <div class="absolute inset-0 bg-gradient-to-t from-[#04060a]/90 via-[#04060a]/20 to-transparent pointer-events-none"></div>
-            </div>
-            <div class="pt-3.5 pb-1 px-1">
-              <h3 class="text-base sm:text-lg font-black font-display uppercase tracking-tight text-[#e3e3e3] group-hover:text-[#c9cf35] transition-colors leading-tight">
+          <div class="team-person-card group">
+            <img src="./assets/team/sol-zajac.jpg" alt="SOL ZAJAC" class="team-person-img filter contrast-105 select-none" loading="lazy">
+            <div class="team-person-overlay"></div>
+            
+            <div class="team-person-info">
+              <h3 class="text-base sm:text-lg font-black font-display uppercase tracking-tight text-white leading-tight drop-shadow-md">
                 SOL ZAJAC
               </h3>
+              
+              <div class="team-person-drawer">
+                <div class="team-person-drawer-inner">
+                  <div class="pt-2">
+                    <span class="inline-block font-montserrat font-extrabold text-[10px] sm:text-[11px] tracking-[0.2em] text-[#c9cf35] uppercase drop-shadow-sm">
+                      MOTION & MULTIMEDIA
+                    </span>
+                  </div>
+                  <p class="text-xs text-white font-medium leading-relaxed pt-1.5 pb-0.5 drop-shadow-sm">
+                    Dinamiza la identidad de marca mediante animación cinética, secuencias 3D y narrativa audiovisual diseñada para cautivar en cada frame.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -1355,6 +1485,19 @@
 
       // Ejecución inicial
       updateHeaderState();
+    })();
+
+    // 0.05 SOPORTE TÁCTIL PARA EXPANDIR LA PRESENTACIÓN DE INTEGRANTES EN MOBILE
+    (function initTeamCardsTouch() {
+      document.querySelectorAll('.team-person-card').forEach(card => {
+        card.addEventListener('click', () => {
+          const isExpanded = card.classList.contains('card-expanded');
+          document.querySelectorAll('.team-person-card').forEach(c => c.classList.remove('card-expanded'));
+          if (!isExpanded) {
+            card.classList.add('card-expanded');
+          }
+        });
+      });
     })();
 
     // 0.1 MOTOR DE CAOS FLUIDO: ICONOS ORGÁNICOS FLOTANTES EN EL FONDO DEL HERO
