@@ -1018,6 +1018,8 @@
       imgWhite.src = './assets/icon-blob-white.png';
       const imgGreen = new Image();
       imgGreen.src = './assets/icon-blob-green.png';
+      const imgMagenta = new Image();
+      imgMagenta.src = './assets/icon-blob-magenta.png';
 
       let width = 0;
       let height = 0;
@@ -1044,8 +1046,18 @@
         }
 
         init(randomize = false) {
-          // Alternar equitativamente entre isotipo verde lima y blanco
-          this.img = Math.random() > 0.5 ? imgGreen : imgWhite;
+          // Triada de la paleta oficial: Rosa (#c94597), Verde lima (#c9cf35) y Blanco (#e3e3e3)
+          const colorRoll = Math.random();
+          if (colorRoll < 0.38) {
+            this.img = imgMagenta; // Rosa / Magenta de la paleta
+            this.colorType = 'magenta';
+          } else if (colorRoll < 0.74) {
+            this.img = imgGreen;   // Verde lima de la paleta
+            this.colorType = 'green';
+          } else {
+            this.img = imgWhite;   // Blanco
+            this.colorType = 'white';
+          }
 
           // Distribuir a lo largo de TODO el ancho de la pantalla (de borde a borde)
           this.x = randomize ? (Math.random() * (width + 160) - 80) : (Math.random() > 0.5 ? -100 : width + 100);
@@ -1075,8 +1087,9 @@
           this.rotation = Math.random() * Math.PI * 2;
           this.rotSpeed = (Math.random() - 0.5) * 0.012;
 
-          // Opacidad según profundidad: visible y estética en todo el ancho
-          this.baseOpacity = 0.09 + this.depth * 0.12; // 0.09 a 0.21
+          // Opacidad según profundidad y color para garantizar que el rosa y verde resalten con viveza
+          const colorBoost = this.colorType === 'white' ? 0.06 : 0.12;
+          this.baseOpacity = (0.10 + this.depth * 0.14) + colorBoost; // 0.16 a 0.36 para colores
 
           // Ondulación armónica para trayectoria orgánica sin estancarse
           this.waveFreq = 0.0012 + Math.random() * 0.002;
@@ -1129,8 +1142,8 @@
           if (!this.img.complete || this.img.naturalWidth === 0) return;
 
           const size = this.baseSize * this.currentScale;
-          // Opacidad que modula sutilmente con el tamaño para mayor riqueza visual
-          const alpha = Math.min(0.25, Math.max(0.07, this.baseOpacity * (0.85 + (this.currentScale - 1) * 0.45)));
+          // Opacidad que modula sutilmente con el tamaño para mayor riqueza visual y nitidez del color
+          const alpha = Math.min(0.38, Math.max(0.08, this.baseOpacity * (0.85 + (this.currentScale - 1) * 0.45)));
 
           ctx.save();
           ctx.translate(this.x * dpr, this.y * dpr);
@@ -1213,14 +1226,16 @@
       let loaded = 0;
       function checkStart() {
         loaded++;
-        if (loaded >= 2 && !animationFrameId) {
+        if (loaded >= 3 && !animationFrameId) {
           animationFrameId = requestAnimationFrame(loop);
         }
       }
       imgWhite.onload = checkStart;
       imgGreen.onload = checkStart;
+      imgMagenta.onload = checkStart;
       imgWhite.onerror = checkStart;
       imgGreen.onerror = checkStart;
+      imgMagenta.onerror = checkStart;
 
       setTimeout(() => {
         if (!animationFrameId) {
