@@ -707,7 +707,7 @@
       <!-- Pilares de Especialización en Carrusel Dinámico (6 Servicios, 4 Visibles en Pantalla) -->
       <div class="pt-8 sm:pt-12 border-t border-[#e3e3e3]/10">
         
-        <!-- Encabezado con Controles de Flechas de Carrusel y Botón PRESUPUESTÁ en el Margen Derecho -->
+        <!-- Encabezado con Botón PRESUPUESTÁ en el Margen Derecho -->
         <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 sm:mb-12">
           <div>
             <div class="font-montserrat font-extrabold text-xs sm:text-sm tracking-[0.2em] text-[#c94597] hover:text-white transition-colors duration-300 uppercase mb-1.5 select-none cursor-default">
@@ -718,31 +718,34 @@
             </h3>
           </div>
 
-          <!-- Margen Derecho en línea con el texto: Botón PRESUPUESTÁ + Flechas de Carrusel -->
-          <div class="flex items-center space-x-3 sm:space-x-4 select-none">
+          <!-- Margen Derecho: Botón PRESUPUESTÁ en línea con el título -->
+          <div class="flex items-center select-none">
             <button type="button" class="px-6 sm:px-8 py-2.5 sm:py-3 rounded-full bg-[#c9cf35] hover:bg-[#d8de3b] text-[#002a41] font-montserrat font-extrabold text-xs sm:text-sm tracking-[0.18em] uppercase transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_10px_25px_rgba(0,0,0,0.4)] hover:shadow-[0_0_30px_rgba(201,207,53,0.55)] cursor-pointer select-none flex items-center justify-center">
               <span>PRESUPUESTÁ</span>
             </button>
-
-            <!-- Flechas del Carrusel para Girar los Servicios -->
-            <div class="flex items-center space-x-2">
-              <button id="servicesPrevBtn" type="button" aria-label="Servicio anterior" class="w-10 h-10 sm:w-11 sm:h-11 rounded-full border border-[#e3e3e3]/20 bg-[#001e30] text-[#e3e3e3] hover:text-[#c9cf35] hover:border-[#c9cf35] hover:shadow-[0_0_25px_rgba(201,207,53,0.4)] active:scale-90 transition-all duration-300 flex items-center justify-center cursor-pointer group">
-                <svg class="w-5 h-5 transition-transform duration-300 group-hover:-translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
-              <button id="servicesNextBtn" type="button" aria-label="Servicio siguiente" class="w-10 h-10 sm:w-11 sm:h-11 rounded-full border border-[#e3e3e3]/20 bg-[#001e30] text-[#e3e3e3] hover:text-[#c9cf35] hover:border-[#c9cf35] hover:shadow-[0_0_25px_rgba(201,207,53,0.4)] active:scale-90 transition-all duration-300 flex items-center justify-center cursor-pointer group">
-                <svg class="w-5 h-5 transition-transform duration-300 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-            </div>
           </div>
         </div>
 
-        <!-- Contenedor del Carrusel -->
-        <div class="relative overflow-hidden w-full py-2">
-          <div id="servicesTrack" class="flex gap-4 sm:gap-6 transition-transform duration-500 ease-out select-none">
+        <!-- Contenedor del Carrusel con Flechas en Línea con los Servicios (Disimuladas y Verdes) -->
+        <div class="relative w-full py-2 group/carousel">
+          
+          <!-- Flecha Izquierda (En línea con las tarjetas, disimulada y verde) -->
+          <button id="servicesPrevBtn" type="button" aria-label="Servicio anterior" class="absolute -left-2 sm:-left-4 md:-left-5 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-[#001726]/85 hover:bg-[#002a41] backdrop-blur-md border border-[#c9cf35]/40 hover:border-[#c9cf35] text-[#c9cf35] shadow-[0_8px_25px_rgba(0,0,0,0.6)] hover:shadow-[0_0_20px_rgba(201,207,53,0.4)] active:scale-90 transition-all duration-300 flex items-center justify-center cursor-pointer">
+            <svg class="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+
+          <!-- Flecha Derecha (En línea con las tarjetas, disimulada y verde) -->
+          <button id="servicesNextBtn" type="button" aria-label="Servicio siguiente" class="absolute -right-2 sm:-right-4 md:-right-5 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-[#001726]/85 hover:bg-[#002a41] backdrop-blur-md border border-[#c9cf35]/40 hover:border-[#c9cf35] text-[#c9cf35] shadow-[0_8px_25px_rgba(0,0,0,0.6)] hover:shadow-[0_0_20px_rgba(201,207,53,0.4)] active:scale-90 transition-all duration-300 flex items-center justify-center cursor-pointer">
+            <svg class="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+
+          <!-- Pista Deslizante -->
+          <div class="overflow-hidden w-full">
+            <div id="servicesTrack" class="flex gap-4 sm:gap-6 transition-transform duration-500 ease-out select-none">
             
             <!-- Servicio 1: UX/UI -->
             <div class="services-card shrink-0 w-full sm:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-3*1.5rem)/4)] p-6 sm:p-7 rounded-2xl bg-[#001e30] border border-[#e3e3e3]/10 hover:bg-[#c9cf35] hover:border-[#c9cf35] hover:shadow-[0_15px_30px_rgba(0,0,0,0.35)] transition-all duration-300 group flex flex-col justify-between hover:-translate-y-1.5 cursor-pointer">
@@ -818,6 +821,7 @@
 
           </div>
         </div>
+      </div>
 
       </div>
 
