@@ -9,6 +9,11 @@
   <link rel="icon" type="image/png" href="./assets/favicon.png">
   <link rel="apple-touch-icon" href="./assets/favicon.png">
 
+  <!-- Google Fonts: Montserrat Oficial -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&display=swap" rel="stylesheet">
+
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -18,6 +23,7 @@
           fontFamily: {
             acumin: ['"Acumin Pro"', 'sans-serif'],
             display: ['"Acumin Pro"', 'sans-serif'],
+            montserrat: ['"Montserrat"', 'sans-serif'],
           },
           colors: {
             brandBlue: '#002a41',
@@ -177,6 +183,12 @@
       -webkit-backdrop-filter: none;
       border-color: rgba(255, 255, 255, 0.6);
       box-shadow: 0 12px 40px rgba(0, 0, 0, 0.38);
+    }
+
+    /* TIPOGRAFÍA MONTSERRAT EXCLUSIVA PARA EL HEADER Y MENÚ MOBILE */
+    #mainHeader, #mainHeader nav, #mainHeader a, #mainHeader button, #mainHeader span,
+    #mobileMenu, #mobileMenu nav, #mobileMenu a, #mobileMenu button, #mobileMenu span {
+      font-family: 'Montserrat', sans-serif !important;
     }
   </style>
 </head>
