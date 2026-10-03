@@ -345,6 +345,9 @@
         <a href="#sobre-nosotros" class="text-[#002a41] hover:text-[#c94597] transition-colors duration-200">
           Sobre nosotros
         </a>
+        <a href="#juga" class="text-[#002a41] hover:text-[#c94597] transition-colors duration-200">
+          Jugá con desborde
+        </a>
         <a href="#portfolio" class="text-[#002a41] hover:text-[#c94597] transition-colors duration-200">
           Portfolio
         </a>
@@ -407,6 +410,10 @@
       <nav class="flex flex-col space-y-1">
         <a href="#sobre-nosotros" class="mobile-nav-link text-white hover:text-[#c9cf35] active:text-[#c9cf35] transition-colors flex items-center justify-between py-3.5 border-b border-white/10 font-display font-black text-xl tracking-tight group">
           <span>SOBRE NOSOTROS</span>
+          <span class="text-base font-mono text-[#c9cf35] group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">↗</span>
+        </a>
+        <a href="#juga" class="mobile-nav-link text-white hover:text-[#c9cf35] active:text-[#c9cf35] transition-colors flex items-center justify-between py-3.5 border-b border-white/10 font-display font-black text-xl tracking-tight group">
+          <span>JUGÁ CON DESBORDE</span>
           <span class="text-base font-mono text-[#c9cf35] group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">↗</span>
         </a>
         <a href="#portfolio" class="mobile-nav-link text-white hover:text-[#c9cf35] active:text-[#c9cf35] transition-colors flex items-center justify-between py-3.5 border-b border-white/10 font-display font-black text-xl tracking-tight group">
@@ -1030,14 +1037,154 @@
     </div>
   </section>
 
-  <!-- SECCIÓN 2: PORTFOLIO (CASOS DE ESTUDIO DESTACADOS) -->
+  <!-- SECCIÓN 2: JUGÁ CON DESBORDE (PERSONAJES INTERACTIVOS) -->
+  <section id="juga" class="py-16 sm:py-28 px-4 sm:px-6 md:px-12 border-b border-[#e3e3e3]/10 relative bg-[#001726]/60 overflow-hidden">
+    <!-- Luces sutiles de fondo -->
+    <div class="ambient-glow-magenta top-1/3 -left-20 pointer-events-none"></div>
+    <div class="ambient-glow-green bottom-10 right-0 pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto relative z-10 space-y-10 sm:space-y-14">
+      
+      <!-- Encabezado de la sección: Misma forma y jerarquía de las demás secciones -->
+      <div class="border-b border-[#e3e3e3]/10 pb-6 sm:pb-8">
+        <div class="w-full space-y-2 sm:space-y-3">
+          <div>
+            <span class="inline-block font-montserrat font-extrabold text-xs sm:text-sm uppercase tracking-[0.2em] text-[#c9cf35] hover:text-white transition-colors duration-300 select-none">
+              EXPERIENCIAS INTERACTIVAS
+            </span>
+          </div>
+
+          <h2 class="text-3xl sm:text-4xl md:text-6xl font-black uppercase tracking-tight text-[#e3e3e3] font-display">
+            JUGÁ CON DESBORDE
+          </h2>
+
+          <p class="text-xs sm:text-sm md:text-base text-[#e3e3e3]/85 font-mono uppercase tracking-wider font-semibold pt-1 max-w-4xl leading-relaxed">
+            CONOCÉ EL CAOS DE CADA UNO DE NOSOTROS. CLICKÉA DEBAJO DE CADA UNO DE LOS PERSONAJES Y DESCUBRÍ PORQUE SOMOS DESBORDE.
+          </p>
+        </div>
+      </div>
+
+      <!-- Grilla de 5 Cajas: RAMI - KARI - ELE - KIARI - SOL -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5 lg:gap-6 items-stretch">
+        
+        <!-- Caja 1: RAMI -->
+        <div class="group relative bg-[#001726]/90 backdrop-blur-xl border border-white/10 hover:border-[#c94597] rounded-3xl p-6 sm:p-7 flex flex-col justify-between items-center text-center shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_50px_rgba(201,69,151,0.35)] transition-all duration-300 hover:-translate-y-2 max-w-sm sm:max-w-none mx-auto w-full">
+          <div class="w-full">
+            <h3 class="text-2xl sm:text-3xl font-black font-display uppercase tracking-tight text-white group-hover:text-[#c9cf35] transition-colors">
+              RAMI
+            </h3>
+          </div>
+
+          <div class="my-6 sm:my-8 relative flex items-center justify-center py-2">
+            <div class="absolute inset-0 bg-radial from-[#c94597]/20 via-transparent to-transparent filter blur-xl pointer-events-none"></div>
+            <img src="./assets/avatar-rami.png" alt="Avatar Rami" class="h-44 sm:h-52 w-auto object-contain [image-rendering:pixelated] drop-shadow-[0_12px_24px_rgba(0,0,0,0.8)] transform group-hover:scale-110 transition-transform duration-300 select-none">
+          </div>
+
+          <div class="w-full pt-2">
+            <a href="https://itch.io/" target="_blank" rel="noopener noreferrer" class="w-full py-3.5 px-3 rounded-full bg-gradient-to-r from-[#c94597] to-[#002a41] border border-white/20 text-white font-montserrat font-extrabold text-[11px] sm:text-xs uppercase tracking-wider shadow-[0_6px_20px_rgba(201,69,151,0.35)] hover:shadow-[0_10px_25px_rgba(201,69,151,0.6)] hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center space-x-1.5 cursor-pointer">
+              <span>CONOCÉ EL CAOS DE RAMI</span>
+              <span class="text-sm font-mono text-white/80">↗</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Caja 2: KARI -->
+        <div class="group relative bg-[#001726]/90 backdrop-blur-xl border border-white/10 hover:border-[#c94597] rounded-3xl p-6 sm:p-7 flex flex-col justify-between items-center text-center shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_50px_rgba(201,69,151,0.35)] transition-all duration-300 hover:-translate-y-2 max-w-sm sm:max-w-none mx-auto w-full">
+          <div class="w-full">
+            <h3 class="text-2xl sm:text-3xl font-black font-display uppercase tracking-tight text-white group-hover:text-[#c9cf35] transition-colors">
+              KARI
+            </h3>
+          </div>
+
+          <div class="my-6 sm:my-8 relative flex items-center justify-center py-2">
+            <div class="absolute inset-0 bg-radial from-[#c94597]/20 via-transparent to-transparent filter blur-xl pointer-events-none"></div>
+            <img src="./assets/avatar-kari.png" alt="Avatar Kari" class="h-44 sm:h-52 w-auto object-contain [image-rendering:pixelated] drop-shadow-[0_12px_24px_rgba(0,0,0,0.8)] transform group-hover:scale-110 transition-transform duration-300 select-none">
+          </div>
+
+          <div class="w-full pt-2">
+            <a href="https://itch.io/" target="_blank" rel="noopener noreferrer" class="w-full py-3.5 px-3 rounded-full bg-gradient-to-r from-[#c94597] to-[#002a41] border border-white/20 text-white font-montserrat font-extrabold text-[11px] sm:text-xs uppercase tracking-wider shadow-[0_6px_20px_rgba(201,69,151,0.35)] hover:shadow-[0_10px_25px_rgba(201,69,151,0.6)] hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center space-x-1.5 cursor-pointer">
+              <span>CONOCÉ EL CAOS DE KARI</span>
+              <span class="text-sm font-mono text-white/80">↗</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Caja 3: ELE -->
+        <div class="group relative bg-[#001726]/90 backdrop-blur-xl border border-white/10 hover:border-[#c94597] rounded-3xl p-6 sm:p-7 flex flex-col justify-between items-center text-center shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_50px_rgba(201,69,151,0.35)] transition-all duration-300 hover:-translate-y-2 max-w-sm sm:max-w-none mx-auto w-full">
+          <div class="w-full">
+            <h3 class="text-2xl sm:text-3xl font-black font-display uppercase tracking-tight text-white group-hover:text-[#c9cf35] transition-colors">
+              ELE
+            </h3>
+          </div>
+
+          <div class="my-6 sm:my-8 relative flex items-center justify-center py-2">
+            <div class="absolute inset-0 bg-radial from-[#c94597]/20 via-transparent to-transparent filter blur-xl pointer-events-none"></div>
+            <img src="./assets/avatar-ele.png" alt="Avatar Ele" class="h-44 sm:h-52 w-auto object-contain [image-rendering:pixelated] drop-shadow-[0_12px_24px_rgba(0,0,0,0.8)] transform group-hover:scale-110 transition-transform duration-300 select-none">
+          </div>
+
+          <div class="w-full pt-2">
+            <a href="https://itch.io/" target="_blank" rel="noopener noreferrer" class="w-full py-3.5 px-3 rounded-full bg-gradient-to-r from-[#c94597] to-[#002a41] border border-white/20 text-white font-montserrat font-extrabold text-[11px] sm:text-xs uppercase tracking-wider shadow-[0_6px_20px_rgba(201,69,151,0.35)] hover:shadow-[0_10px_25px_rgba(201,69,151,0.6)] hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center space-x-1.5 cursor-pointer">
+              <span>CONOCÉ EL CAOS DE ELE</span>
+              <span class="text-sm font-mono text-white/80">↗</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Caja 4: KIARI -->
+        <div class="group relative bg-[#001726]/90 backdrop-blur-xl border border-white/10 hover:border-[#c94597] rounded-3xl p-6 sm:p-7 flex flex-col justify-between items-center text-center shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_50px_rgba(201,69,151,0.35)] transition-all duration-300 hover:-translate-y-2 max-w-sm sm:max-w-none mx-auto w-full">
+          <div class="w-full">
+            <h3 class="text-2xl sm:text-3xl font-black font-display uppercase tracking-tight text-white group-hover:text-[#c9cf35] transition-colors">
+              KIARI
+            </h3>
+          </div>
+
+          <div class="my-6 sm:my-8 relative flex items-center justify-center py-2">
+            <div class="absolute inset-0 bg-radial from-[#c94597]/20 via-transparent to-transparent filter blur-xl pointer-events-none"></div>
+            <img src="./assets/avatar-kiari.png" alt="Avatar Kiari" class="h-44 sm:h-52 w-auto object-contain [image-rendering:pixelated] drop-shadow-[0_12px_24px_rgba(0,0,0,0.8)] transform group-hover:scale-110 transition-transform duration-300 select-none">
+          </div>
+
+          <div class="w-full pt-2">
+            <a href="https://itch.io/" target="_blank" rel="noopener noreferrer" class="w-full py-3.5 px-3 rounded-full bg-gradient-to-r from-[#c94597] to-[#002a41] border border-white/20 text-white font-montserrat font-extrabold text-[11px] sm:text-xs uppercase tracking-wider shadow-[0_6px_20px_rgba(201,69,151,0.35)] hover:shadow-[0_10px_25px_rgba(201,69,151,0.6)] hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center space-x-1.5 cursor-pointer">
+              <span>CONOCÉ EL CAOS DE KIARI</span>
+              <span class="text-sm font-mono text-white/80">↗</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Caja 5: SOL -->
+        <div class="group relative bg-[#001726]/90 backdrop-blur-xl border border-white/10 hover:border-[#c94597] rounded-3xl p-6 sm:p-7 flex flex-col justify-between items-center text-center shadow-[0_15px_35px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_50px_rgba(201,69,151,0.35)] transition-all duration-300 hover:-translate-y-2 max-w-sm sm:max-w-none mx-auto w-full">
+          <div class="w-full">
+            <h3 class="text-2xl sm:text-3xl font-black font-display uppercase tracking-tight text-white group-hover:text-[#c9cf35] transition-colors">
+              SOL
+            </h3>
+          </div>
+
+          <div class="my-6 sm:my-8 relative flex items-center justify-center py-2">
+            <div class="absolute inset-0 bg-radial from-[#c94597]/20 via-transparent to-transparent filter blur-xl pointer-events-none"></div>
+            <img src="./assets/avatar-sol.png" alt="Avatar Sol" class="h-44 sm:h-52 w-auto object-contain [image-rendering:pixelated] drop-shadow-[0_12px_24px_rgba(0,0,0,0.8)] transform group-hover:scale-110 transition-transform duration-300 select-none">
+          </div>
+
+          <div class="w-full pt-2">
+            <a href="https://itch.io/" target="_blank" rel="noopener noreferrer" class="w-full py-3.5 px-3 rounded-full bg-gradient-to-r from-[#c94597] to-[#002a41] border border-white/20 text-white font-montserrat font-extrabold text-[11px] sm:text-xs uppercase tracking-wider shadow-[0_6px_20px_rgba(201,69,151,0.35)] hover:shadow-[0_10px_25px_rgba(201,69,151,0.6)] hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center space-x-1.5 cursor-pointer">
+              <span>CONOCÉ EL CAOS DE SOL</span>
+              <span class="text-sm font-mono text-white/80">↗</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECCIÓN 3: PORTFOLIO (CASOS DE ESTUDIO DESTACADOS) -->
   <section id="portfolio" class="py-16 sm:py-28 px-4 sm:px-6 md:px-12 border-b border-[#e3e3e3]/10 relative">
     <div class="max-w-7xl mx-auto">
       
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 sm:mb-16 pb-4 sm:pb-6 border-b border-[#e3e3e3]/10">
         <div>
           <div class="font-mono text-xs tracking-[0.25em] text-[#c9cf35] uppercase mb-2 font-bold">
-            [ 02 // PORTFOLIO SELECCIONADO ]
+            [ 03 // PORTFOLIO SELECCIONADO ]
           </div>
           <h2 class="text-3xl sm:text-4xl md:text-6xl font-black uppercase tracking-tight font-display text-[#e3e3e3]">
             PROYECTOS DESTACADOS
@@ -1181,7 +1328,7 @@
     </div>
   </section>
 
-  <!-- SECCIÓN 3: CONTACTO -->
+  <!-- SECCIÓN 4: CONTACTO -->
   <section id="contacto" class="py-16 sm:py-28 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-noise bg-[#001e30]/50 border-b border-[#e3e3e3]/10">
     <div class="max-w-7xl mx-auto">
       
@@ -1191,7 +1338,7 @@
         <div class="lg:col-span-5 flex flex-col justify-between">
           <div>
             <div class="font-mono text-xs tracking-[0.25em] text-[#c9cf35] uppercase mb-3 font-bold">
-              [ 03 // CONTACTO DIRECTO ]
+              [ 04 // CONTACTO DIRECTO ]
             </div>
             <h2 class="text-3xl sm:text-4xl md:text-6xl font-black uppercase tracking-tight font-display text-[#e3e3e3] leading-tight">
               HAGAMOS QUE TU MARCA SE DESBORDE.
