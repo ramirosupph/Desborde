@@ -1181,8 +1181,8 @@
     </div>
   </section>
 
-  <!-- SECCIÓN 3: CONTACTO & FOOTER RESPONSIVE -->
-  <section id="contacto" class="py-16 sm:py-28 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-noise bg-[#001e30]/50">
+  <!-- SECCIÓN 3: CONTACTO -->
+  <section id="contacto" class="py-16 sm:py-28 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-noise bg-[#001e30]/50 border-b border-[#e3e3e3]/10">
     <div class="max-w-7xl mx-auto">
       
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-16">
@@ -1321,39 +1321,53 @@
         </div>
       </div>
 
-      <!-- FIRMA DE MARCA / LOGO EN FOOTER -->
-      <div class="mt-14 sm:mt-20 pt-8 sm:pt-12 border-t border-[#e3e3e3]/15 flex flex-col md:flex-row md:items-end justify-between gap-6 sm:gap-8">
-        <div>
-          <a href="#hero" class="inline-block group">
-            <img src="./assets/logo-light.png" alt="Desborde Studio" class="h-10 sm:h-12 md:h-16 w-auto object-contain transition-transform duration-300 group-hover:scale-105">
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER FULL-WIDTH (100% ANCHO DE PANTALLA, SIN MÁRGENES A LOS COSTADOS, FONDO BLANCO Y TIPOGRAFÍA AZUL) -->
+  <footer id="siteFooter" class="w-full bg-white text-[#002a41] border-t border-[#002a41]/10 py-12 sm:py-16 select-none relative z-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
+      
+      <!-- Fila Superior: Nuevo Logo Oficial Desborde + Texto Modificado + Ubicación -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 pb-8 sm:pb-12 border-b border-[#002a41]/15">
+        <div class="max-w-xl">
+          <a href="#hero" class="inline-block group py-1">
+            <img src="./assets/logo-footer.png" alt="Desborde" class="h-10 sm:h-12 md:h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105">
           </a>
-          <p class="text-xs sm:text-sm text-[#e3e3e3]/70 mt-3 max-w-md font-light leading-relaxed">
-            Agencia de diseño multimedial, CGI 3D y dirección de arte disruptiva para marcas que rehúsan pasar desapercibidas.
+          <p class="text-sm sm:text-base text-[#002a41] font-medium mt-4 leading-relaxed font-sans">
+            Agencia de Diseño Multimedial, artes visuales, 3D y dirección de arte disruptiva para marcas que rehúsan a pasar desapercibidas
           </p>
         </div>
-        <div class="flex items-center space-x-2 font-mono text-[11px] sm:text-xs text-[#c9cf35] tracking-widest uppercase">
-          <img src="./icons/globe.svg" class="w-3.5 h-3.5 sm:w-4 sm:h-4 object-contain" alt="Globe">
+
+        <div class="flex items-center space-x-2.5 font-mono text-xs sm:text-sm text-[#002a41] font-bold tracking-widest uppercase shrink-0 pb-1">
+          <svg class="w-4 h-4 text-[#002a41]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="9"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 3a15 15 0 0 1 0 18"/>
+            <path d="M12 3a15 15 0 0 0 0 18"/>
+          </svg>
           <span>BUENOS AIRES // GLOBAL REACH</span>
         </div>
       </div>
 
-      <!-- FOOTER FINAL -->
-      <footer class="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-[#e3e3e3]/10 flex flex-col sm:flex-row items-center justify-between text-[11px] sm:text-xs font-mono text-[#e3e3e3]/70 gap-3 text-center sm:text-left">
+      <!-- Fila Inferior: Copyright + Enlaces Legales + TOP -->
+      <div class="pt-6 sm:pt-8 flex flex-col sm:flex-row items-center justify-between text-xs sm:text-sm font-mono text-[#002a41] gap-4 text-center sm:text-left font-semibold">
         <div>
           © 2026 DESBORDE STUDIO. TODOS LOS DERECHOS RESERVADOS.
         </div>
-        <div class="flex items-center space-x-5">
-          <a href="#" class="hover:text-[#c9cf35] transition-colors">PRIVACIDAD</a>
-          <a href="#" class="hover:text-[#c94597] transition-colors">COOKIES</a>
-          <a href="#hero" class="text-[#c9cf35] hover:underline flex items-center space-x-1">
+        <div class="flex items-center space-x-6 sm:space-x-8">
+          <a href="#" class="text-[#002a41] hover:text-[#c94597] transition-colors">PRIVACIDAD</a>
+          <a href="#" class="text-[#002a41] hover:text-[#c94597] transition-colors">COOKIES</a>
+          <a href="#hero" class="text-[#002a41] hover:text-[#c94597] transition-colors flex items-center space-x-1.5 font-bold">
             <span>TOP</span>
             <span>↑</span>
           </a>
         </div>
-      </footer>
+      </div>
 
     </div>
-  </section>
+  </footer>
 
   <!-- SCRIPTS: MENÚ MOBILE Y DESBORDE PLAYGROUND CANVAS -->
   <script>
