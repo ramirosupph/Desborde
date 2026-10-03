@@ -223,13 +223,25 @@
     .team-person-card {
       position: relative;
       overflow: hidden;
-      aspect-ratio: 3 / 4.4;
+      aspect-ratio: 3 / 4;
       border-radius: 1.5rem;
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.85);
       border: 1px solid rgba(255, 255, 255, 0.12);
       transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease, border-color 0.5s ease;
       cursor: pointer;
       z-index: 10;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .team-person-card.card-expanded .card-arrow {
+      transform: rotate(180deg);
+      color: #c94597;
+    }
+
+    @media (min-width: 640px) {
+      .team-person-card {
+        aspect-ratio: 3 / 4.4;
+      }
     }
 
     .team-person-card:hover,
@@ -377,37 +389,52 @@
     </div>
   </header>
 
-  <!-- MOBILE MENU OVERLAY FLUIDO: CARD FLOTANTE REDONDEADA -->
-  <div id="mobileMenu" class="fixed top-[62px] sm:top-[74px] inset-x-3 sm:inset-x-5 max-w-xl mx-auto bg-[#e3e3e3]/98 backdrop-blur-2xl z-40 p-6 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/60 flex-col justify-between hidden md:hidden">
-    <div class="space-y-5">
-      <div class="text-[11px] font-mono text-[#002a41]/60 tracking-[0.25em] uppercase font-bold">
-        // NAVEGACIÓN
+  <!-- BACKDROP OSCURO BLUR PARA EL MENÚ MOBILE (CIERRA AL TOCAR AFUERA) -->
+  <div id="mobileMenuBackdrop" class="fixed inset-0 bg-black/75 backdrop-blur-md z-40 hidden md:hidden transition-opacity duration-300"></div>
+
+  <!-- MOBILE MENU OVERLAY FLUIDO: CARD FLOTANTE CON ALTO CONTRASTE Y ESTILO OFICIAL DESBORDE -->
+  <div id="mobileMenu" class="fixed top-[62px] sm:top-[74px] inset-x-3 sm:inset-x-6 max-w-lg mx-auto bg-[#001726]/98 backdrop-blur-2xl z-50 p-6 sm:p-8 rounded-[2rem] shadow-[0_25px_60px_rgba(0,0,0,0.95),0_0_35px_rgba(0,42,65,0.85)] border border-[#c9cf35]/40 flex-col justify-between hidden md:hidden max-h-[calc(100vh-80px)] overflow-y-auto">
+    <div class="space-y-6">
+      <!-- Encabezado del Menú con Acento Verde Eléctrico -->
+      <div class="flex items-center justify-between border-b border-white/10 pb-3">
+        <span class="text-xs font-mono text-[#c9cf35] tracking-[0.25em] uppercase font-bold flex items-center space-x-2">
+          <span class="w-2 h-2 rounded-full bg-[#c9cf35] animate-ping inline-block"></span>
+          <span>// NAVEGACIÓN</span>
+        </span>
+        <span class="text-[11px] font-mono text-[#e3e3e3]/60 uppercase tracking-widest">
+          DESBORDE® 2026
+        </span>
       </div>
-      <nav class="flex flex-col space-y-4 text-lg font-black uppercase tracking-tight font-display">
-        <a href="#sobre-nosotros" class="mobile-nav-link text-[#002a41] hover:text-[#c94597] transition-colors flex items-center justify-between border-b border-[#002a41]/10 pb-2.5">
+
+      <!-- Links de Secciones con Alto Contraste: Texto Blanco Puro, Hover y Acentos Verde Neón -->
+      <nav class="flex flex-col space-y-1">
+        <a href="#sobre-nosotros" class="mobile-nav-link text-white hover:text-[#c9cf35] active:text-[#c9cf35] transition-colors flex items-center justify-between py-3.5 border-b border-white/10 font-display font-black text-xl tracking-tight group">
           <span>SOBRE NOSOTROS</span>
-          <span class="text-sm font-mono text-[#002a41]">↗</span>
+          <span class="text-base font-mono text-[#c9cf35] group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">↗</span>
         </a>
-        <a href="#portfolio" class="mobile-nav-link text-[#002a41] hover:text-[#c94597] transition-colors flex items-center justify-between border-b border-[#002a41]/10 pb-2.5">
+        <a href="#portfolio" class="mobile-nav-link text-white hover:text-[#c9cf35] active:text-[#c9cf35] transition-colors flex items-center justify-between py-3.5 border-b border-white/10 font-display font-black text-xl tracking-tight group">
           <span>PORTFOLIO</span>
-          <span class="text-sm font-mono text-[#002a41]">↗</span>
+          <span class="text-base font-mono text-[#c9cf35] group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">↗</span>
         </a>
-        <a href="#juga" class="mobile-nav-link text-[#002a41] hover:text-[#c94597] transition-colors flex items-center justify-between border-b border-[#002a41]/10 pb-2.5">
-          <span>JUGÁ CON DESBORDE</span>
-          <span class="text-sm font-mono text-[#002a41]">↗</span>
+        <a href="#juga" class="mobile-nav-link text-white hover:text-[#c9cf35] active:text-[#c9cf35] transition-colors flex items-center justify-between py-3.5 border-b border-white/10 font-display font-black text-xl tracking-tight group">
+          <div class="flex items-center space-x-2">
+            <span>JUGÁ CON DESBORDE</span>
+            <span class="text-[10px] font-mono px-2 py-0.5 rounded-full bg-[#c94597]/25 text-[#c94597] border border-[#c94597]/50 font-bold">LAB</span>
+          </div>
+          <span class="text-base font-mono text-[#c9cf35] group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">↗</span>
         </a>
-        <a href="#contacto" class="mobile-nav-link text-[#002a41] hover:text-[#c94597] transition-colors flex items-center justify-between border-b border-[#002a41]/10 pb-2.5">
+        <a href="#contacto" class="mobile-nav-link text-white hover:text-[#c9cf35] active:text-[#c9cf35] transition-colors flex items-center justify-between py-3.5 border-b border-white/10 font-display font-black text-xl tracking-tight group">
           <span>CONTACTO</span>
-          <span class="text-sm font-mono text-[#002a41]">↗</span>
+          <span class="text-base font-mono text-[#c9cf35] group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">↗</span>
         </a>
       </nav>
     </div>
 
-    <!-- Botón Hablemos en Drawer Mobile -->
+    <!-- Botón Hablemos en Drawer Mobile: Verde Eléctrico con Texto Azul Marino -->
     <div class="pt-6">
-      <a href="https://wa.me/5491187654321?text=Hola%20Desborde%2C%20quiero%20hacer%20una%20consulta" target="_blank" rel="noopener noreferrer" class="w-full py-3.5 rounded-full bg-[#002a41] text-[#c9cf35] font-extrabold text-xs uppercase tracking-widest flex items-center justify-center space-x-2 shadow-lg hover:bg-[#003857] transition-colors border border-[#002a41]">
+      <a href="https://wa.me/5491187654321?text=Hola%20Desborde%2C%20quiero%20hacer%20una%20consulta" target="_blank" rel="noopener noreferrer" class="w-full py-4 rounded-full bg-[#c9cf35] hover:bg-white text-[#002a41] font-black text-xs uppercase tracking-widest flex items-center justify-center space-x-2.5 shadow-[0_10px_25px_rgba(201,207,53,0.35)] active:scale-95 transition-all">
         <span>HABLEMOS POR WHATSAPP</span>
-        <svg class="w-4 h-4 text-[#c9cf35]" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+        <svg class="w-4 h-4 text-[#002a41]" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
           <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
         </svg>
       </a>
@@ -485,9 +512,9 @@
     <!-- Encabezado Central con Jerarquía: CONFÍAN EN DESBORDE -->
     <div class="w-full px-4 mb-5 sm:mb-6 text-center flex flex-col items-center">
       
-      <!-- Cápsula con Sombreado y Tipografía de Alta Jerarquía -->
-      <div class="inline-flex items-center px-5 sm:px-7 py-1.5 sm:py-2 rounded-full bg-[#002a41]/10 border border-[#002a41]/20 shadow-[0_3px_10px_rgba(0,42,65,0.18),inset_0_1px_1px_rgba(255,255,255,0.4)] backdrop-blur-sm transition-transform duration-300 hover:scale-105">
-        <h3 class="font-montserrat font-black text-xs sm:text-sm md:text-base tracking-[0.28em] text-[#002a41] uppercase">
+      <!-- Rectángulo con Sombreado y Tipografía de Alta Jerarquía: Fondo Azul y Letras Verdes -->
+      <div class="inline-flex items-center px-6 sm:px-8 py-2 sm:py-2.5 rounded-xl bg-[#002a41] border border-[#c9cf35]/40 shadow-[0_6px_20px_rgba(0,42,65,0.45)] backdrop-blur-sm transition-transform duration-300 hover:scale-105">
+        <h3 class="font-montserrat font-black text-xs sm:text-sm md:text-base tracking-[0.28em] text-[#c9cf35] uppercase">
           CONFÍAN EN DESBORDE
         </h3>
       </div>
@@ -743,14 +770,17 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 lg:gap-6">
           
           <!-- Integrante 1: ELENA ACEVEDO -->
-          <div class="team-person-card group">
+          <div class="team-person-card group max-w-sm sm:max-w-none mx-auto w-full">
             <img src="./assets/team/elena-acevedo.jpg" alt="ELENA ACEVEDO" class="team-person-img filter contrast-105 select-none" loading="lazy">
             <div class="team-person-overlay"></div>
             
             <div class="team-person-info">
-              <h3 class="text-base sm:text-lg font-black font-display uppercase tracking-tight text-white leading-tight drop-shadow-md">
-                ELENA ACEVEDO
-              </h3>
+              <div class="flex items-center justify-between">
+                <h3 class="text-base sm:text-lg font-black font-display uppercase tracking-tight text-white leading-tight drop-shadow-md">
+                  ELENA ACEVEDO
+                </h3>
+                <span class="sm:hidden text-xs font-mono text-[#c9cf35] transition-transform duration-300 card-arrow">↓</span>
+              </div>
               
               <div class="team-person-drawer">
                 <div class="team-person-drawer-inner">
@@ -768,14 +798,17 @@
           </div>
 
           <!-- Integrante 2: KARINA BARRETO -->
-          <div class="team-person-card group">
+          <div class="team-person-card group max-w-sm sm:max-w-none mx-auto w-full">
             <img src="./assets/team/karina-barreto.jpg" alt="KARINA BARRETO" class="team-person-img filter contrast-105 select-none" loading="lazy">
             <div class="team-person-overlay"></div>
             
             <div class="team-person-info">
-              <h3 class="text-base sm:text-lg font-black font-display uppercase tracking-tight text-white leading-tight drop-shadow-md">
-                KARINA BARRETO
-              </h3>
+              <div class="flex items-center justify-between">
+                <h3 class="text-base sm:text-lg font-black font-display uppercase tracking-tight text-white leading-tight drop-shadow-md">
+                  KARINA BARRETO
+                </h3>
+                <span class="sm:hidden text-xs font-mono text-[#c9cf35] transition-transform duration-300 card-arrow">↓</span>
+              </div>
               
               <div class="team-person-drawer">
                 <div class="team-person-drawer-inner">
@@ -793,20 +826,23 @@
           </div>
 
           <!-- Integrante 3: KIARA PONCE -->
-          <div class="team-person-card group">
+          <div class="team-person-card group max-w-sm sm:max-w-none mx-auto w-full">
             <img src="./assets/team/kiara-ponce.jpg" alt="KIARA PONCE" class="team-person-img filter contrast-105 select-none" loading="lazy">
             <div class="team-person-overlay"></div>
             
             <div class="team-person-info">
-              <h3 class="text-base sm:text-lg font-black font-display uppercase tracking-tight text-white leading-tight drop-shadow-md">
-                KIARA PONCE
-              </h3>
+              <div class="flex items-center justify-between">
+                <h3 class="text-base sm:text-lg font-black font-display uppercase tracking-tight text-white leading-tight drop-shadow-md">
+                  KIARA PONCE
+                </h3>
+                <span class="sm:hidden text-xs font-mono text-[#c9cf35] transition-transform duration-300 card-arrow">↓</span>
+              </div>
               
               <div class="team-person-drawer">
                 <div class="team-person-drawer-inner">
                   <div class="pt-2">
                     <span class="inline-block font-montserrat font-extrabold text-[10px] sm:text-[11px] tracking-[0.2em] text-[#c9cf35] uppercase drop-shadow-sm">
-                      DISEÑO UX/UI & PRODUCTO
+                      DIRECCIÓN UX/UI & PRODUCTO
                     </span>
                   </div>
                   <p class="text-xs text-white font-medium leading-relaxed pt-1.5 pb-0.5 drop-shadow-sm">
@@ -818,14 +854,17 @@
           </div>
 
           <!-- Integrante 4: RAMIRO SUPPH -->
-          <div class="team-person-card group">
+          <div class="team-person-card group max-w-sm sm:max-w-none mx-auto w-full">
             <img src="./assets/team/ramiro-supph.jpg" alt="RAMIRO SUPPH" class="team-person-img filter contrast-105 select-none" loading="lazy">
             <div class="team-person-overlay"></div>
             
             <div class="team-person-info">
-              <h3 class="text-base sm:text-lg font-black font-display uppercase tracking-tight text-white leading-tight drop-shadow-md">
-                RAMIRO SUPPH
-              </h3>
+              <div class="flex items-center justify-between">
+                <h3 class="text-base sm:text-lg font-black font-display uppercase tracking-tight text-white leading-tight drop-shadow-md">
+                  RAMIRO SUPPH
+                </h3>
+                <span class="sm:hidden text-xs font-mono text-[#c9cf35] transition-transform duration-300 card-arrow">↓</span>
+              </div>
               
               <div class="team-person-drawer">
                 <div class="team-person-drawer-inner">
@@ -843,14 +882,17 @@
           </div>
 
           <!-- Integrante 5: SOL ZAJAC -->
-          <div class="team-person-card group">
+          <div class="team-person-card group max-w-sm sm:max-w-none mx-auto w-full">
             <img src="./assets/team/sol-zajac.jpg" alt="SOL ZAJAC" class="team-person-img filter contrast-105 select-none" loading="lazy">
             <div class="team-person-overlay"></div>
             
             <div class="team-person-info">
-              <h3 class="text-base sm:text-lg font-black font-display uppercase tracking-tight text-white leading-tight drop-shadow-md">
-                SOL ZAJAC
-              </h3>
+              <div class="flex items-center justify-between">
+                <h3 class="text-base sm:text-lg font-black font-display uppercase tracking-tight text-white leading-tight drop-shadow-md">
+                  SOL ZAJAC
+                </h3>
+                <span class="sm:hidden text-xs font-mono text-[#c9cf35] transition-transform duration-300 card-arrow">↓</span>
+              </div>
               
               <div class="team-person-drawer">
                 <div class="team-person-drawer-inner">
@@ -897,14 +939,14 @@
         <div class="relative w-full py-2 group/carousel">
           
           <!-- Flecha Izquierda (En línea con las tarjetas, disimulada y verde) -->
-          <button id="servicesPrevBtn" type="button" aria-label="Servicio anterior" class="absolute -left-2 sm:-left-4 md:-left-5 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-[#001726]/85 hover:bg-[#002a41] backdrop-blur-md border border-[#c9cf35]/40 hover:border-[#c9cf35] text-[#c9cf35] shadow-[0_8px_25px_rgba(0,0,0,0.6)] hover:shadow-[0_0_20px_rgba(201,207,53,0.4)] active:scale-90 transition-all duration-300 flex items-center justify-center cursor-pointer">
+          <button id="servicesPrevBtn" type="button" aria-label="Servicio anterior" class="absolute left-0 sm:-left-4 md:-left-5 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-[#001726]/85 hover:bg-[#002a41] backdrop-blur-md border border-[#c9cf35]/40 hover:border-[#c9cf35] text-[#c9cf35] shadow-[0_8px_25px_rgba(0,0,0,0.6)] hover:shadow-[0_0_20px_rgba(201,207,53,0.4)] active:scale-90 transition-all duration-300 flex items-center justify-center cursor-pointer">
             <svg class="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
               <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
           </button>
 
           <!-- Flecha Derecha (En línea con las tarjetas, disimulada y verde) -->
-          <button id="servicesNextBtn" type="button" aria-label="Servicio siguiente" class="absolute -right-2 sm:-right-4 md:-right-5 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-[#001726]/85 hover:bg-[#002a41] backdrop-blur-md border border-[#c9cf35]/40 hover:border-[#c9cf35] text-[#c9cf35] shadow-[0_8px_25px_rgba(0,0,0,0.6)] hover:shadow-[0_0_20px_rgba(201,207,53,0.4)] active:scale-90 transition-all duration-300 flex items-center justify-center cursor-pointer">
+          <button id="servicesNextBtn" type="button" aria-label="Servicio siguiente" class="absolute right-0 sm:-right-4 md:-right-5 top-1/2 -translate-y-1/2 z-20 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-[#001726]/85 hover:bg-[#002a41] backdrop-blur-md border border-[#c9cf35]/40 hover:border-[#c9cf35] text-[#c9cf35] shadow-[0_8px_25px_rgba(0,0,0,0.6)] hover:shadow-[0_0_20px_rgba(201,207,53,0.4)] active:scale-90 transition-all duration-300 flex items-center justify-center cursor-pointer">
             <svg class="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
               <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
             </svg>
@@ -988,6 +1030,9 @@
 
           </div>
         </div>
+
+        <!-- Indicador de Paginación para Mobile / Tablet -->
+        <div id="servicesDots" class="flex sm:hidden items-center justify-center space-x-2 pt-3 select-none"></div>
       </div>
 
       </div>
@@ -1029,7 +1074,7 @@
                 <div class="font-mono text-[10px] sm:text-xs text-[#e3e3e3]/70 tracking-widest uppercase">WEBGL 3D EXPERIENCE</div>
               </div>
             </div>
-            <div class="absolute top-4 right-4 sm:top-5 sm:right-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <div class="absolute top-4 right-4 sm:top-5 sm:right-5 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300">
               <span class="px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-[#c9cf35] text-[#002a41] font-bold text-xs uppercase tracking-wider flex items-center space-x-1 shadow-lg">
                 <span>VER CASO</span>
                 <img src="./icons/arrow-diagonal.svg" class="w-3 h-3 sm:w-3.5 sm:h-3.5" alt="Arrow">
@@ -1060,7 +1105,7 @@
                 <div class="font-mono text-[10px] sm:text-xs text-[#c9cf35] tracking-widest uppercase font-bold">BRAND REVOLUTION</div>
               </div>
             </div>
-            <div class="absolute top-4 right-4 sm:top-5 sm:right-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <div class="absolute top-4 right-4 sm:top-5 sm:right-5 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300">
               <span class="px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-[#c94597] text-[#e3e3e3] font-bold text-xs uppercase tracking-wider flex items-center space-x-1 shadow-lg">
                 <span>VER CASO</span>
                 <img src="./icons/arrow-diagonal.svg" class="w-3 h-3 sm:w-3.5 sm:h-3.5" alt="Arrow">
@@ -1091,7 +1136,7 @@
                 <div class="font-mono text-[10px] sm:text-xs text-[#e3e3e3]/70 tracking-widest uppercase">CGI CAMPAIGN & MOTION</div>
               </div>
             </div>
-            <div class="absolute top-4 right-4 sm:top-5 sm:right-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <div class="absolute top-4 right-4 sm:top-5 sm:right-5 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300">
               <span class="px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-[#c9cf35] text-[#002a41] font-bold text-xs uppercase tracking-wider flex items-center space-x-1 shadow-lg">
                 <span>VER CASO</span>
                 <img src="./icons/arrow-diagonal.svg" class="w-3 h-3 sm:w-3.5 sm:h-3.5" alt="Arrow">
@@ -1122,7 +1167,7 @@
                 <div class="font-mono text-[10px] sm:text-xs text-[#e3e3e3]/70 tracking-widest uppercase">E-COMMERCE IMMERSIVE SYSTEM</div>
               </div>
             </div>
-            <div class="absolute top-4 right-4 sm:top-5 sm:right-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <div class="absolute top-4 right-4 sm:top-5 sm:right-5 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-300">
               <span class="px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-[#c94597] text-[#e3e3e3] font-bold text-xs uppercase tracking-wider flex items-center space-x-1 shadow-lg">
                 <span>VER CASO</span>
                 <img src="./icons/arrow-diagonal.svg" class="w-3 h-3 sm:w-3.5 sm:h-3.5" alt="Arrow">
@@ -1280,45 +1325,45 @@
           <form onsubmit="event.preventDefault(); alert('¡Solicitud enviada a Desborde Studio!');" class="space-y-6 sm:space-y-8">
             
             <div>
-              <label class="block font-mono text-[11px] sm:text-xs uppercase tracking-widest text-[#e3e3e3]/70 mb-2">01. TU NOMBRE O ALIAS *</label>
-              <input type="text" required placeholder="Ej: Elena Rostova" class="w-full bg-transparent border-b border-[#e3e3e3]/20 pb-2.5 sm:pb-3 text-base sm:text-lg md:text-xl text-[#e3e3e3] placeholder-[#e3e3e3]/30 focus:outline-none focus:border-[#c9cf35] transition-colors">
+              <label class="block font-mono text-[11px] sm:text-xs uppercase tracking-widest text-[#e3e3e3]/90 mb-2 font-semibold">01. TU NOMBRE O ALIAS *</label>
+              <input type="text" required placeholder="Ej: Elena Rostova" class="w-full bg-transparent border-b border-[#e3e3e3]/30 pb-2.5 sm:pb-3 text-base sm:text-lg md:text-xl text-[#e3e3e3] placeholder-[#e3e3e3]/50 focus:outline-none focus:border-[#c9cf35] transition-colors">
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
               <div>
-                <label class="block font-mono text-[11px] sm:text-xs uppercase tracking-widest text-[#e3e3e3]/70 mb-2">02. TU EMPRESA / MARCA</label>
-                <input type="text" placeholder="Ej: Kinetix Inc." class="w-full bg-transparent border-b border-[#e3e3e3]/20 pb-2.5 sm:pb-3 text-base sm:text-lg md:text-xl text-[#e3e3e3] placeholder-[#e3e3e3]/30 focus:outline-none focus:border-[#c9cf35] transition-colors">
+                <label class="block font-mono text-[11px] sm:text-xs uppercase tracking-widest text-[#e3e3e3]/90 mb-2 font-semibold">02. TU EMPRESA / MARCA</label>
+                <input type="text" placeholder="Ej: Kinetix Inc." class="w-full bg-transparent border-b border-[#e3e3e3]/30 pb-2.5 sm:pb-3 text-base sm:text-lg md:text-xl text-[#e3e3e3] placeholder-[#e3e3e3]/50 focus:outline-none focus:border-[#c9cf35] transition-colors">
               </div>
               <div>
-                <label class="block font-mono text-[11px] sm:text-xs uppercase tracking-widest text-[#e3e3e3]/70 mb-2">03. TU CORREO ELECTRÓNICO *</label>
-                <input type="email" required placeholder="elena@kinetix.io" class="w-full bg-transparent border-b border-[#e3e3e3]/20 pb-2.5 sm:pb-3 text-base sm:text-lg md:text-xl text-[#e3e3e3] placeholder-[#e3e3e3]/30 focus:outline-none focus:border-[#c9cf35] transition-colors">
+                <label class="block font-mono text-[11px] sm:text-xs uppercase tracking-widest text-[#e3e3e3]/90 mb-2 font-semibold">03. TU CORREO ELECTRÓNICO *</label>
+                <input type="email" required placeholder="elena@kinetix.io" class="w-full bg-transparent border-b border-[#e3e3e3]/30 pb-2.5 sm:pb-3 text-base sm:text-lg md:text-xl text-[#e3e3e3] placeholder-[#e3e3e3]/50 focus:outline-none focus:border-[#c9cf35] transition-colors">
               </div>
             </div>
 
             <div>
-              <label class="block font-mono text-[11px] sm:text-xs uppercase tracking-widest text-[#e3e3e3]/70 mb-2.5">04. ¿QUÉ CAPACIDADES NECESITAS?</label>
+              <label class="block font-mono text-[11px] sm:text-xs uppercase tracking-widest text-[#e3e3e3]/90 mb-2.5 font-semibold">04. ¿QUÉ CAPACIDADES NECESITAS?</label>
               <div class="flex flex-wrap gap-2 sm:gap-2.5">
                 <label class="cursor-pointer">
                   <input type="checkbox" class="peer sr-only" checked>
-                  <span class="px-3 py-1.5 sm:px-4 sm:py-2 rounded-full border border-[#e3e3e3]/20 text-[11px] sm:text-xs font-mono text-[#e3e3e3]/80 peer-checked:bg-[#c9cf35] peer-checked:text-[#002a41] peer-checked:font-bold peer-checked:border-[#c9cf35] transition-all inline-block">
+                  <span class="px-3 py-1.5 sm:px-4 sm:py-2 rounded-full border border-[#e3e3e3]/30 text-[11px] sm:text-xs font-mono text-white peer-checked:bg-[#c9cf35] peer-checked:text-[#002a41] peer-checked:font-black peer-checked:border-[#c9cf35] transition-all inline-block shadow-sm">
                     DISEÑO UX/UI
                   </span>
                 </label>
                 <label class="cursor-pointer">
                   <input type="checkbox" class="peer sr-only">
-                  <span class="px-3 py-1.5 sm:px-4 sm:py-2 rounded-full border border-[#e3e3e3]/20 text-[11px] sm:text-xs font-mono text-[#e3e3e3]/80 peer-checked:bg-[#c94597] peer-checked:text-[#e3e3e3] peer-checked:font-bold peer-checked:border-[#c94597] transition-all inline-block">
+                  <span class="px-3 py-1.5 sm:px-4 sm:py-2 rounded-full border border-[#e3e3e3]/30 text-[11px] sm:text-xs font-mono text-white peer-checked:bg-[#c94597] peer-checked:text-white peer-checked:font-black peer-checked:border-[#c94597] transition-all inline-block shadow-sm">
                     MODELADO & RENDER 3D
                   </span>
                 </label>
                 <label class="cursor-pointer">
                   <input type="checkbox" class="peer sr-only">
-                  <span class="px-3 py-1.5 sm:px-4 sm:py-2 rounded-full border border-[#e3e3e3]/20 text-[11px] sm:text-xs font-mono text-[#e3e3e3]/80 peer-checked:bg-[#c9cf35] peer-checked:text-[#002a41] peer-checked:font-bold peer-checked:border-[#c9cf35] transition-all inline-block">
+                  <span class="px-3 py-1.5 sm:px-4 sm:py-2 rounded-full border border-[#e3e3e3]/30 text-[11px] sm:text-xs font-mono text-white peer-checked:bg-[#c9cf35] peer-checked:text-[#002a41] peer-checked:font-black peer-checked:border-[#c9cf35] transition-all inline-block shadow-sm">
                     MOTION & ANIMACIÓN
                   </span>
                 </label>
                 <label class="cursor-pointer">
                   <input type="checkbox" class="peer sr-only">
-                  <span class="px-3 py-1.5 sm:px-4 sm:py-2 rounded-full border border-[#e3e3e3]/20 text-[11px] sm:text-xs font-mono text-[#e3e3e3]/80 peer-checked:bg-[#c94597] peer-checked:text-[#e3e3e3] peer-checked:font-bold peer-checked:border-[#c94597] transition-all inline-block">
+                  <span class="px-3 py-1.5 sm:px-4 sm:py-2 rounded-full border border-[#e3e3e3]/30 text-[11px] sm:text-xs font-mono text-white peer-checked:bg-[#c94597] peer-checked:text-white peer-checked:font-black peer-checked:border-[#c94597] transition-all inline-block shadow-sm">
                     IDENTIDAD DE MARCA
                   </span>
                 </label>
@@ -1326,8 +1371,8 @@
             </div>
 
             <div>
-              <label class="block font-mono text-[11px] sm:text-xs uppercase tracking-widest text-[#e3e3e3]/70 mb-2">05. BREVE DESCRIPCIÓN DEL RETO</label>
-              <textarea rows="3" placeholder="Cuéntanos objetivos, plazos y presupuesto estimado..." class="w-full bg-transparent border-b border-[#e3e3e3]/20 pb-2.5 text-base text-[#e3e3e3] placeholder-[#e3e3e3]/30 focus:outline-none focus:border-[#c9cf35] transition-colors resize-none"></textarea>
+              <label class="block font-mono text-[11px] sm:text-xs uppercase tracking-widest text-[#e3e3e3]/90 mb-2 font-semibold">05. BREVE DESCRIPCIÓN DEL RETO</label>
+              <textarea rows="3" placeholder="Cuéntanos objetivos, plazos y presupuesto estimado..." class="w-full bg-transparent border-b border-[#e3e3e3]/30 pb-2.5 text-base text-[#e3e3e3] placeholder-[#e3e3e3]/50 focus:outline-none focus:border-[#c9cf35] transition-colors resize-none"></textarea>
             </div>
 
             <div class="pt-2 sm:pt-4">
@@ -1737,42 +1782,56 @@
       }, 250);
     })();
 
-    // 1. MANEJO DEL MENÚ MOBILE
+    // 1. MANEJO DEL MENÚ MOBILE CON BACKDROP Y ALTO CONTRASTE
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
+    const mobileMenuBackdrop = document.getElementById('mobileMenuBackdrop');
     const hamburgerIcon = document.getElementById('hamburgerIcon');
     const closeIcon = document.getElementById('closeIcon');
     const navLinks = document.querySelectorAll('.mobile-nav-link');
 
     if (mobileMenuBtn && mobileMenu) {
+      function openMenu() {
+        mobileMenu.classList.remove('hidden');
+        mobileMenu.classList.add('flex');
+        if (mobileMenuBackdrop) mobileMenuBackdrop.classList.remove('hidden');
+        hamburgerIcon.classList.add('hidden');
+        closeIcon.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+        if (mainHeader) mainHeader.classList.add('menu-open');
+      }
+
+      function closeMenu() {
+        mobileMenu.classList.add('hidden');
+        mobileMenu.classList.remove('flex');
+        if (mobileMenuBackdrop) mobileMenuBackdrop.classList.add('hidden');
+        hamburgerIcon.classList.remove('hidden');
+        closeIcon.classList.add('hidden');
+        document.body.style.overflow = '';
+        if (mainHeader) mainHeader.classList.remove('menu-open');
+      }
+
       mobileMenuBtn.addEventListener('click', () => {
         const isHidden = mobileMenu.classList.contains('hidden');
         if (isHidden) {
-          mobileMenu.classList.remove('hidden');
-          mobileMenu.classList.add('flex');
-          hamburgerIcon.classList.add('hidden');
-          closeIcon.classList.remove('hidden');
-          document.body.style.overflow = 'hidden';
-          if (mainHeader) mainHeader.classList.add('menu-open');
+          openMenu();
         } else {
-          mobileMenu.classList.add('hidden');
-          mobileMenu.classList.remove('flex');
-          hamburgerIcon.classList.remove('hidden');
-          closeIcon.classList.add('hidden');
-          document.body.style.overflow = '';
-          if (mainHeader) mainHeader.classList.remove('menu-open');
+          closeMenu();
         }
       });
 
+      if (mobileMenuBackdrop) {
+        mobileMenuBackdrop.addEventListener('click', closeMenu);
+      }
+
       navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-          mobileMenu.classList.add('hidden');
-          mobileMenu.classList.remove('flex');
-          hamburgerIcon.classList.remove('hidden');
-          closeIcon.classList.add('hidden');
-          document.body.style.overflow = '';
-          if (mainHeader) mainHeader.classList.remove('menu-open');
-        });
+        link.addEventListener('click', closeMenu);
+      });
+
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
+          closeMenu();
+        }
       });
     }
 
@@ -2061,6 +2120,7 @@
       const track = document.getElementById('servicesTrack');
       const prevBtn = document.getElementById('servicesPrevBtn');
       const nextBtn = document.getElementById('servicesNextBtn');
+      const dotsContainer = document.getElementById('servicesDots');
       if (!track || !prevBtn || !nextBtn) return;
 
       const cards = track.querySelectorAll('.services-card');
@@ -2072,6 +2132,22 @@
         if (width >= 1024) return 4;
         if (width >= 640) return 2;
         return 1;
+      }
+
+      function initDots() {
+        if (!dotsContainer) return;
+        dotsContainer.innerHTML = '';
+        for (let i = 0; i < totalCards; i++) {
+          const dot = document.createElement('button');
+          dot.type = 'button';
+          dot.setAttribute('aria-label', `Ir al servicio ${i + 1}`);
+          dot.className = `h-2 rounded-full transition-all duration-300 ${i === currentIndex ? 'w-6 bg-[#c9cf35]' : 'w-2 bg-white/20'}`;
+          dot.addEventListener('click', () => {
+            currentIndex = i;
+            updateCarousel();
+          });
+          dotsContainer.appendChild(dot);
+        }
       }
 
       function updateCarousel() {
@@ -2087,6 +2163,18 @@
         const offset = currentIndex * (cardWidth + gap);
 
         track.style.transform = `translateX(-${offset}px)`;
+
+        // Actualizar dots en mobile
+        if (dotsContainer && dotsContainer.children.length > 0) {
+          const dots = dotsContainer.children;
+          for (let i = 0; i < dots.length; i++) {
+            if (i === currentIndex) {
+              dots[i].className = 'h-2 w-6 rounded-full bg-[#c9cf35] transition-all duration-300';
+            } else {
+              dots[i].className = 'h-2 w-2 rounded-full bg-white/25 hover:bg-white/50 transition-all duration-300';
+            }
+          }
+        }
       }
 
       nextBtn.addEventListener('click', () => {
@@ -2131,8 +2219,12 @@
       }, { passive: true });
 
       // Inicialización
+      initDots();
       setTimeout(updateCarousel, 100);
-      window.addEventListener('load', updateCarousel);
+      window.addEventListener('load', () => {
+        initDots();
+        updateCarousel();
+      });
     })();
   </script>
 
