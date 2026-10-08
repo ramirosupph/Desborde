@@ -1806,7 +1806,7 @@
       });
     }
 
-    // 2. CARRUSEL DE SERVICIOS OFRECIDOS (6 SERVICIOS, 4 VISIBLES EN PANTALLA)
+    // 2. CARRUSEL DE SERVICIOS OFRECIDOS (ROTACIÓN CONTINUA A LA IZQUIERDA CADA 1.5s + NAVEGACIÓN MANUAL)
     (function initServicesCarousel() {
       const track = document.getElementById('servicesTrack');
       const prevBtn = document.getElementById('servicesPrevBtn');
@@ -1814,15 +1814,21 @@
       const dotsContainer = document.getElementById('servicesDots');
       if (!track || !prevBtn || !nextBtn) return;
 
-      const cards = track.querySelectorAll('.services-card');
-      const totalCards = cards.length;
-      let currentIndex = 0;
+      const totalCards = track.querySelectorAll('.services-card').length;
+      let currentCardIndex = 0;
+      let isTransitioning = false;
+      let autoplayTimer = null;
 
-      function getVisibleCards() {
-        const width = window.innerWidth;
-        if (width >= 1024) return 4;
-        if (width >= 640) return 2;
-        return 1;
+      function updateDots() {
+        if (!dotsContainer || dotsContainer.children.length === 0) return;
+        const dots = dotsContainer.children;
+        for (let i = 0; i < dots.length; i++) {
+          if (i === currentCardIndex) {
+            dots[i].className = 'h-2 w-6 rounded-full bg-[#c9cf35] transition-all duration-300';
+          } else {
+            dots[i].className = 'h-2 w-2 rounded-full bg-white/25 hover:bg-white/50 transition-all duration-300';
+          }
+        }
       }
 
       function initDots() {
@@ -1832,62 +1838,131 @@
           const dot = document.createElement('button');
           dot.type = 'button';
           dot.setAttribute('aria-label', `Ir al servicio ${i + 1}`);
-          dot.className = `h-2 rounded-full transition-all duration-300 ${i === currentIndex ? 'w-6 bg-[#c9cf35]' : 'w-2 bg-white/20'}`;
+          dot.className = `h-2 rounded-full transition-all duration-300 ${i === currentCardIndex ? 'w-6 bg-[#c9cf35]' : 'w-2 bg-white/20'}`;
           dot.addEventListener('click', () => {
-            currentIndex = i;
-            updateCarousel();
+            if (i === currentCardIndex || isTransitioning) return;
+            const diff = (i - currentCardIndex + totalCards) % totalCards;
+            if (diff > 0 && diff <= totalCards / 2) {
+              nextSlide();
+            } else {
+              prevSlide();
+            }
+            startAutoplay();
           });
           dotsContainer.appendChild(dot);
         }
       }
 
-      function updateCarousel() {
-        const visibleCards = getVisibleCards();
-        const maxIndex = Math.max(0, totalCards - visibleCards);
-        if (currentIndex > maxIndex) currentIndex = maxIndex;
-        if (currentIndex < 0) currentIndex = 0;
-
-        const firstCard = cards[0];
-        if (!firstCard) return;
-        const cardWidth = firstCard.getBoundingClientRect().width;
+      function getStepWidth() {
+        const first = track.firstElementChild;
+        if (!first) return 0;
+        const cardWidth = first.getBoundingClientRect().width;
         const gap = parseFloat(window.getComputedStyle(track).gap) || 24;
-        const offset = currentIndex * (cardWidth + gap);
+        return cardWidth + gap;
+      }
 
-        track.style.transform = `translateX(-${offset}px)`;
+      function nextSlide() {
+        if (isTransitioning) return;
+        const step = getStepWidth();
+        if (step <= 0) return;
+        
+        isTransitioning = true;
+        const firstCard = track.firstElementChild;
+        
+        track.style.transition = 'transform 500ms ease-out';
+        track.style.transform = `translateX(-${step}px)`;
 
-        // Actualizar dots en mobile
-        if (dotsContainer && dotsContainer.children.length > 0) {
-          const dots = dotsContainer.children;
-          for (let i = 0; i < dots.length; i++) {
-            if (i === currentIndex) {
-              dots[i].className = 'h-2 w-6 rounded-full bg-[#c9cf35] transition-all duration-300';
-            } else {
-              dots[i].className = 'h-2 w-2 rounded-full bg-white/25 hover:bg-white/50 transition-all duration-300';
-            }
-          }
+        let handled = false;
+        const finish = () => {
+          if (handled) return;
+          handled = true;
+          track.removeEventListener('transitionend', finish);
+          
+          track.style.transition = 'none';
+          track.appendChild(firstCard);
+          track.style.transform = 'translateX(0)';
+          void track.offsetHeight; // Forzar reflujo
+          track.style.transition = 'transform 500ms ease-out';
+          
+          isTransitioning = false;
+          currentCardIndex = (currentCardIndex + 1) % totalCards;
+          updateDots();
+        };
+
+        track.addEventListener('transitionend', finish, { once: true });
+        setTimeout(finish, 550); // Fallback de seguridad
+      }
+
+      function prevSlide() {
+        if (isTransitioning) return;
+        const step = getStepWidth();
+        if (step <= 0) return;
+
+        isTransitioning = true;
+        const lastCard = track.lastElementChild;
+        const firstCard = track.firstElementChild;
+
+        // Prepend de inmediato sin transición en posición desplazada a la izquierda
+        track.style.transition = 'none';
+        track.insertBefore(lastCard, firstCard);
+        track.style.transform = `translateX(-${step}px)`;
+        void track.offsetHeight; // Forzar reflujo
+
+        // Animar suavemente hacia 0
+        track.style.transition = 'transform 500ms ease-out';
+        track.style.transform = 'translateX(0)';
+
+        let handled = false;
+        const finish = () => {
+          if (handled) return;
+          handled = true;
+          track.removeEventListener('transitionend', finish);
+          isTransitioning = false;
+          currentCardIndex = (currentCardIndex - 1 + totalCards) % totalCards;
+          updateDots();
+        };
+
+        track.addEventListener('transitionend', finish, { once: true });
+        setTimeout(finish, 550); // Fallback de seguridad
+      }
+
+      function startAutoplay() {
+        stopAutoplay();
+        autoplayTimer = setInterval(() => {
+          nextSlide();
+        }, 1500);
+      }
+
+      function stopAutoplay() {
+        if (autoplayTimer) {
+          clearInterval(autoplayTimer);
+          autoplayTimer = null;
         }
       }
 
+      // Event Listeners Flechas
       nextBtn.addEventListener('click', () => {
-        const visibleCards = getVisibleCards();
-        const maxIndex = Math.max(0, totalCards - visibleCards);
-        // Girar cíclicamente: al llegar al final vuelve al inicio
-        currentIndex = (currentIndex >= maxIndex) ? 0 : currentIndex + 1;
-        updateCarousel();
+        nextSlide();
+        startAutoplay();
       });
 
       prevBtn.addEventListener('click', () => {
-        const visibleCards = getVisibleCards();
-        const maxIndex = Math.max(0, totalCards - visibleCards);
-        // Girar cíclicamente: al llegar al inicio va al final
-        currentIndex = (currentIndex <= 0) ? maxIndex : currentIndex - 1;
-        updateCarousel();
+        prevSlide();
+        startAutoplay();
       });
+
+      // Pausa en hover sobre el carrusel o controles para permitir lectura interactiva
+      const carouselWrapper = track.closest('.relative') || track.parentElement;
+      if (carouselWrapper) {
+        carouselWrapper.addEventListener('mouseenter', stopAutoplay);
+        carouselWrapper.addEventListener('mouseleave', startAutoplay);
+      }
 
       // Soporte para gestos táctiles (Swipe)
       let startX = 0;
       let isSwiping = false;
       track.addEventListener('touchstart', (e) => {
+        stopAutoplay();
         startX = e.touches[0].clientX;
         isSwiping = true;
       }, { passive: true });
@@ -1897,25 +1972,32 @@
         const diffX = e.changedTouches[0].clientX - startX;
         if (Math.abs(diffX) > 40) {
           if (diffX < 0) {
-            nextBtn.click();
+            nextSlide();
           } else {
-            prevBtn.click();
+            prevSlide();
           }
         }
         isSwiping = false;
+        startAutoplay();
       }, { passive: true });
 
+      // Pausar si la pestaña pasa a segundo plano
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          stopAutoplay();
+        } else {
+          startAutoplay();
+        }
+      });
+
       window.addEventListener('resize', () => {
-        updateCarousel();
+        track.style.transition = 'none';
+        track.style.transform = 'translateX(0)';
       }, { passive: true });
 
       // Inicialización
       initDots();
-      setTimeout(updateCarousel, 100);
-      window.addEventListener('load', () => {
-        initDots();
-        updateCarousel();
-      });
+      startAutoplay();
     })();
   </script>
 
