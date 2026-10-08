@@ -1339,6 +1339,29 @@
       <div class="absolute bottom-0 left-0 right-0 h-[1px] bg-white/10 pointer-events-none"></div>
 
 
+      <!-- Muritos / Obstáculos Arcade (Rosa y Verde) -->
+      <div id="arcadeObstaclesContainer" class="absolute inset-0 pointer-events-none z-10">
+        <!-- Murito 1: Verde Lima -->
+        <div class="arcade-obstacle absolute bottom-0 left-[24%] sm:left-[20%] w-3 sm:w-3.5 h-4 sm:h-5 rounded-t-[3px] bg-[#c9cf35] border border-[#e5eb3b] shadow-[0_0_12px_rgba(201,207,53,0.85)] flex flex-col justify-start transition-transform duration-150">
+          <div class="w-full h-1 bg-white/50 rounded-t-[2px]"></div>
+        </div>
+
+        <!-- Murito 2: Rosa Desborde -->
+        <div class="arcade-obstacle absolute bottom-0 left-[54%] sm:left-[42%] w-3 sm:w-3.5 h-4 sm:h-5 rounded-t-[3px] bg-[#c94597] border border-[#ff6bc1] shadow-[0_0_12px_rgba(201,69,151,0.9)] flex flex-col justify-start transition-transform duration-150">
+          <div class="w-full h-1 bg-white/50 rounded-t-[2px]"></div>
+        </div>
+
+        <!-- Murito 3: Verde Lima -->
+        <div class="arcade-obstacle absolute bottom-0 left-[82%] sm:left-[64%] w-3 sm:w-3.5 h-4 sm:h-5 rounded-t-[3px] bg-[#c9cf35] border border-[#e5eb3b] shadow-[0_0_12px_rgba(201,207,53,0.85)] flex flex-col justify-start transition-transform duration-150">
+          <div class="w-full h-1 bg-white/50 rounded-t-[2px]"></div>
+        </div>
+
+        <!-- Murito 4: Rosa Desborde (Pantallas medianas y grandes) -->
+        <div class="arcade-obstacle absolute bottom-0 sm:left-[86%] w-3.5 h-5 rounded-t-[3px] bg-[#c94597] border border-[#ff6bc1] shadow-[0_0_12px_rgba(201,69,151,0.9)] hidden sm:flex flex-col justify-start transition-transform duration-150">
+          <div class="w-full h-1 bg-white/50 rounded-t-[2px]"></div>
+        </div>
+      </div>
+
       <!-- Contenedor de Ondas / Ripples de Impacto en el Suelo -->
       <div id="arcadeRippleContainer" class="absolute inset-0 pointer-events-none overflow-hidden"></div>
 
@@ -2126,37 +2149,67 @@
       startAutoplay();
     })();
 
-    // 7. MINI JUEGO ARCADE: BLOB DE DESBORDE REBOTANDO EN EL SEPARADOR
+    // 7. MINI JUEGO ARCADE: BLOB DE DESBORDE ESQUIVANDO Y SALTANDO MURITOS
     (function initArcadeBouncer() {
       const container = document.getElementById('arcadeBouncerTrack');
       const blob = document.getElementById('arcadeBouncerBlob');
       const shadow = document.getElementById('arcadeBouncerShadow');
       const rippleContainer = document.getElementById('arcadeRippleContainer');
+      const obstaclesContainer = document.getElementById('arcadeObstaclesContainer');
       if (!container || !blob) return;
 
       const getBlobSize = () => (window.innerWidth < 640 ? 36 : 44);
       let blobSize = getBlobSize();
       let trackWidth = container.clientWidth || window.innerWidth;
 
-      // Parámetros de física parabólica de rebote
-      const getJumpHeight = () => (window.innerWidth < 640 ? 40 : 50);
-      let H = getJumpHeight(); // Altura del salto en píxeles
-      const bounceDuration = 0.62; // Duración en segundos de un arco de rebote
-      let gravity = (8 * H) / (bounceDuration * bounceDuration);
-      let v0 = Math.sqrt(2 * gravity * H);
-      let speedX = window.innerWidth < 640 ? 125 : 155; // Píxeles por segundo de izquierda a derecha
+      // Parámetros de física de salto sobre obstáculos
+      const getJumpHeight = () => (window.innerWidth < 640 ? 44 : 54);
+      let H_obs = getJumpHeight(); // Altura del salto de murito (px)
+      const H_normal = window.innerWidth < 640 ? 22 : 28; // Salto intermedio
+      const jumpDuration = 0.65; // Duración en segundos del arco
+      let gravity = (8 * H_obs) / (jumpDuration * jumpDuration);
+      let v0_obs = Math.sqrt(2 * gravity * H_obs);
+      let v0_normal = Math.sqrt(2 * gravity * H_normal);
+      let speedX = window.innerWidth < 640 ? 130 : 160; // px/s de avance horizontal
 
-      let posX = -blobSize - 20;
+      // Distancia de despegue: asegura que el vértice del salto coincida justo sobre el murito
+      let launchLeadDistance = speedX * (jumpDuration / 2);
+
+      let posX = -blobSize - 30;
       let posY = 0;
-      let velY = v0;
+      let velY = 0;
+      let isJumping = false;
+      let currentJumpType = 'normal';
       let squashTimer = 0;
       const squashDuration = 0.12;
       let isSuperJump = false;
       let spinAngle = 0;
       let isSpinning = false;
+      let runCycle = 0;
 
       let isVisible = true;
       let lastTime = performance.now();
+
+      // Detectar posiciones X de los muritos visibles según el ancho de pantalla
+      function getObstacles() {
+        if (!obstaclesContainer) return [];
+        const obstacles = obstaclesContainer.querySelectorAll('.arcade-obstacle');
+        const list = [];
+        const contRect = container.getBoundingClientRect();
+        obstacles.forEach(el => {
+          if (el.offsetParent !== null) {
+            const rect = el.getBoundingClientRect();
+            list.push({
+              x: rect.left - contRect.left + rect.width / 2,
+              el: el,
+              cleared: false
+            });
+          }
+        });
+        return list.sort((a, b) => a.x - b.x);
+      }
+
+      let activeObstacles = getObstacles();
 
       function triggerRipple(x) {
         if (!rippleContainer) return;
@@ -2194,53 +2247,104 @@
 
         trackWidth = container.clientWidth || window.innerWidth;
         blobSize = getBlobSize();
+        const blobCenter = posX + blobSize / 2;
 
-        // 1. Avance continuo horizontal: de izquierda a derecha
+        // 1. Avance continuo horizontal (izquierda a derecha)
         posX += speedX * dt;
-        // Cuando supera el margen derecho de la pantalla, reinicia fluidamente desde la izquierda
+
+        // Al salir por el margen derecho, reiniciar bucle desde la izquierda
         if (posX > trackWidth + blobSize + 30) {
-          posX = -blobSize - 20;
+          posX = -blobSize - 30;
           posY = 0;
-          velY = v0;
+          velY = 0;
+          isJumping = false;
+          activeObstacles = getObstacles();
         }
 
-        // 2. Física gravitacional vertical parabólica
-        velY -= gravity * dt;
-        posY += velY * dt;
+        // 2. Detección del próximo murito adelante
+        let nextObstacle = null;
+        let distToNext = Infinity;
+        for (let i = 0; i < activeObstacles.length; i++) {
+          const obs = activeObstacles[i];
+          const dist = obs.x - blobCenter;
+          if (dist > -20 && dist < distToNext) {
+            distToNext = dist;
+            nextObstacle = obs;
+          }
+        }
 
+        // 3. Control de salto para no chocar
+        if (!isJumping && posY <= 0) {
+          if (nextObstacle && distToNext <= launchLeadDistance && distToNext > 0) {
+            // ¡SALTO DE MURITO!: Despega con altura completa para sobrevolar el obstáculo
+            isJumping = true;
+            currentJumpType = 'obstacle';
+            velY = v0_obs;
+          } else if (distToNext > (launchLeadDistance * 2.8) || !nextObstacle) {
+            // Salto rítmico intermedio en tramos despejados
+            isJumping = true;
+            currentJumpType = 'normal';
+            velY = v0_normal;
+          } else {
+            // Correr al ras del suelo esperando el punto exacto de despegue
+            runCycle += dt * 16;
+          }
+        }
+
+        // 4. Elevación y física vertical
+        if (isJumping) {
+          velY -= gravity * dt;
+          posY += velY * dt;
+
+          // Micro-reacción al sobrevolar la cima del murito sin tocarlo
+          if (nextObstacle && Math.abs(blobCenter - nextObstacle.x) < 20 && posY > 22) {
+            if (!nextObstacle.cleared) {
+              nextObstacle.cleared = true;
+              nextObstacle.el.style.transform = 'scale(1.18)';
+              setTimeout(() => {
+                if (nextObstacle.el) nextObstacle.el.style.transform = 'scale(1)';
+              }, 220);
+            }
+          }
+
+          // Aterrizaje suave en el piso
+          if (posY <= 0) {
+            posY = 0;
+            velY = 0;
+            isJumping = false;
+            squashTimer = squashDuration;
+            triggerRipple(posX + blobSize / 2);
+
+            if (isSuperJump) {
+              isSuperJump = false;
+              isSpinning = true;
+            }
+          }
+        }
+
+        // 5. Animación Squash & Stretch
         let scaleX = 1;
         let scaleY = 1;
         let rot = 0;
 
-        // Detección de suelo (línea divisoria)
-        if (posY <= 0) {
-          posY = 0;
-          squashTimer = squashDuration;
-          triggerRipple(posX + blobSize / 2);
-
-          if (isSuperJump) {
-            velY = v0 * 1.5;
-            isSuperJump = false;
-            isSpinning = true;
-          } else {
-            velY = v0;
-          }
-        }
-
-        // Deformación squash al golpear el suelo vs stretch en el aire
         if (squashTimer > 0) {
           squashTimer -= dt;
           const squashProgress = Math.max(0, squashTimer / squashDuration);
-          scaleX = 1 + 0.28 * squashProgress;
-          scaleY = 1 - 0.24 * squashProgress;
-        } else {
-          const vRatio = Math.max(-1, Math.min(1, velY / v0));
+          scaleX = 1 + 0.3 * squashProgress;
+          scaleY = 1 - 0.25 * squashProgress;
+        } else if (isJumping) {
+          const vRatio = Math.max(-1, Math.min(1, velY / v0_obs));
           scaleX = 1 - 0.12 * Math.abs(vRatio);
           scaleY = 1 + 0.18 * Math.abs(vRatio);
-          rot = vRatio * 12; // Inclinación aerodinámica según velocidad
+          rot = vRatio * 14;
+        } else {
+          // Zancada elástica en carrera
+          const runBounce = Math.sin(runCycle);
+          scaleX = 1 + 0.05 * runBounce;
+          scaleY = 1 - 0.05 * runBounce;
+          rot = 4;
         }
 
-        // Giro especial de 360 grados en super salto
         if (isSpinning) {
           spinAngle += 720 * dt;
           rot += spinAngle;
@@ -2250,12 +2354,12 @@
           }
         }
 
-        // Aplicar transformación fluida por aceleración GPU
+        // 6. Aplicar posición acelerada por GPU
         blob.style.transform = `translate3d(${posX}px, ${-posY}px, 0) scale(${scaleX}, ${scaleY}) rotate(${rot}deg)`;
 
-        // Actualizar sombra interactiva en la línea de piso
+        // 7. Sombra interactiva proyectada en el suelo
         if (shadow) {
-          const hRatio = Math.min(Math.max(0, posY / H), 1);
+          const hRatio = Math.min(Math.max(0, posY / H_obs), 1);
           const shadowScaleX = 1.2 - 0.6 * hRatio;
           const shadowScaleY = 1.0 - 0.5 * hRatio;
           const shadowOpacity = 0.7 - 0.45 * hRatio;
@@ -2266,23 +2370,27 @@
         requestAnimationFrame(update);
       }
 
-      // Interacción en Click o Tap: Super rebote y efecto visual arcade
+      // Interacción en click / tap: Súper salto con giro 360
       function handleInteraction(e) {
         e.stopPropagation();
         isSuperJump = true;
-        velY = v0 * 1.45;
+        isJumping = true;
+        velY = v0_obs * 1.4;
         triggerScorePopup(posX + blobSize / 2, posY);
       }
 
       blob.addEventListener('click', handleInteraction);
       blob.addEventListener('touchstart', handleInteraction, { passive: true });
 
-      // Optimización de rendimiento: pausar loop si no está en viewport
+      // Optimización de rendimiento cuando no está en pantalla
       if ('IntersectionObserver' in window) {
         const observer = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
             isVisible = entry.isIntersecting;
-            if (isVisible) lastTime = performance.now();
+            if (isVisible) {
+              lastTime = performance.now();
+              activeObstacles = getObstacles();
+            }
           });
         }, { threshold: 0.05 });
         observer.observe(container);
@@ -2294,16 +2402,20 @@
         } else {
           isVisible = true;
           lastTime = performance.now();
+          activeObstacles = getObstacles();
         }
       });
 
       window.addEventListener('resize', () => {
         trackWidth = container.clientWidth || window.innerWidth;
         blobSize = getBlobSize();
-        H = getJumpHeight();
-        gravity = (8 * H) / (bounceDuration * bounceDuration);
-        v0 = Math.sqrt(2 * gravity * H);
-        speedX = window.innerWidth < 640 ? 125 : 155;
+        H_obs = getJumpHeight();
+        gravity = (8 * H_obs) / (jumpDuration * jumpDuration);
+        v0_obs = Math.sqrt(2 * gravity * H_obs);
+        v0_normal = Math.sqrt(2 * gravity * (window.innerWidth < 640 ? 22 : 28));
+        speedX = window.innerWidth < 640 ? 130 : 160;
+        launchLeadDistance = speedX * (jumpDuration / 2);
+        activeObstacles = getObstacles();
       }, { passive: true });
 
       requestAnimationFrame(update);
